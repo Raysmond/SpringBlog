@@ -9,9 +9,11 @@ apply plugin: 'org.akhikhl.gretty'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+version = '0.1'
+
 repositories {
-    jcenter()
     mavenLocal()
+    jcenter()
     mavenCentral()
 
     maven { url 'http://repo.spring.io/libs-release' }
@@ -40,6 +42,10 @@ dependencies {
     // view
     compile 'de.neuland-bfi:spring-jade4j:0.4.2'
     compile 'org.pegdown:pegdown:1.6.0'
+
+    // python
+    compile 'org.python:jython-standalone:2.7.0'
+    compile 'org.pygments:pygments:2.0.2'
 
     // spring data
     compile 'org.springframework.data:spring-data-jpa:+'

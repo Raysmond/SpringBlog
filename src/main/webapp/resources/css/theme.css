@@ -21,7 +21,7 @@ body {
 .main-container{
 	margin-top: 330px;
 	padding-top: 60px;
-	max-width: 800px;
+	max-width: 840px;
 }
 
 form input, form button{
@@ -76,4 +76,9 @@ form input, form button{
 
 .post h2.title a:hover, .post h2.title a:focus{
 	color: #333;
+}
+
+.footer{
+	text-align: center;
+	margin-bottom: 50px;
 }

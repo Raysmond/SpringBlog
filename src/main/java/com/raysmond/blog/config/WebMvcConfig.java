@@ -3,11 +3,13 @@ package com.raysmond.blog.config;
 import static org.springframework.context.annotation.ComponentScan.Filter;
 
 import com.raysmond.blog.Application;
+import com.raysmond.blog.support.web.ViewHelper;
 import de.neuland.jade4j.JadeConfiguration;
 import de.neuland.jade4j.spring.template.SpringTemplateLoader;
 import de.neuland.jade4j.spring.view.JadeViewResolver;
 import com.raysmond.blog.config.interceptors.RequestProcessingTimeInterceptor;
 import com.raysmond.blog.config.resolvers.JsonViewResolver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -141,9 +143,21 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         return new RequestProcessingTimeInterceptor();
     }
 
+    @Autowired
+    public ViewHelper viewHelper;
+
     @Bean
     public HandlerInterceptor viewObjectAddingInterceptor() {
         return new HandlerInterceptorAdapter() {
+            @Override
+            public boolean preHandle(
+                    HttpServletRequest request,
+                    HttpServletResponse response,
+                    Object handler) throws Exception {
+
+                viewHelper.setStartTime(System.currentTimeMillis());
+                return true;
+            }
             @Override
             public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView view) {
                 CsrfToken token = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
@@ -154,6 +168,7 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
                     // add base path of application
                     view.addObject("basePath", request.getContextPath());
 
+                    view.addObject("viewHelper", viewHelper);
                 }
             }
         };
