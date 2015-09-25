@@ -1,0 +1,15 @@
+extends ../layout/app
+
+block content
+  .container.login
+    .col-md-4.col-md-offset-4.login-container
+      .title
+        h2 Signin
+        hr
+      .login-panel
+        form.signin-form(method="post",action="#{basePath}/authenticate")
+          input(type="hidden", name='_csrf', value='#{_csrf.token}')
+          input.form-control(type="text",name="username",value="user@raysmond.com")
+          input.form-control(type="password",name="password",value="user")
+          button.btn.btn-primary.btn-block(type="submit") Login
+  

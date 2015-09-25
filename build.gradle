@@ -1,0 +1,115 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'org.akhikhl.gretty'
+// apply plugin: 'spring-boot'
+
+// JDK 8
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+
+    maven { url 'http://repo.spring.io/libs-release' }
+    maven { url "http://repo.springsource.org/repo" } // for springloaded
+}
+
+dependencies {
+    // compile "org.springframework.boot:spring-boot-devtools"
+    // compile("org.springframework.boot:spring-boot-starter-web")
+    // compile "com.domingosuarez.boot:spring-boot-starter-jade4j:0.3.0"
+    compile 'org.springframework:spring-context:4.2.1.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.1.7.RELEASE'
+    compile 'org.springframework.security:spring-security-config:3.2.7.RELEASE'
+    compile 'org.springframework.security:spring-security-web:3.2.7.RELEASE'
+
+    compile 'org.thymeleaf:thymeleaf-spring4:+'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity3:+'
+
+    //persistence
+    compile 'com.zaxxer:HikariCP:+'
+    compile 'org.springframework:spring-orm:+'
+    compile 'org.hibernate:hibernate-entitymanager:+'
+    compile 'javax.el:javax.el-api:+'
+    compile 'org.hsqldb:hsqldb:+'
+
+    // view
+    compile 'de.neuland-bfi:spring-jade4j:0.4.2'
+    compile 'org.pegdown:pegdown:1.6.0'
+
+    // spring data
+    compile 'org.springframework.data:spring-data-jpa:+'
+    compile 'org.springframework.data:spring-data-mongodb:+'
+
+    // MySQL
+    compile 'mysql:mysql-connector-java:+'
+
+    // Validation
+    compile 'org.hibernate:hibernate-validator:+'
+
+    // Logging
+    compile 'ch.qos.logback:logback-classic:1.1.3'
+    compile 'org.slf4j:slf4j-api:+'
+    compile 'org.apache.commons:commons-lang3:+'
+
+    // @Inject
+    compile 'javax.inject:javax.inject:+'
+
+    // JSON
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1.3'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
+
+    // Utilities
+    compile 'com.google.guava:guava:+'
+
+    // static resources, ref. http://www.webjars.org/
+    compile 'org.webjars:jquery:2.1.4'
+    compile 'org.webjars:bootstrap:3.3.5'
+    compile 'org.webjars:font-awesome:4.3.0-3'
+    compile 'org.webjars:angularjs:1.4.4'
+    compile 'org.webjars:bootstrap-select:1.7.3-1'
+    compile 'org.webjars:ace:1.2.0'
+
+    // compile 'org.webjars:d3js:3.5.6'
+    // compile 'org.webjars.npm:jointjs:0.9.4'
+
+    // test
+    testCompile 'junit:junit:+'
+    testCompile 'org.mockito:mockito-core:+'
+    testCompile 'org.assertj:assertj-core:+'
+    testCompile 'org.hamcrest:hamcrest-core:+'
+    testCompile 'org.hamcrest:hamcrest-library:+'
+    testCompile 'org.objenesis:objenesis:+'
+    testCompile 'org.springframework:spring-test:+'
+
+    compile 'javax.servlet:jstl:1.2'
+
+    //include in compile only, exclude in the war
+    providedCompile 'javax.servlet:servlet-api:2.5'
+}
+
+//Gretty Embedded Jetty
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+        classpath 'org.springframework:springloaded:1.2.4.RELEASE'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.3.0.M5"
+    }
+}
+
+// Don't use Jetty8, even it's a servlet 3.0+ container,
+// but not support non-jar WebApplicationInitializer scanning.
+// It will cause "No Spring WebApplicationInitializer types detected on classpath"
+gretty {
+    port = 8080
+    contextPath = ''
+    servletContainer = 'jetty9' //tomcat7 or tomcat8
+}

@@ -1,0 +1,9 @@
+extends ../layout/app 
+
+block content 
+  .post
+    h1 #{post.getTitle()}
+    hr
+    .content 
+      !{post.getRenderedContent()}
+    

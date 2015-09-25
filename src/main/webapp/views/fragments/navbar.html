@@ -1,0 +1,37 @@
+<nav class="navbar navbar-fixed-top navbar-bright" th:fragment="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span style="color:#f9f9f9;font-weight:200;">SeGA</span> Workflow System</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Task Viewer</a></li>
+                <li><a href="#about">About</a></li>
+
+            </ul>
+
+            <div class="navbar-right navbar-user">
+                <img src="/resources/images/user/expert.png" th:src="@{/resources/images/user/expert.png}" height="32px" width="32px"/>
+
+                <div class="dropdown">
+			  <span class="dropdown-toggle" data-toggle="dropdown">Operator</span>
+                    <ul class="dropdown-menu">
+                        <li th:if="${#authorization.expression('isAuthenticated()')}">
+                            <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
+                            </a>
+                            <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- /.nav-collapse -->
+
+    </div><!-- /.container -->
+</nav><!-- /.navbar -->

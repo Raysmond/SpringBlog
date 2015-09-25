@@ -1,0 +1,36 @@
+extends ./layout/admin
+
+block content
+  h1 Posts
+  hr
+  
+  a.btn.btn-primary(href="/admin/posts/new") Create
+
+  .row(style="margin-top: 10px;")
+    .col-sm-12
+      table.table.table-bordered.table-hover.table-stripped
+        thead
+          tr
+            th ID
+            th Title 
+            th Format 
+            th Status
+            th Created At 
+            th.operations Operations
+          
+        tbody
+          for post in posts 
+            tr
+              td #{post.getId()}
+              td #{post.getTitle()}
+              td #{post.getPostFormat()}
+              td #{post.getPostStatus()}
+              td #{post.getCreatedAt()}
+              td.operations 
+                a.btn.btn-xs.btn-info(href="/posts/#{post.getId()}", target:'_blank')
+                  i.fa.fa-eye
+                a.btn.btn-xs.btn-primary(href="/admin/posts/#{post.getId()}/edit") 
+                  i.fa.fa-edit
+                a.btn.btn-xs.btn-danger(href="/admin/posts/#{post.getId()}/delete")
+                  i.fa.fa-trash-o
+            

@@ -1,0 +1,39 @@
+extends ./layout/admin
+
+block head
+  script(src="#{basePath}/webjars/ace/1.2.0/src-min/ace.js")
+  script(src="#{basePath}/webjars/ace/1.2.0/src-min/theme-github.js")
+  script(src="#{basePath}/webjars/ace/1.2.0/src-min/mode-markdown.js")
+
+block content
+  h1 New Post
+  hr
+
+  form.post-form(method="post",action="#{basePath}/admin/posts")
+    .item-row
+      input(type="hidden", name='_csrf', value='#{_csrf.token}')
+    .item-row
+      input.form-control(type="text", name="title", value='#{postForm.getTitle()}')
+    .item-row
+      textarea.form-control#content(name="content", style="display:none;")
+        = postForm.getContent()
+      div#content-editor
+        #{postForm.getContent()}
+    .item-row
+      select.form-control(style="width:120px;", name="postFormat")
+        for format in postFormats
+          option(value="#{format.getId()}") #{format.getDisplayName()}
+    .item-row
+      button.btn.btn-primary.btn-block(type="submit") Create new post
+
+  script
+    var editor = ace.edit("content-editor");
+    editor.setTheme("ace/theme/github");
+     
+    var MarkdownMode = ace.require("ace/mode/markdown").Mode;
+    editor.getSession().setMode(new MarkdownMode());
+    
+    $("form").submit(function(){
+        $("#content").val(editor.getValue());
+        return true;
+    });
