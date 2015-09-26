@@ -4,7 +4,7 @@ block content
   h1 Posts
   hr
   
-  a.btn.btn-primary(href="/admin/posts/new") Create
+  a.btn.btn-primary(href="#{basePath}/admin/posts/new") Create
 
   .row(style="margin-top: 10px;")
     .col-sm-12
@@ -27,10 +27,10 @@ block content
               td #{post.getPostStatus()}
               td #{post.getCreatedAt()}
               td.operations 
-                a.btn.btn-xs.btn-info(href="/posts/#{post.getId()}", target:'_blank')
+                a.btn.btn-xs.btn-info(href="#{basePath}/posts/#{post.getId()}", target:'_blank')
                   i.fa.fa-eye
-                a.btn.btn-xs.btn-primary(href="/admin/posts/#{post.getId()}/edit") 
+                a.btn.btn-xs.btn-primary(href="#{basePath}/admin/posts/#{post.getId()}/edit") 
                   i.fa.fa-edit
-                a.btn.btn-xs.btn-danger(href="/admin/posts/#{post.getId()}/delete")
+                a.btn.btn-xs.btn-danger(href="#{basePath}/admin/posts/#{post.getId()}/delete")
                   i.fa.fa-trash-o
             

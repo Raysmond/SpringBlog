@@ -1,4 +1,24 @@
 extends ../layout/app
 
-block content 
+block page_title
+  h1 Raysmond
+  p TO be or not to be.
+
+block content
   include ../posts/index
+  
+  .load-more
+    nav 
+      ul.pager 
+        if totalPages > page
+          li.previous 
+            a.btn(href="#{basePath}/?page=#{page+1}") 
+              span(aria-hidden="true) &larr;
+              |  Older posts
+              
+        if page > 1
+          li.next
+            a.btn(href="#{basePath}/?page=#{page-1}") 
+              |Newer posts 
+              span(aria-hidden="true) &rarr;
+        

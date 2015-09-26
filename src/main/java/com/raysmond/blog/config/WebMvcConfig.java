@@ -2,7 +2,7 @@ package com.raysmond.blog.config;
 
 import static org.springframework.context.annotation.ComponentScan.Filter;
 
-import com.raysmond.blog.Application;
+import com.raysmond.blog.BlogApp;
 import com.raysmond.blog.support.web.ViewHelper;
 import de.neuland.jade4j.JadeConfiguration;
 import de.neuland.jade4j.spring.template.SpringTemplateLoader;
@@ -40,8 +40,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@ComponentScan(basePackageClasses = Application.class, includeFilters = @Filter(Controller.class), useDefaultFilters = false)
-class WebMvcConfig extends WebMvcConfigurationSupport {
+@ComponentScan(basePackageClasses = BlogApp.class, includeFilters = @Filter(Controller.class), useDefaultFilters = false)
+@EnableWebMvc
+class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
@@ -86,7 +87,7 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         TemplateResolver templateResolver = new ServletContextTemplateResolver();
         templateResolver.setPrefix(Config.VIEWS);
         templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
+        templateResolver.setTemplateMode("HTML");
         templateResolver.setCacheable(false);
         return templateResolver;
     }

@@ -3,7 +3,7 @@ apply plugin: 'war'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'org.akhikhl.gretty'
-// apply plugin: 'spring-boot'
+//apply plugin: 'spring-boot'
 
 // JDK 8
 sourceCompatibility = 1.8
@@ -20,10 +20,13 @@ repositories {
     maven { url "http://repo.springsource.org/repo" } // for springloaded
 }
 
+
+
 dependencies {
-    // compile "org.springframework.boot:spring-boot-devtools"
-    // compile("org.springframework.boot:spring-boot-starter-web")
-    // compile "com.domingosuarez.boot:spring-boot-starter-jade4j:0.3.0"
+    // spring boot
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    // spring framework
     compile 'org.springframework:spring-context:4.2.1.RELEASE'
     compile 'org.springframework:spring-webmvc:4.1.7.RELEASE'
     compile 'org.springframework.security:spring-security-config:3.2.7.RELEASE'
@@ -84,6 +87,7 @@ dependencies {
     // compile 'org.webjars.npm:jointjs:0.9.4'
 
     // test
+    testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile 'junit:junit:+'
     testCompile 'org.mockito:mockito-core:+'
     testCompile 'org.assertj:assertj-core:+'
@@ -100,22 +104,37 @@ dependencies {
 
 //Gretty Embedded Jetty
 buildscript {
+    ext {
+        springBootVersion = '1.2.6.RELEASE'
+    }
+
     repositories {
+        mavenLocal()
         jcenter()
+
+        maven { url "http://repo.spring.io/release" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://repo.spring.io/snapshot" }
     }
 
     dependencies {
         classpath 'org.akhikhl.gretty:gretty:+'
         classpath 'org.springframework:springloaded:1.2.4.RELEASE'
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.3.0.M5"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     }
 }
+
+jar {
+    baseName = 'spring-blog'
+    version =  '0.1'
+}
+
 
 // Don't use Jetty8, even it's a servlet 3.0+ container,
 // but not support non-jar WebApplicationInitializer scanning.
 // It will cause "No Spring WebApplicationInitializer types detected on classpath"
 gretty {
     port = 8080
-    contextPath = ''
+    contextPath = 'SpringBlog'
     servletContainer = 'jetty9' //tomcat7 or tomcat8
 }

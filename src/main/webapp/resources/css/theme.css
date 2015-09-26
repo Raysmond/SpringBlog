@@ -4,6 +4,16 @@ body {
 	background: #efefef;
 }
 
+pre{
+	background: #F9F9F9;
+	border-radius: 1px;
+	border: none;
+	font-size: 12px;
+	line-height: 1.55;
+	overflow: auto;
+	word-break: keep-all;
+	word-wrap: normal;
+}
 
 .navbar{
 	z-index: 100;
@@ -65,6 +75,11 @@ form input, form button{
 	color: rgba(187,187,187,0.8);
 }
 
+.post h1 > a, .post h2 > a, .post h3 > a, .post h4 > a{
+	color: #333;
+	text-decoration: none;
+}
+
 .post h2.title{
 	margin-bottom: 20px;
 }
@@ -81,4 +96,14 @@ form input, form button{
 .footer{
 	text-align: center;
 	margin-bottom: 50px;
+}
+
+.footer-wrapper{
+	display: block;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.footer-wrapper hr{
+	border-color: #C7C7C7;
 }

@@ -2,22 +2,22 @@ package com.raysmond.blog.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.raysmond.blog.repositories.UserRepository;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.sega.viewer.models.Process;
+
 /**
  *
  * @author: Raysmond
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ModelsTest {
-
     @Mock
-    private IModel model;
+    private UserRepository users;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -25,7 +25,7 @@ public class ModelsTest {
     @Test
     public void modelShouldnotBeNull() {
 
-        assertThat(model != null);
+        assertThat(users != null);
     }
 
 }

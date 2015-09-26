@@ -5,7 +5,7 @@
         .meta 
           .time #{post.getCreatedAt()}
         h2.title 
-          a(href="/posts/#{post.getId()}")
+          a(href="#{basePath}/posts/#{post.getId()}")
             = post.getTitle()
         
         .content 

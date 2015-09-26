@@ -1,11 +1,11 @@
 extends ../layout/app
 
+block page_title
+  h1 Admin Signin 
+
 block content
-  .container.login
+  .row
     .col-md-4.col-md-offset-4.login-container
-      .title
-        h2 Signin
-        hr
       .login-panel
         form.signin-form(method="post",action="#{basePath}/authenticate")
           input(type="hidden", name='_csrf', value='#{_csrf.token}')

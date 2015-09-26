@@ -4,9 +4,11 @@ import com.raysmond.blog.forms.PostForm;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.User;
 import com.raysmond.blog.models.support.PostFormat;
+import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.repositories.UserRepository;
 import com.raysmond.blog.services.MarkdownService;
+import com.raysmond.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,6 +35,9 @@ public class PostController {
 
     @Autowired
     private MarkdownService markdown;
+
+    @Autowired
+    private PostService postService;
 
     @Autowired
     private UserRepository users;
@@ -74,16 +79,11 @@ public class PostController {
             model.addAttribute("postFormats", PostFormat.values());
             return "admin/posts_new";
         } else {
-            Post post = postForm.toPost();
             User user = users.findByEmail(principal.getName());
-            post.setUser(user);
-            post.setPostStatus(Post.PostStatus.PUBLISHED);
+            Post post = postForm.toPost();
 
-            if (post.getPostFormat() == PostFormat.MARKDOWN){
-                post.setRenderedContent(markdown.renderToHtml(post.getContent()));
-            }
+            postService.createPost(user, post.getTitle(), post.getContent(), post.getPostFormat(), PostStatus.PUBLISHED);
 
-            posts.save(post);
             return "redirect:/admin/posts";
         }
     }
@@ -99,11 +99,8 @@ public class PostController {
             post.setContent(postForm.getContent());
             post.setPostFormat(postForm.getPostFormat());
 
-            if (post.getPostFormat() == PostFormat.MARKDOWN){
-                post.setRenderedContent(markdown.renderToHtml(post.getContent()));
-            }
+            postService.updatePost(post);
 
-            posts.save(post);
             return "redirect:/admin/posts";
         }
     }

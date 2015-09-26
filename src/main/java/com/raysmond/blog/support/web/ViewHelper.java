@@ -10,15 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Service
 public class ViewHelper {
 
-    @Autowired
-    private PygmentsService highlightService;
-
     private long startTime;
 
     public long getResponseTime(){
         return System.currentTimeMillis() - startTime;
     }
-
 
     public long getStartTime() {
         return startTime;
@@ -26,10 +22,6 @@ public class ViewHelper {
 
     public void setStartTime(long startTime) {
         this.startTime = startTime;
-    }
-
-    public String highlightCode(String content){
-        return highlightService.highlight(content);
     }
 
 }

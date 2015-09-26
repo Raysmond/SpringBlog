@@ -2,6 +2,8 @@ package com.raysmond.blog.models;
 
 import com.raysmond.blog.forms.PostForm;
 import com.raysmond.blog.models.support.PostFormat;
+import com.raysmond.blog.models.support.PostStatus;
+import com.raysmond.blog.models.support.PostType;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -35,13 +37,13 @@ public class Post extends BaseModel{
     private PostFormat postFormat;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private PostType postType;
+
+    @Column(nullable = false)
     private Date createdAt = new Date();
 
     private Date publishAt;
-
-    public static enum PostStatus {
-        DRAFT, PUBLISHED
-    }
 
     @PrePersist
     public void beforeCreate(){
@@ -53,6 +55,9 @@ public class Post extends BaseModel{
 
         if (createdAt == null)
             createdAt = new Date();
+
+        if (postType == null)
+            postType = PostType.POST;
     }
 
     public User getUser() {
@@ -120,5 +125,13 @@ public class Post extends BaseModel{
 
     public void setPublishAt(Date publishAt) {
         this.publishAt = publishAt;
+    }
+
+    public PostType getPostType() {
+        return postType;
+    }
+
+    public void setPostType(PostType postType) {
+        this.postType = postType;
     }
 }

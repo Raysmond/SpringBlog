@@ -2,10 +2,9 @@ package com.raysmond.blog.config;
 
 import java.util.Properties;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import com.raysmond.blog.Application;
+import com.raysmond.blog.BlogApp;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +20,7 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = Application.class)
+@EnableJpaRepositories(basePackageClasses = BlogApp.class)
 class JpaConfig implements TransactionManagementConfigurer {
 
     @Value("${dataSource.driverClassName}")

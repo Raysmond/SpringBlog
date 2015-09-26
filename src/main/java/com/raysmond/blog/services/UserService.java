@@ -18,12 +18,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository users;
 
-    @Autowired
-    private IModel model;
-
     @PostConstruct
     protected void initialize() {
-        if (users.findByEmail("user@raysmond.com") == null){
+        if (users.findByEmail("user@raysmond.com") == null) {
             users.save(new User("user@raysmond.com", "user", "ROLE_OPERATOR"));
             users.save(new User("admin@raysmond.com", "admin", "ROLE_ADMIN"));
         }
@@ -39,21 +36,18 @@ public class UserService implements UserDetailsService {
     }
 
     public void signin(User user) {
-        System.out.println(user.getEmail());
-        System.out.println(user.getPassword());
-        System.out.println(user.getRole());
         SecurityContextHolder.getContext().setAuthentication(authenticate(user));
     }
 
     private Authentication authenticate(User user) {
-        System.out.println(user.getEmail());
-        System.out.println(user.getPassword());
-        System.out.println(user.getRole());
         return new UsernamePasswordAuthenticationToken(createUser(user), null, Collections.singleton(createAuthority(user)));
     }
 
     private org.springframework.security.core.userdetails.User createUser(User user) {
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), Collections.singleton(createAuthority(user)));
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                Collections.singleton(createAuthority(user)));
     }
 
     private GrantedAuthority createAuthority(User user) {
