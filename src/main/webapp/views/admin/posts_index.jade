@@ -31,6 +31,9 @@ block content
                   i.fa.fa-eye
                 a.btn.btn-xs.btn-primary(href="#{basePath}/admin/posts/#{post.getId()}/edit") 
                   i.fa.fa-edit
-                a.btn.btn-xs.btn-danger(href="#{basePath}/admin/posts/#{post.getId()}/delete")
+                a.btn.btn-xs.btn-danger.btn-delete(href="javascript:$('#form-#{post.getId()}').submit();", postId="#{post.id}")
                   i.fa.fa-trash-o
-            
+                  
+                form(id="form-#{post.getId()}",style="visibility: hidden", method="post", action="#{basePath}/admin/posts/#{post.getId()}/delete")
+                  input(type="hidden", name='_csrf', value='#{_csrf.token}')
+      

@@ -33,6 +33,8 @@ block content
     var MarkdownMode = ace.require("ace/mode/markdown").Mode;
     editor.getSession().setMode(new MarkdownMode());
     
+    editor.getSession().setUseWrapMode(true);
+    
     $("form").submit(function(){
         $("#content").val(editor.getValue());
         return true;

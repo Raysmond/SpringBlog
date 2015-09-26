@@ -1,5 +1,6 @@
 package com.raysmond.blog.admin.controllers;
 
+import com.raysmond.blog.config.interceptors.RequestProcessingTimeInterceptor;
 import com.raysmond.blog.forms.PostForm;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.User;
@@ -9,9 +10,12 @@ import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.repositories.UserRepository;
 import com.raysmond.blog.services.MarkdownService;
 import com.raysmond.blog.services.PostService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,9 +48,11 @@ public class PostController {
 
     private static final int PAGE_SIZE = 10;
 
+    private Logger logger = LoggerFactory.getLogger(PostController.class);
+
     @RequestMapping(value = "")
     public String index(@RequestParam(defaultValue = "0") int page, Model model){
-        Page<Post> _posts = posts.findAll(new PageRequest(page, PAGE_SIZE));
+        Page<Post> _posts = posts.findAll(new PageRequest(page, PAGE_SIZE, Sort.Direction.DESC, "id"));
         model.addAttribute("posts", _posts);
         return "admin/posts_index";
     }
@@ -67,7 +73,7 @@ public class PostController {
         return "admin/posts_edit";
     }
 
-    @RequestMapping(value = "{postId:[0-9]+}/edit", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{postId:[0-9]+}/delete", method = {RequestMethod.DELETE, RequestMethod.POST})
     public String deletePost(@PathVariable Long postId){
         posts.delete(postId);
         return "redirect:/admin/posts";
@@ -100,7 +106,6 @@ public class PostController {
             post.setPostFormat(postForm.getPostFormat());
 
             postService.updatePost(post);
-
             return "redirect:/admin/posts";
         }
     }

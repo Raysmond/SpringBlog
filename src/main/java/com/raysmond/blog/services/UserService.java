@@ -21,7 +21,7 @@ public class UserService implements UserDetailsService {
     @PostConstruct
     protected void initialize() {
         if (users.findByEmail("user@raysmond.com") == null) {
-            users.save(new User("user@raysmond.com", "user", "ROLE_OPERATOR"));
+            users.save(new User("user@raysmond.com", "user", "ROLE_USER"));
             users.save(new User("admin@raysmond.com", "admin", "ROLE_ADMIN"));
         }
     }

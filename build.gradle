@@ -52,7 +52,6 @@ dependencies {
 
     // spring data
     compile 'org.springframework.data:spring-data-jpa:+'
-    compile 'org.springframework.data:spring-data-mongodb:+'
 
     // MySQL
     compile 'mysql:mysql-connector-java:+'
@@ -79,12 +78,7 @@ dependencies {
     compile 'org.webjars:jquery:2.1.4'
     compile 'org.webjars:bootstrap:3.3.5'
     compile 'org.webjars:font-awesome:4.3.0-3'
-    compile 'org.webjars:angularjs:1.4.4'
-    compile 'org.webjars:bootstrap-select:1.7.3-1'
     compile 'org.webjars:ace:1.2.0'
-
-    // compile 'org.webjars:d3js:3.5.6'
-    // compile 'org.webjars.npm:jointjs:0.9.4'
 
     // test
     testCompile("org.springframework.boot:spring-boot-starter-test")
@@ -123,12 +117,6 @@ buildscript {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     }
 }
-
-jar {
-    baseName = 'spring-blog'
-    version =  '0.1'
-}
-
 
 // Don't use Jetty8, even it's a servlet 3.0+ container,
 // but not support non-jar WebApplicationInitializer scanning.
