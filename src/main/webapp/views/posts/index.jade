@@ -3,7 +3,7 @@
     .row.post 
       .col-sm-12
         .meta 
-          .time #{post.getCreatedAt()}
+          .time #{viewHelper.getFormattedDate(post.getCreatedAt())}
         h2.title 
           a(href="#{basePath}/posts/#{post.getId()}")
             = post.getTitle()

@@ -14,20 +14,4 @@ nav.navbar.navbar-bright
           a(href="#{basePath}") Home
         li
           a(href="#{basePath}/about") About
-      ul.nav.navbar-nav.navbar-right.navbar-user
-        li.dropdown
-          a.dropdown-toggle(data-toggle="dropdown") 
-            img(src="#{basePath}/resources/images/user.jpg", style="width:32px;height:32px;")
-            span &nbsp; User
-          ul.dropdown-menu
-            li
-              a(href="/admin")
-                i.fa.fa-gear(style="margin-right: 15px;")
-                span Admin
-            li
-              a(href="javascript:$('#form').submit();")
-                span.glyphicon.glyphicon-log-out(aria-hidden="true") &nbsp;Logout
-            
-              form#form(style="visibility: hidden", method="post", action="#{basePath}/logout")
-                input(type="hidden", name='_csrf', value='#{_csrf.token}')
     
