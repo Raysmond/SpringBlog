@@ -29,6 +29,8 @@ import java.security.Principal;
 
 /**
  * Created by Raysmond on 9/25/15.
+ *
+ * TODO place all view templates into sub dirs under /admin/
  */
 @Controller(value = "adminPostController")
 @RequestMapping(value = "/admin/posts")
@@ -38,21 +40,18 @@ public class PostController {
     private PostRepository posts;
 
     @Autowired
-    private MarkdownService markdown;
-
-    @Autowired
     private PostService postService;
 
     @Autowired
     private UserRepository users;
 
-    private static final int PAGE_SIZE = 10;
-
-    private Logger logger = LoggerFactory.getLogger(PostController.class);
+    private static final int PAGE_SIZE = 50;
 
     @RequestMapping(value = "")
     public String index(@RequestParam(defaultValue = "0") int page, Model model){
         Page<Post> _posts = posts.findAll(new PageRequest(page, PAGE_SIZE, Sort.Direction.DESC, "id"));
+        model.addAttribute("totalPages", _posts.getTotalPages());
+        model.addAttribute("page", page);
         model.addAttribute("posts", _posts);
         return "admin/posts_index";
     }

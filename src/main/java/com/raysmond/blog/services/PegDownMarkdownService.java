@@ -13,11 +13,11 @@ import java.util.Collections;
  */
 @Service
 @Qualifier("pegdown")
-public class MarkdownServiceImpl implements MarkdownService {
+public class PegDownMarkdownService implements MarkdownService {
 
     private final PegDownProcessor pegdown;
 
-    public MarkdownServiceImpl() {
+    public PegDownMarkdownService() {
         pegdown = new PegDownProcessor(Extensions.ALL);
     }
 
