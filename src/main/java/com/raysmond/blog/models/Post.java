@@ -21,7 +21,6 @@ public class Post extends BaseModel{
     @Column(nullable = false)
     private String title;
 
-    @Column(length = 65535)
     @Type(type="text")
     private String content;
 
@@ -42,8 +41,6 @@ public class Post extends BaseModel{
 
     @Column(nullable = false)
     private Date createdAt = new Date();
-
-    private Date publishAt;
 
     @PrePersist
     public void beforeCreate(){
@@ -117,14 +114,6 @@ public class Post extends BaseModel{
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Date getPublishAt() {
-        return publishAt;
-    }
-
-    public void setPublishAt(Date publishAt) {
-        this.publishAt = publishAt;
     }
 
     public PostType getPostType() {

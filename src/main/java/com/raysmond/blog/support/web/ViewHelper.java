@@ -14,6 +14,7 @@ import java.util.Date;
 public class ViewHelper {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy");
+    private static final SimpleDateFormat DATE_FORMAT_MONTH_DAY = new SimpleDateFormat("MMM dd");
 
     private long startTime;
 
@@ -31,6 +32,10 @@ public class ViewHelper {
 
     public String getFormattedDate(Date date){
         return date == null ? "" : DATE_FORMAT.format(date);
+    }
+
+    public String getMonthAndDay(Date date){
+        return date == null ? "" : DATE_FORMAT_MONTH_DAY.format(date);
     }
 
 }

@@ -94,6 +94,10 @@ form input, form button{
 	color: #333;
 }
 
+.post .comments{
+	margin-top: 80px;
+}
+
 .footer{
 	text-align: center;
 	margin-bottom: 50px;

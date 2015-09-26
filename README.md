@@ -2,7 +2,7 @@ SpringBlog
 =====
 
 SpringBlog is a very simple blog system implemented with Spring MVC.
-It's one of my learning project which took me two days to develop the first minimal but runnable version. I've put it on production
+It's one of my learning projects which took me two days to develop the first minimal and runnable version. I've put it on production
 for my personal website [http://raysmond.com](http://raysmond.com).
 
 SpringBlog is powered by many powerful frameworks and third-party projects:
@@ -14,6 +14,7 @@ SpringBlog is powered by many powerful frameworks and third-party projects:
 - [ACE Editor](http://ace.c9.io/) - A high performance code editor
 - [Pygments](http://pygments.org/) - Python syntax highlighter
 - [Jade4j](https://github.com/neuland/jade4j) - [Jade](http://jade-lang.com/) is an elegant template language
+- [Webjars](http://www.webjars.org/) - A client-side web libraries packaged into JAR files. A easy way to manage JavaScript and CSS vendors in Gradle.
 
 ## Development
 
