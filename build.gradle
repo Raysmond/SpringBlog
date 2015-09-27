@@ -127,6 +127,6 @@ buildscript {
 // It will cause "No Spring WebApplicationInitializer types detected on classpath"
 gretty {
     port = 8080
-    contextPath = 'SpringBlog'
+    contextPath = ''
     servletContainer = 'jetty9' //tomcat7 or tomcat8
 }

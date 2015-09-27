@@ -1,5 +1,6 @@
 package com.raysmond.blog.controllers;
 
+import com.raysmond.blog.error.NotFoundException;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
@@ -36,6 +37,10 @@ public class PostController {
     @RequestMapping(value = "{postId:[0-9]+}")
     public String show(@PathVariable Long postId, Model model){
         Post post = postService.getPost(postId);
+
+        if(post == null){
+            throw new NotFoundException();
+        }
         model.addAttribute("post", post);
         return "posts/show";
     }

@@ -15,12 +15,29 @@ SpringBlog is powered by many powerful frameworks and third-party projects:
 - [Pygments](http://pygments.org/) - Python syntax highlighter
 - [Jade4j](https://github.com/neuland/jade4j) - [Jade](http://jade-lang.com/) is an elegant template language
 - [Webjars](http://www.webjars.org/) - A client-side web libraries packaged into JAR files. A easy way to manage JavaScript and CSS vendors in Gradle.
+- [Redis](http://redis.io/) - A very powerful in-memory data cache server.
 
 ## Development
 
-Make sure Gradle is installed in your machine. Try `gradle -v` command. Otherwise install in from [http://www.gradle.org/](http://www.gradle.org/).
+Before development, please install the following service software:
 
-Before development, please install MySQL5+ first and edit `persistence.properties` according to your database configurations.
+- MySQL5
+    - Configuration file: `src/main/java/persistence.properties`
+- Redis
+    - [how-to-install-and-use-redis-on-ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis)
+    - Configuration file: `src/main/java/redis.properties`
+
+And start MySQL and Redis server before running the application.
+
+```
+# If you're using Ubuntu server
+sudo service mysql start
+sudo service redis_6379 start
+```
+
+This is a Gradle project. Make sure Gradle is installed in your machine.
+Try `gradle -v` command. Otherwise install in from [http://www.gradle.org/](http://www.gradle.org/).
+I recommend you import the source code into Intellij IDE to edit the code.
 
 ```
 # Install artifacts to your local repository
@@ -30,4 +47,4 @@ Before development, please install MySQL5+ first and edit `persistence.propertie
 ./gradlew jettyRun
 ```
 
-View `http://localhost:8080/SpringBlog` on your browser.
+View `http://localhost:8080/` on your browser.
