@@ -5,6 +5,12 @@ block title
   = statusCode
 
 block page_title  
-  h1 #{statusCode} #{exceptionMessage}
-  p Request page: #{requestUri}
+  if statusCode != null
+    h1 #{statusCode} #{exceptionMessage}
+  else
+    h1 Error
+  
+  if requestUri != null
+    p Request page: #{requestUri}
+    
   p #{message}

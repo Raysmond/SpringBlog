@@ -1,11 +1,11 @@
 extends ../layout/app 
 
 block page_title 
-  h1 Raysmond 
+  h1 #{App.getSiteName()} 
   p Something about me.
 
 block title 
-  |About Raysmond
+  = viewHelper.metaTitle("About " + App.getSiteName())
 
 block content 
   .post 

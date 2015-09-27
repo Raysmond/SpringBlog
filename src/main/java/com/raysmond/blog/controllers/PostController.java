@@ -25,8 +25,6 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    private static final int MAX_SIZE = 100;
-
     @RequestMapping(value = "archive")
     public String archive(Model model){
         List<Post> _posts = postService.getArchivePosts();

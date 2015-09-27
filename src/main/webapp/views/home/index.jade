@@ -1,11 +1,11 @@
 extends ../layout/app
 
 block page_title
-  h1 Raysmond
-  p Do it now or never
+  h1 #{App.getSiteName()}
+  p #{App.getSiteSlogan()}
 
 block title 
-  |Raysmond
+  = App.getSiteName()
 
 block content
   include ../posts/index

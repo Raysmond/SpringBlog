@@ -7,13 +7,16 @@ nav.navbar.navbar-fixed-top.navbar-bright
         span.icon-bar
         span.icon-bar
       a.navbar-brand(href="#{basePath}/admin")
-        span Sring Blog
+        span #{App.getSiteName()}
     .collapse.navbar-collapse#navbar
       ul.nav.navbar-nav
         li.active
           a(href="#{basePath}/admin/posts") Posts
         li
           a(href="#{basePath}/admin/settings") Setting
+        
+        li
+          a(href="#{basePath}/") Site Home
       ul.nav.navbar-nav.navbar-right.navbar-user
         li.dropdown
           a.dropdown-toggle(data-toggle="dropdown") 

@@ -1,6 +1,7 @@
 package com.raysmond.blog.support.web;
 
 
+import com.raysmond.blog.services.BlogSetting;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +16,13 @@ public class ViewHelper {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy");
     private static final SimpleDateFormat DATE_FORMAT_MONTH_DAY = new SimpleDateFormat("MMM dd");
+
+    private BlogSetting blogSetting;
+
+    @Autowired
+    public ViewHelper(BlogSetting blogSetting){
+        this.blogSetting = blogSetting;
+    }
 
     private long startTime;
 
@@ -38,4 +46,7 @@ public class ViewHelper {
         return date == null ? "" : DATE_FORMAT_MONTH_DAY.format(date);
     }
 
+    public String metaTitle(String title){
+        return title + " · " + blogSetting.getSiteName();
+    }
 }

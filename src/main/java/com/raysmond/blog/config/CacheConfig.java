@@ -1,5 +1,7 @@
 package com.raysmond.blog.config;
 
+import com.raysmond.blog.services.BlogSetting;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -16,10 +18,13 @@ import org.springframework.data.redis.core.RedisTemplate;
 public class CacheConfig {
 
     @Value("${redis.host}")
-    private  String redisHost;
+    private String redisHost;
 
     @Value("${redis.port}")
-    private  int redisPort;
+    private int redisPort;
+
+    @Value("${redis.default_expire_time}")
+    private long redisDefaultExpireTime;
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -44,7 +49,9 @@ public class CacheConfig {
 
     @Bean
     CacheManager cacheManager() {
-        return new RedisCacheManager(redisTemplate());
+        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate());
+        cacheManager.setDefaultExpiration(redisDefaultExpireTime);
+        return cacheManager;
     }
 
 }

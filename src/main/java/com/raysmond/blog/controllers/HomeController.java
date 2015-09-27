@@ -8,6 +8,7 @@ import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.repositories.UserRepository;
+import com.raysmond.blog.services.BlogSetting;
 import com.raysmond.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,9 +25,10 @@ public class HomeController {
     private PostService postService;
 
     @Autowired
-    private PostRepository posts;
+    private BlogSetting blogSetting;
 
-    private static final int PAGE_SIZE = 5;
+    @Autowired
+    private PostRepository postRepository;
 
     private static Long ABOUT_PAGE_ID = null;
 
@@ -36,10 +38,10 @@ public class HomeController {
             page = 1;
         }
 
-        Page<Post> _posts = postService.getAllPostsByPage(page - 1, PAGE_SIZE);
+        Page<Post> posts = postService.getAllPostsByPage(page - 1, blogSetting.getPageSize());
 
-        model.addAttribute("totalPages", _posts.getTotalPages());
-        model.addAttribute("posts", _posts);
+        model.addAttribute("totalPages", posts.getTotalPages());
+        model.addAttribute("posts", posts);
         model.addAttribute("page", page);
         return "home/index";
     }
@@ -47,7 +49,7 @@ public class HomeController {
     @RequestMapping(value = "/about")
     public String about(Model model) {
         if (ABOUT_PAGE_ID == null || postService.getPost(ABOUT_PAGE_ID) == null) {
-            Post post = posts.findByTitleAndPostType("About", PostType.PAGE);
+            Post post = postRepository.findByTitleAndPostType("About", PostType.PAGE);
             if (post == null) {
                 post = postService.createAboutPage();
             }

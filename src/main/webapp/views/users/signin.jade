@@ -9,7 +9,7 @@ block content
       .login-panel
         form.signin-form(method="post",action="#{basePath}/authenticate")
           input(type="hidden", name='_csrf', value='#{_csrf.token}')
-          input.form-control(type="text",name="username")
-          input.form-control(type="password",name="password")
+          input.form-control(type="text",name="username",placeholder="Email")
+          input.form-control(type="password",name="password",placeholder="Password")
           button.btn.btn-primary.btn-block(type="submit") Login
   

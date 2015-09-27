@@ -3,3 +3,27 @@ extends ./layout/admin
 block content
   h1 Settings
   hr
+  
+  form.settings-form(method="post",action="#{basePath}/admin/settings")
+    input(type="hidden", name='_csrf', value='#{_csrf.token}')
+    table.table.table-hover.table-bordered.settings
+      tbody 
+        tr
+          td.setting-label Site Name 
+          td.input 
+            input.form-control(type="text", name="siteName", value="#{settings.getSiteName()}")
+        
+        tr
+          td.setting-label Site Slogan 
+          td.input 
+            input.form-control(type="text", name="siteSlogan", value="#{settings.getSiteSlogan()}")
+        tr
+          td.setting-label Page Size 
+          td.input 
+            input.form-control(type="text", name="pageSize", value="#{settings.getPageSize()}")
+      
+        tr
+          td.setting-label 
+          td.input 
+            input.btn.btn-primary(type="submit", value="Save") 
+            

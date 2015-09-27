@@ -3,6 +3,7 @@ package com.raysmond.blog.config;
 import static org.springframework.context.annotation.ComponentScan.Filter;
 
 import com.raysmond.blog.BlogApp;
+import com.raysmond.blog.services.BlogSetting;
 import com.raysmond.blog.support.web.ViewHelper;
 import de.neuland.jade4j.JadeConfiguration;
 import de.neuland.jade4j.spring.template.SpringTemplateLoader;
@@ -136,7 +137,8 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(viewObjectAddingInterceptor());
-        registry.addInterceptor(requestProcessTimeInterceptor());
+
+        // registry.addInterceptor(requestProcessTimeInterceptor());
     }
 
     @Bean
@@ -146,6 +148,9 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     public ViewHelper viewHelper;
+
+    @Autowired
+    public BlogSetting blogSetting;
 
     @Bean
     public HandlerInterceptor viewObjectAddingInterceptor() {
@@ -168,8 +173,8 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
 
                     // add base path of application
                     view.addObject("basePath", request.getContextPath());
-
                     view.addObject("viewHelper", viewHelper);
+                    view.addObject("App", blogSetting);
                 }
             }
         };

@@ -1,8 +1,7 @@
 extends ../layout/app 
 
 block title 
-  = post.getTitle()
-  |  · Raysmond
+  = viewHelper.metaTitle(post.getTitle())
   
 block page_title
   h1 #{post.getTitle()}

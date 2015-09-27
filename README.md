@@ -26,13 +26,16 @@ Before development, please install the following service software:
 - Redis
     - [how-to-install-and-use-redis-on-ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis)
     - Configuration file: `src/main/java/redis.properties`
+- Pygments
+    - A python library for highlighting code syntax
 
-And start MySQL and Redis server before running the application.
+And start MySQL, Redis and Pygments first before running the application.
 
 ```
 # If you're using Ubuntu server
 sudo service mysql start
 sudo service redis_6379 start
+sudo pip install pygments
 ```
 
 This is a Gradle project. Make sure Gradle is installed in your machine.
