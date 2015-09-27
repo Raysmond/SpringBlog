@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 public class BlogSetting {
 
     private SettingService settingService;
-    private CacheManager cacheManager;
 
     private String siteName = "SpringBlog";
     private String siteSlogan = "An interesting place to discover";
@@ -25,9 +24,8 @@ public class BlogSetting {
     // other setting keys
 
     @Autowired
-    public BlogSetting(SettingService settingService, CacheManager cacheManager){
+    public BlogSetting(SettingService settingService){
         this.settingService = settingService;
-        this.cacheManager = cacheManager;
     }
 
     public String getSiteName(){

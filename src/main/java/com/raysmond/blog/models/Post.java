@@ -1,6 +1,5 @@
 package com.raysmond.blog.models;
 
-import com.raysmond.blog.forms.PostForm;
 import com.raysmond.blog.models.support.PostFormat;
 import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;

@@ -1,13 +1,7 @@
 package com.raysmond.blog.models;
 
-import org.hibernate.Hibernate;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import javax.sql.rowset.serial.SerialBlob;
-import java.io.*;
-import java.sql.Blob;
-import java.sql.SQLException;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -23,7 +17,7 @@ public class Setting extends BaseModel{
 
     @Lob
     @Column(name = "_value")
-    private byte[] value;
+    private Serializable value;
 
     @Column(nullable = false)
     private Date createdAt;
@@ -48,32 +42,12 @@ public class Setting extends BaseModel{
         this.key = key;
     }
 
-    public Serializable getValue() throws IOException, ClassNotFoundException, SQLException {
-        ByteArrayInputStream input = new ByteArrayInputStream(value);
-        ObjectInputStream stream = null;
-        Serializable value = null;
-        try{
-            stream = new ObjectInputStream(input);
-            value = (Serializable) stream.readObject();
-            stream.close();
-        } finally {
-            input.close();
-            stream.close();
-        }
+    public Serializable getValue() {
         return value;
     }
 
-    public void setValue(Serializable value) throws IOException{
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutput out = null;
-        try {
-            out = new ObjectOutputStream(bos);
-            out.writeObject(value);
-            this.value = bos.toByteArray();
-        } finally {
-            out.close();
-            bos.close();
-        }
+    public void setValue(Serializable value) {
+        this.value = value;
     }
 
     public Date getCreatedAt() {
