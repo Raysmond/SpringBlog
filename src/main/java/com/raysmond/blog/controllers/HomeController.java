@@ -20,46 +20,43 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class HomeController {
 
-	@Autowired
-	private PostRepository posts;
+    @Autowired
+    private PostService postService;
 
-	@Autowired
-	private PostService postService;
+    @Autowired
+    private PostRepository posts;
 
-	@Autowired
-	private UserRepository users;
+    private static final int PAGE_SIZE = 5;
 
-	private static final int PAGE_SIZE = 5;
-	
-	@RequestMapping(value = "/")
-	public String index(@RequestParam(defaultValue = "1") int page, Model model) {
-		if (page<=0){
-			page = 1;
-		}
+    private static Long ABOUT_PAGE_ID = null;
 
-		Page<Post> _posts = posts.findAllByPostType( PostType.POST,
-				new PageRequest(page - 1, PAGE_SIZE, Sort.Direction.DESC, "id"));
+    @RequestMapping(value = "/")
+    public String index(@RequestParam(defaultValue = "1") int page, Model model) {
+        if (page <= 0) {
+            page = 1;
+        }
 
-		model.addAttribute("totalPages", _posts.getTotalPages());
-		model.addAttribute("posts", _posts);
-		model.addAttribute("page", page);
-		return "home/index";
-	}
+        Page<Post> _posts = postService.getAllPostsByPage(page - 1, PAGE_SIZE);
 
-	@RequestMapping(value = "/about")
-	public String about(Model model){
-		Post post = posts.findByTitleAndPostType("About", PostType.PAGE);
-		if(post == null){
-			post = postService.createPage(
-					users.findByEmail("admin@raysmond.com"),
-					"About",
-					"about me...",
-					PostFormat.MARKDOWN,
-					PostStatus.PUBLISHED);
+        model.addAttribute("totalPages", _posts.getTotalPages());
+        model.addAttribute("posts", _posts);
+        model.addAttribute("page", page);
+        return "home/index";
+    }
 
-		}
-		model.addAttribute("about", post);
-		return "home/about";
-	}
+    @RequestMapping(value = "/about")
+    public String about(Model model) {
+        if (ABOUT_PAGE_ID == null || postService.getPost(ABOUT_PAGE_ID) == null) {
+            Post post = posts.findByTitleAndPostType("About", PostType.PAGE);
+            if (post == null) {
+                post = postService.createAboutPage();
+            }
+
+            ABOUT_PAGE_ID = post.getId();
+        }
+
+        model.addAttribute("about", postService.getPost(ABOUT_PAGE_ID));
+        return "home/about";
+    }
 
 }

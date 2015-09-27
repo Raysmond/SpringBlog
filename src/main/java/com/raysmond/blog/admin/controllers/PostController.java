@@ -74,7 +74,7 @@ public class PostController {
 
     @RequestMapping(value = "{postId:[0-9]+}/delete", method = {RequestMethod.DELETE, RequestMethod.POST})
     public String deletePost(@PathVariable Long postId){
-        posts.delete(postId);
+        postService.deletePost(posts.findOne(postId));
         return "redirect:/admin/posts";
     }
 

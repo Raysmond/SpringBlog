@@ -53,6 +53,10 @@ dependencies {
     // spring data
     compile 'org.springframework.data:spring-data-jpa:+'
 
+    // cache
+    compile 'org.springframework.data:spring-data-redis:1.6.0.RELEASE'
+    compile 'redis.clients:jedis:2.7.3'
+
     // MySQL
     compile 'mysql:mysql-connector-java:+'
 
