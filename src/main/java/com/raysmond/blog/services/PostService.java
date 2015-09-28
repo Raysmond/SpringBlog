@@ -30,7 +30,7 @@ public class PostService {
     private PostRepository posts;
 
     @Autowired
-    private UserRepository users;
+    private UserRepository userRepository;
 
     @Autowired
     private MarkdownService markdown;
@@ -128,7 +128,7 @@ public class PostService {
 
     public Post createAboutPage(){
         return  createPage(
-                users.findByEmail("admin@raysmond.com"),
+                userRepository.findByEmail("admin@raysmond.com"),
                 "About",
                 "about me...",
                 PostFormat.MARKDOWN,

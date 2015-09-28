@@ -5,6 +5,8 @@ import java.text.MessageFormat;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,9 @@ import com.google.common.base.Throwables;
 
 @Controller
 class CustomErrorController {
-	
+
+	private static final Logger logger = LoggerFactory.getLogger(CustomErrorController.class);
+
 	/**
 	 * Display an error page, as defined in web.xml <code>custom-error</code> element.
 	 */
@@ -31,9 +35,12 @@ class CustomErrorController {
 			requestUri = "Unknown";
 		}
 
+		logger.error("Failed to access page "+ requestUri +", status code = " + statusCode + ", exception: "+exceptionMessage);
+
 		model.addAttribute("statusCode", statusCode);
 		model.addAttribute("requestUri", requestUri);
 		model.addAttribute("exceptionMessage", exceptionMessage);
+
         return "error/general";
 	}
 

@@ -27,8 +27,7 @@ public class PostController {
 
     @RequestMapping(value = "archive")
     public String archive(Model model){
-        List<Post> _posts = postService.getArchivePosts();
-        model.addAttribute("posts", _posts);
+        model.addAttribute("posts", postService.getArchivePosts());
         return "posts/archive";
     }
 
@@ -37,7 +36,7 @@ public class PostController {
         Post post = postService.getPost(postId);
 
         if(post == null){
-            throw new NotFoundException();
+            throw new NotFoundException("Post " + postId + " is not found.");
         }
         model.addAttribute("post", post);
         return "posts/show";

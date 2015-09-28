@@ -3,17 +3,12 @@ package com.raysmond.blog.models;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name = "users")
-@NamedQuery(name = User.FIND_BY_EMAIL, query = "select a from User a where a.email = :email")
-public class User extends BaseModel implements java.io.Serializable {
-
-    public static final String FIND_BY_EMAIL = "User.findByEmail";
+public class User extends BaseModel{
 
     @Column(unique = true)
     private String email;
@@ -35,7 +30,6 @@ public class User extends BaseModel implements java.io.Serializable {
         this.password = password;
         this.role = role;
     }
-
 
     public String getEmail() {
         return email;
