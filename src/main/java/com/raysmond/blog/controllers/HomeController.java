@@ -3,7 +3,7 @@ package com.raysmond.blog.controllers;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
-import com.raysmond.blog.BlogSetting;
+import com.raysmond.blog.AppSetting;
 import com.raysmond.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +18,7 @@ public class HomeController {
     private PostService postService;
 
     @Autowired
-    private BlogSetting blogSetting;
+    private AppSetting appSetting;
 
     @Autowired
     private PostRepository postRepository;
@@ -31,7 +31,7 @@ public class HomeController {
             page = 1;
         }
 
-        Page<Post> posts = postService.getAllPostsByPage(page - 1, blogSetting.getPageSize());
+        Page<Post> posts = postService.getAllPostsByPage(page - 1, appSetting.getPageSize());
 
         model.addAttribute("totalPages", posts.getTotalPages());
         model.addAttribute("posts", posts);

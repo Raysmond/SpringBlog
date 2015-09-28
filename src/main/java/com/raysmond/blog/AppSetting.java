@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @author Raysmond<jiankunlei@gmail.com>
  */
 @Service
-public class BlogSetting {
+public class AppSetting {
 
     private SettingService settingService;
 
@@ -25,7 +25,7 @@ public class BlogSetting {
     // other setting keys
 
     @Autowired
-    public BlogSetting(SettingService settingService){
+    public AppSetting(SettingService settingService){
         this.settingService = settingService;
     }
 

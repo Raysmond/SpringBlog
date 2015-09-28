@@ -1,5 +1,6 @@
 package com.raysmond.blog.services;
 
+import com.raysmond.blog.Constants;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.support.PostFormat;
 import com.raysmond.blog.models.support.PostType;
@@ -29,7 +30,7 @@ public class PostService {
     private PostRepository postRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     public static final String CACHE_NAME = "cache.post";
     public static final String CACHE_NAME_ARCHIVE = CACHE_NAME + ".archive";
@@ -108,9 +109,9 @@ public class PostService {
         logger.info("Create default about page");
 
         Post post = new Post();
-        post.setTitle("About");
-        post.setContent("about page");
-        post.setUser(userRepository.findByEmail("user@raysmond.com"));
+        post.setTitle(Constants.ABOUT_PAGE_TITLE);
+        post.setContent(Constants.ABOUT_PAGE_TITLE.toLowerCase());
+        post.setUser(userService.getSuperUser());
         post.setPostFormat(PostFormat.MARKDOWN);
 
         return createPost(post);

@@ -5,6 +5,7 @@ import java.util.Collections;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.raysmond.blog.Constants;
 import com.raysmond.blog.models.User;
 import com.raysmond.blog.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,22 @@ public class UserService implements UserDetailsService {
 
     @PostConstruct
     protected void initialize() {
-        if (userRepository.findByEmail("user@raysmond.com") == null) {
-            createUser(new User("user@raysmond.com", "user", "ROLE_USER"));
-            createUser(new User("admin@raysmond.com", "admin", "ROLE_ADMIN"));
-        }
+        getSuperUser();
     }
 
     public User createUser(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    public User getSuperUser(){
+        User user = userRepository.findByEmail(Constants.SUPER_USER_EMAIL);
+
+        if ( user == null) {
+            user = createUser(new User(Constants.SUPER_USER_EMAIL, Constants.SUPER_USER_PASS, User.ROLE_ADMIN));
+        }
+
+        return user;
     }
 
     @Override

@@ -12,6 +12,8 @@ import java.util.Collection;
 @Entity
 @Table(name = "users")
 public class User extends BaseModel{
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
+    public static final String ROLE_USER  = "ROLE_USER";
 
     @Column(unique = true)
     private String email;
@@ -19,7 +21,7 @@ public class User extends BaseModel{
     @JsonIgnore
     private String password;
 
-    private String role = "ROLE_USER";
+    private String role = ROLE_USER;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.REMOVE)
     private Collection<Post> posts = new ArrayList<>();

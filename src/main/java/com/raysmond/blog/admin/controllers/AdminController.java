@@ -1,7 +1,7 @@
 package com.raysmond.blog.admin.controllers;
 
 import com.raysmond.blog.forms.SettingsForm;
-import com.raysmond.blog.BlogSetting;
+import com.raysmond.blog.AppSetting;
 import com.raysmond.blog.support.web.MessageHelper;
 import com.raysmond.blog.utils.DTOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +22,11 @@ import javax.validation.Valid;
 //@Secured("ROLE_ADMIN")
 public class AdminController {
 
-    private BlogSetting blogSetting;
+    private AppSetting appSetting;
 
     @Autowired
-    public AdminController( BlogSetting blogSetting){
-        this.blogSetting = blogSetting;
+    public AdminController( AppSetting appSetting){
+        this.appSetting = appSetting;
     }
 
     @RequestMapping("")
@@ -36,7 +36,7 @@ public class AdminController {
 
     @RequestMapping(value = "settings")
     public String settings(Model model){
-        SettingsForm settingsForm = DTOUtil.map(blogSetting, SettingsForm.class);
+        SettingsForm settingsForm = DTOUtil.map(appSetting, SettingsForm.class);
 
         model.addAttribute("settings", settingsForm);
         return "admin/settings";
@@ -47,9 +47,9 @@ public class AdminController {
         if (errors.hasErrors()){
             return "admin/settings";
         } else {
-            blogSetting.setSiteName(settingsForm.getSiteName());
-            blogSetting.setSiteSlogan(settingsForm.getSiteSlogan());
-            blogSetting.setPageSize(settingsForm.getPageSize());
+            appSetting.setSiteName(settingsForm.getSiteName());
+            appSetting.setSiteSlogan(settingsForm.getSiteSlogan());
+            appSetting.setPageSize(settingsForm.getPageSize());
 
             MessageHelper.addSuccessAttribute(ra, "Update settings successfully.");
 

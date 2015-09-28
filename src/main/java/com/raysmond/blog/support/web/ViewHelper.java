@@ -1,7 +1,7 @@
 package com.raysmond.blog.support.web;
 
 
-import com.raysmond.blog.BlogSetting;
+import com.raysmond.blog.AppSetting;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,11 +17,11 @@ public class ViewHelper {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy");
     private static final SimpleDateFormat DATE_FORMAT_MONTH_DAY = new SimpleDateFormat("MMM dd");
 
-    private BlogSetting blogSetting;
+    private AppSetting appSetting;
 
     @Autowired
-    public ViewHelper(BlogSetting blogSetting){
-        this.blogSetting = blogSetting;
+    public ViewHelper(AppSetting appSetting){
+        this.appSetting = appSetting;
     }
 
     private long startTime;
@@ -47,6 +47,6 @@ public class ViewHelper {
     }
 
     public String metaTitle(String title){
-        return title + " · " + blogSetting.getSiteName();
+        return title + " · " + appSetting.getSiteName();
     }
 }

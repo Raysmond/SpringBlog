@@ -1,6 +1,6 @@
 package com.raysmond.blog.error;
 
-import com.raysmond.blog.BlogSetting;
+import com.raysmond.blog.AppSetting;
 import com.raysmond.blog.support.web.ViewHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,17 +22,17 @@ import javax.servlet.http.HttpServletRequest;
 class ExceptionHandlerController {
 	private static final Logger logger = LoggerFactory.getLogger(ExceptionHandlerController.class);
 
-	private BlogSetting blogSetting;
+	private AppSetting appSetting;
 	private ViewHelper viewHelper;
 
 	@Autowired
-	public ExceptionHandlerController(BlogSetting blogSetting, ViewHelper viewHelper){
-		this.blogSetting = blogSetting;
+	public ExceptionHandlerController(AppSetting appSetting, ViewHelper viewHelper){
+		this.appSetting = appSetting;
 		this.viewHelper = viewHelper;
 	}
 
 	private void addModelHelpers(ModelAndView model){
-		model.addObject("App", blogSetting);
+		model.addObject("App", appSetting);
 		model.addObject("viewHelper", viewHelper);
 	}
 

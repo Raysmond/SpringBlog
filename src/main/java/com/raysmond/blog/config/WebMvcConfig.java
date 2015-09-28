@@ -2,8 +2,9 @@ package com.raysmond.blog.config;
 
 import static org.springframework.context.annotation.ComponentScan.Filter;
 
-import com.raysmond.blog.BlogApp;
-import com.raysmond.blog.BlogSetting;
+import com.raysmond.blog.Application;
+import com.raysmond.blog.AppSetting;
+import com.raysmond.blog.Constants;
 import com.raysmond.blog.support.web.ViewHelper;
 import de.neuland.jade4j.JadeConfiguration;
 import de.neuland.jade4j.spring.template.SpringTemplateLoader;
@@ -41,14 +42,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@ComponentScan(basePackageClasses = BlogApp.class, includeFilters = @Filter(Controller.class), useDefaultFilters = false)
+@ComponentScan(basePackageClasses = Application.class, includeFilters = @Filter(Controller.class), useDefaultFilters = false)
 @EnableWebMvc
 class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename(Config.MESSAGE_SOURCE);
+        messageSource.setBasename(Constants.MESSAGE_SOURCE);
         messageSource.setCacheSeconds(5);
         return messageSource;
     }
@@ -86,7 +87,7 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public TemplateResolver htmlTemplateResolver() {
         TemplateResolver templateResolver = new ServletContextTemplateResolver();
-        templateResolver.setPrefix(Config.VIEWS);
+        templateResolver.setPrefix(Constants.VIEWS);
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML");
         templateResolver.setCacheable(false);
@@ -112,7 +113,7 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public SpringTemplateLoader jadeTemplateLoader() {
         SpringTemplateLoader templateLoader = new SpringTemplateLoader();
-        templateLoader.setBasePath(Config.VIEWS);
+        templateLoader.setBasePath(Constants.VIEWS);
         templateLoader.setEncoding("UTF-8");
         templateLoader.setSuffix(".jade");
         return templateLoader;
@@ -150,7 +151,7 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
     public ViewHelper viewHelper;
 
     @Autowired
-    public BlogSetting blogSetting;
+    public AppSetting appSetting;
 
     @Bean
     public HandlerInterceptor viewObjectAddingInterceptor() {
@@ -174,7 +175,7 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
                     // add base path of application
                     view.addObject("basePath", request.getContextPath());
                     view.addObject("viewHelper", viewHelper);
-                    view.addObject("App", blogSetting);
+                    view.addObject("App", appSetting);
                 }
             }
         };
@@ -190,8 +191,8 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler(Config.RESOURCES_HANDLER)
-                .addResourceLocations(Config.RESOURCES_LOCATION);
+                .addResourceHandler(Constants.RESOURCES_HANDLER)
+                .addResourceLocations(Constants.RESOURCES_LOCATION);
     }
 
     @Override
