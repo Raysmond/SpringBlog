@@ -1,7 +1,7 @@
 package com.raysmond.blog.services;
 
 /**
- * Created by Raysmond on 9/25/15.
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 public interface MarkdownService {
     public String renderToHtml(String content);

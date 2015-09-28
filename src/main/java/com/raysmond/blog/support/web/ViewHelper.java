@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by Raysmond on 9/26/15.
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 @Service
 public class ViewHelper {

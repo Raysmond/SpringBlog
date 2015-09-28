@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 /**
- * Created by Raysmond on 9/26/15.
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 @Controller
 @RequestMapping("posts")
@@ -38,6 +38,7 @@ public class PostController {
         if(post == null){
             throw new NotFoundException("Post " + postId + " is not found.");
         }
+
         model.addAttribute("post", post);
         return "posts/show";
     }

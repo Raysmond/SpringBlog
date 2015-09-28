@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * A generic setting model
  *
- * @author Raysmond
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 @Entity
 @Table(name = "settings")

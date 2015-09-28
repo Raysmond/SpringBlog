@@ -1,12 +1,11 @@
 package com.raysmond.blog.forms;
 
-import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.support.PostFormat;
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by Raysmond on 9/25/15.
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 public class PostForm {
     @NotEmpty
@@ -17,24 +16,6 @@ public class PostForm {
 
     @NotNull
     private PostFormat postFormat;
-
-    public PostForm(){
-
-    }
-
-    public PostForm(Post post){
-        title = post.getTitle();
-        content = post.getContent();
-        postFormat = post.getPostFormat();
-    }
-
-    public Post toPost(){
-        Post post = new Post();
-        post.setTitle(title);
-        post.setContent(content);
-        post.setPostFormat(postFormat);
-        return post;
-    }
 
     public String getTitle() {
         return title;

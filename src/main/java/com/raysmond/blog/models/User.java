@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * @author Raysmond<jiankunlei@gmail.com>
+ */
 @Entity
 @Table(name = "users")
 public class User extends BaseModel{
@@ -21,7 +24,7 @@ public class User extends BaseModel{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.REMOVE)
     private Collection<Post> posts = new ArrayList<>();
 
-    protected User() {
+    public User() {
 
     }
 

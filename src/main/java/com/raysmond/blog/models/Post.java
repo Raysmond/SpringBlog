@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by Raysmond on 9/25/15.
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 @Entity
 @Table(name = "posts")
@@ -28,27 +28,15 @@ public class Post extends BaseModel{
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private PostStatus postStatus;
+    private PostStatus postStatus = PostStatus.PUBLISHED;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private PostFormat postFormat;
+    private PostFormat postFormat = PostFormat.MARKDOWN;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private PostType postType;
-
-    @PrePersist
-    public void beforeCreate(){
-        if (postStatus == null)
-            postStatus = PostStatus.DRAFT;
-
-        if (postFormat == null)
-            postFormat = PostFormat.HTML;
-
-        if (postType == null)
-            postType = PostType.POST;
-    }
+    private PostType postType = PostType.POST;
 
     public User getUser() {
         return user;
