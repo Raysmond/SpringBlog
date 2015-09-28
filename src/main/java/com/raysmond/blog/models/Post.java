@@ -38,9 +38,6 @@ public class Post extends BaseModel{
     @Enumerated(EnumType.STRING)
     private PostType postType;
 
-    @Column(nullable = false)
-    private Date createdAt = new Date();
-
     @PrePersist
     public void beforeCreate(){
         if (postStatus == null)
@@ -48,9 +45,6 @@ public class Post extends BaseModel{
 
         if (postFormat == null)
             postFormat = PostFormat.HTML;
-
-        if (createdAt == null)
-            createdAt = new Date();
 
         if (postType == null)
             postType = PostType.POST;
@@ -105,14 +99,6 @@ public class Post extends BaseModel{
 
     public void setRenderedContent(String renderedContent) {
         this.renderedContent = renderedContent;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
     }
 
     public PostType getPostType() {

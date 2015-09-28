@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Raysmond on 9/3/15.
@@ -13,16 +14,23 @@ import java.io.Serializable;
 public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(nullable = false)
+    private Date createdAt;
 
-    public void setId(Long _id) {
-        id = _id;
+    @Column(nullable = false)
+    private Date updatedAt;
+
+    @PrePersist
+    public void prePersist(){
+        if (createdAt == null){
+            createdAt = new Date();
+        }
+
+        updatedAt = new Date();
     }
 
     @Override
@@ -43,6 +51,31 @@ public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
      */
     public int hashCode() {
         return new HashCodeBuilder().append(getId()).toHashCode();
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long _id) {
+        id = _id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }

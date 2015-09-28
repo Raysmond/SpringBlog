@@ -19,21 +19,6 @@ public class Setting extends BaseModel{
     @Column(name = "_value")
     private Serializable value;
 
-    @Column(nullable = false)
-    private Date createdAt;
-
-    @Column(nullable = false)
-    private Date updatedAt;
-
-    @PrePersist
-    public void prePersist(){
-        if (createdAt == null){
-            createdAt = new Date();
-        }
-
-        updatedAt = new Date();
-    }
-
     public String getKey() {
         return key;
     }
@@ -50,19 +35,4 @@ public class Setting extends BaseModel{
         this.value = value;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }

@@ -54,6 +54,10 @@ public class PostService {
         return _createPost(user, title, content, format, status, PostType.PAGE);
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
+            @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true)
+    })
     public Post createPost(User user, String title, String content, PostFormat format, PostStatus status) {
         return _createPost(user, title, content, format, status, PostType.POST);
     }
