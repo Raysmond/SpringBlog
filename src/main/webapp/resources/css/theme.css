@@ -29,6 +29,15 @@ pre{
 	color: #fff;
 }
 
+@media screen and (max-width: 480px) {
+	#navbar{
+		text-align: center;
+	}
+	.nav>li{
+		display: inline-block;
+	}
+}
+
 .main-container{
 	margin-top: 330px;
 	padding-top: 60px;
@@ -69,6 +78,15 @@ form input, form button{
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+}
+
+@media screen and (max-width: 480px) {
+	.post{
+		padding: 30px 10px;
+	}
+	.post h2.title, .post .meta{
+		text-align: center;
+	}
 }
 
 
