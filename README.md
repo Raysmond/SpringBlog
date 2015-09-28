@@ -22,12 +22,12 @@ SpringBlog is powered by many powerful frameworks and third-party projects:
 Before development, please install the following service software:
 
 - MySQL5
-    - Configuration file: `src/main/java/persistence.properties`
 - Redis
     - [how-to-install-and-use-redis-on-ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis)
-    - Configuration file: `src/main/java/redis.properties`
 - Pygments
     - A python library for highlighting code syntax
+
+Edit application configuration file `src/main/resources/dev_app.properties` according to your settings.
 
 And start MySQL, Redis and Pygments first before running the application.
 

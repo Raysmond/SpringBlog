@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 
+import java.util.Properties;
+
 
 @Configuration
 @ComponentScan(basePackageClasses = BlogApp.class, excludeFilters = @Filter({Controller.class, Configuration.class}))
@@ -17,11 +19,9 @@ class ApplicationConfig {
 	@Bean
 	public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
-
-		ppc.setLocations(
-				new ClassPathResource("/persistence.properties"),
-				new ClassPathResource("/redis.properties"));
-
+		ppc.setSearchSystemEnvironment(true);
+		ppc.setSystemPropertiesMode(PropertyPlaceholderConfigurer.SYSTEM_PROPERTIES_MODE_OVERRIDE);
+		ppc.setLocations(new ClassPathResource("/dev_app.properties"));
 		return ppc;
 	}
 

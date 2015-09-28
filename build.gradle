@@ -20,7 +20,10 @@ repositories {
     maven { url "http://repo.springsource.org/repo" } // for springloaded
 }
 
-
+task warProduction(type: War){
+    destinationDir = file("$buildDir/dist")
+    baseName = "$rootProject.name-production"
+}
 
 dependencies {
     // spring boot
