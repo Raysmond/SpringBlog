@@ -51,3 +51,17 @@ I recommend you import the source code into Intellij IDE to edit the code.
 ```
 
 View `http://localhost:8080/` on your browser.
+
+
+## Deployment
+Use gradle to build a production war and deploy it on Jetty9 server in Linux. Before deployment, please install
+Java8, Jetty9 and the latest version of Redis server.
+
+```
+./gradlew warProduction
+```
+
+You'll find the production war in folder `build/dist`, for example `SpringBlog-production-0.1.war`.
+
+Alternatively, you can run the `deploy.sh` script to deploy the application to remote server automatically. Please do change
+the settings before running the script.
