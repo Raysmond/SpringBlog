@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.io.Serializable;
 
 /**
- * Created by Raysmond on 9/27/15.
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 @Service
 public class CacheSettingService implements SettingService {

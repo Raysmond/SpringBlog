@@ -1,7 +1,7 @@
 package com.raysmond.blog.admin.controllers;
 
 import com.raysmond.blog.forms.SettingsForm;
-import com.raysmond.blog.services.BlogSetting;
+import com.raysmond.blog.BlogSetting;
 import com.raysmond.blog.support.web.MessageHelper;
 import com.raysmond.blog.utils.DTOUtil;
 import org.springframework.beans.factory.annotation.Autowired;

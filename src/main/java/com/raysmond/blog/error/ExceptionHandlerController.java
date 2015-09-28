@@ -1,6 +1,6 @@
 package com.raysmond.blog.error;
 
-import com.raysmond.blog.services.BlogSetting;
+import com.raysmond.blog.BlogSetting;
 import com.raysmond.blog.support.web.ViewHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

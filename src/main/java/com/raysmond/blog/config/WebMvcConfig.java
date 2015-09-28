@@ -3,7 +3,7 @@ package com.raysmond.blog.config;
 import static org.springframework.context.annotation.ComponentScan.Filter;
 
 import com.raysmond.blog.BlogApp;
-import com.raysmond.blog.services.BlogSetting;
+import com.raysmond.blog.BlogSetting;
 import com.raysmond.blog.support.web.ViewHelper;
 import de.neuland.jade4j.JadeConfiguration;
 import de.neuland.jade4j.spring.template.SpringTemplateLoader;

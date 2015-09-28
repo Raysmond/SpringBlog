@@ -1,12 +1,13 @@
-package com.raysmond.blog.services;
+package com.raysmond.blog;
 
+import com.raysmond.blog.services.SettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Raysmond on 9/27/15.
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 @Service
 public class BlogSetting {

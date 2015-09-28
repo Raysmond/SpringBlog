@@ -1,12 +1,11 @@
 package com.raysmond.blog.services;
 
 import com.raysmond.blog.models.Post;
-import com.raysmond.blog.models.User;
 import com.raysmond.blog.models.support.PostFormat;
-import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.repositories.UserRepository;
+import com.raysmond.blog.utils.Markdown;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +31,6 @@ public class PostService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private MarkdownService markdown;
-
     public static final String CACHE_NAME = "cache.post";
     public static final String CACHE_NAME_ARCHIVE = CACHE_NAME + ".archive";
     public static final String CACHE_NAME_PAGE = CACHE_NAME + ".page";
@@ -54,7 +50,7 @@ public class PostService {
     })
     public Post createPost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
-            post.setRenderedContent(markdown.renderToHtml(post.getContent()));
+            post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
         }
 
         return postRepository.save(post);
@@ -67,7 +63,7 @@ public class PostService {
     })
     public Post updatePost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
-            post.setRenderedContent(markdown.renderToHtml(post.getContent()));
+            post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
         }
 
         return postRepository.save(post);
@@ -85,14 +81,15 @@ public class PostService {
     @Cacheable(value = CACHE_NAME_ARCHIVE, key = "#root.method.name")
     public List<Post> getArchivePosts() {
         logger.info("Get all archive posts from database.");
-        Iterable<Post> _posts = postRepository.findAll(new Sort(Sort.Direction.DESC, "id"));
+
+        Iterable<Post> archivePosts = postRepository.findAll(new Sort(Sort.Direction.DESC, "id"));
         List<Post> cachedPosts = new ArrayList<>();
-        for (Post post : _posts) {
-            Post _post = new Post();
-            _post.setId(post.getId());
-            _post.setTitle(post.getTitle());
-            _post.setCreatedAt(post.getCreatedAt());
-            cachedPosts.add(_post);
+        for (Post post : archivePosts) {
+            Post cachedPost = new Post();
+            cachedPost.setId(post.getId());
+            cachedPost.setTitle(post.getTitle());
+            cachedPost.setCreatedAt(post.getCreatedAt());
+            cachedPosts.add(cachedPost);
         }
 
         return cachedPosts;

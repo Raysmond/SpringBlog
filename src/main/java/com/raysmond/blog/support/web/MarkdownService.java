@@ -1,4 +1,4 @@
-package com.raysmond.blog.services;
+package com.raysmond.blog.support.web;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>

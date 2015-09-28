@@ -1,7 +1,7 @@
 package com.raysmond.blog.support.web;
 
 
-import com.raysmond.blog.services.BlogSetting;
+import com.raysmond.blog.BlogSetting;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 

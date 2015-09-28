@@ -27,6 +27,7 @@ import java.security.Principal;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>
+ *
  * TODO place all view templates into sub dirs under /admin/
  */
 @Controller(value = "adminPostController")

@@ -3,7 +3,7 @@ package com.raysmond.blog.forms;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * Created by Raysmond on 9/27/15.
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 public class SettingsForm {
     @NotEmpty

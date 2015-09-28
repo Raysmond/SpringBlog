@@ -1,6 +1,5 @@
-package com.raysmond.blog.services;
+package com.raysmond.blog.support.web;
 
-import com.raysmond.blog.support.web.PygmentsVerbatimSerializer;
 import org.pegdown.*;
 import org.pegdown.ast.RootNode;
 import org.springframework.beans.factory.annotation.Qualifier;

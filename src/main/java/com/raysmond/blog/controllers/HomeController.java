@@ -1,19 +1,12 @@
 package com.raysmond.blog.controllers;
 
-import java.security.Principal;
-
 import com.raysmond.blog.models.Post;
-import com.raysmond.blog.models.support.PostFormat;
-import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
-import com.raysmond.blog.repositories.UserRepository;
-import com.raysmond.blog.services.BlogSetting;
+import com.raysmond.blog.BlogSetting;
 import com.raysmond.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
