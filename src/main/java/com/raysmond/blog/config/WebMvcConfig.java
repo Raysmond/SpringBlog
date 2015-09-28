@@ -9,7 +9,6 @@ import com.raysmond.blog.support.web.ViewHelper;
 import de.neuland.jade4j.JadeConfiguration;
 import de.neuland.jade4j.spring.template.SpringTemplateLoader;
 import de.neuland.jade4j.spring.view.JadeViewResolver;
-import com.raysmond.blog.config.interceptors.RequestProcessingTimeInterceptor;
 import com.raysmond.blog.config.resolvers.JsonViewResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -138,13 +137,6 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(viewObjectAddingInterceptor());
-
-        // registry.addInterceptor(requestProcessTimeInterceptor());
-    }
-
-    @Bean
-    public HandlerInterceptor requestProcessTimeInterceptor(){
-        return new RequestProcessingTimeInterceptor();
     }
 
     @Autowired

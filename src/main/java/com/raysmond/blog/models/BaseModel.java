@@ -8,7 +8,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by Raysmond on 9/3/15.
+ * A abstract base model class for entities
+ *
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 @MappedSuperclass
 public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
@@ -26,10 +28,11 @@ public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
 
     @PrePersist
     public void prePersist(){
-        if (createdAt == null){
-            createdAt = new Date();
-        }
+        createdAt = updatedAt = new Date();
+    }
 
+    @PreUpdate
+    public void preUpdate(){
         updatedAt = new Date();
     }
 
@@ -41,14 +44,11 @@ public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
     public boolean equals(Object other) {
         if (other == null || other.getClass() != this.getClass())
             return false;
-        EqualsBuilder eb = new EqualsBuilder();
-        eb.append(this.getId(), ((BaseModel) other).getId());
-        return eb.isEquals();
+
+        return this.getId().equals(((BaseModel) other).getId());
     }
 
-    /**
-     * use HashCodeBuilder to calculate a hashcode
-     */
+
     public int hashCode() {
         return new HashCodeBuilder().append(getId()).toHashCode();
     }
