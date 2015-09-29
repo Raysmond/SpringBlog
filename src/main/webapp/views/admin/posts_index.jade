@@ -16,6 +16,7 @@ block content
             th Format 
             th Status
             th Created At 
+            th Updated At 
             th.operations Operations
           
         tbody
@@ -26,14 +27,21 @@ block content
               td #{post.getPostFormat()}
               td #{post.getPostStatus()}
               td #{post.getCreatedAt()}
+              td #{post.getUpdatedAt()}
               td.operations 
                 a.btn.btn-xs.btn-info(href="#{basePath}/posts/#{post.getId()}", target:'_blank')
                   i.fa.fa-eye
                 a.btn.btn-xs.btn-primary(href="#{basePath}/admin/posts/#{post.getId()}/edit") 
                   i.fa.fa-edit
-                a.btn.btn-xs.btn-danger.btn-delete(href="javascript:$('#form-#{post.getId()}').submit();", postId="#{post.id}")
+                a.btn.btn-xs.btn-danger.btn-delete(href="javascript:deletePost(#{post.id})", postId="#{post.id}")
                   i.fa.fa-trash-o
                   
                 form(id="form-#{post.getId()}",style="visibility: hidden", method="post", action="#{basePath}/admin/posts/#{post.getId()}/delete")
                   input(type="hidden", name='_csrf', value='#{_csrf.token}')
-      
+
+  script 
+    function deletePost(postId){
+      if (confirm("Are you sure to delete post @"+postId)) {
+        $('#form-'+postId).submit();
+      }
+    }

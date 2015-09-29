@@ -3,6 +3,7 @@ package com.raysmond.blog.services;
 import com.raysmond.blog.Constants;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.support.PostFormat;
+import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.repositories.UserRepository;
@@ -83,7 +84,11 @@ public class PostService {
     public List<Post> getArchivePosts() {
         logger.info("Get all archive posts from database.");
 
-        Iterable<Post> archivePosts = postRepository.findAll(new Sort(Sort.Direction.DESC, "id"));
+        Iterable<Post> archivePosts = postRepository.findAllByPostTypeAndPostStatus(
+                PostType.POST,
+                PostStatus.PUBLISHED,
+                new PageRequest(0, Integer.MAX_VALUE, Sort.Direction.DESC, "createdAt"));
+
         List<Post> cachedPosts = new ArrayList<>();
         for (Post post : archivePosts) {
             Post cachedPost = new Post();
@@ -97,12 +102,13 @@ public class PostService {
     }
 
     @Cacheable(value = CACHE_NAME_PAGE, key = "T(java.lang.String).valueOf(#page).concat('-').concat(#pageSize)")
-    public Page<Post> getAllPostsByPage(int page, int pageSize) {
+    public Page<Post> getAllPublishedPostsByPage(int page, int pageSize) {
         logger.info("Get posts by page " + page + " from database");
 
-        return postRepository.findAllByPostType(
+        return postRepository.findAllByPostTypeAndPostStatus(
                 PostType.POST,
-                new PageRequest(page, pageSize, Sort.Direction.DESC, "id"));
+                PostStatus.PUBLISHED,
+                new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
     }
 
     public Post createAboutPage() {

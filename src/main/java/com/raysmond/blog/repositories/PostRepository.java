@@ -1,6 +1,7 @@
 package com.raysmond.blog.repositories;
 
 import com.raysmond.blog.models.Post;
+import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,5 +20,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Post findByTitle(String title);
     Post findByTitleAndPostType(String title, PostType postType);
     Page<Post> findAllByPostType(PostType postType, Pageable pageRequest);
+    Page<Post> findAllByPostTypeAndPostStatus(PostType postType, PostStatus postStatus, Pageable pageRequest);
 }
 

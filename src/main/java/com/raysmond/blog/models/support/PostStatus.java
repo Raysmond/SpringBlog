@@ -21,6 +21,10 @@ public enum PostStatus {
         this.name = name;
     }
 
+    public String getId(){
+        return name();
+    }
+
     @Override
     public String toString() {
         return getName();

@@ -20,13 +20,26 @@ block content
       div#content-editor
         #{postForm.getContent()}
     .item-row
-      select.form-control(style="width:120px;", name="postFormat")
-        for format in postFormats
-          if format != post.getPostFormat()
-            option(value="#{format.getId()}") #{format.getDisplayName()}
-          else 
-            option(value="#{format.getId()}", selected="selected") #{format.getDisplayName()}
+      hr
+      .row
+        .col-sm-3
+          span Format
+          select.form-control(style="width:120px;", name="postFormat")
+            for format in postFormats
+              if format != postForm.getPostFormat()
+                option(value="#{format.getId()}") #{format.getDisplayName()}
+              else 
+                option(value="#{format.getId()}", selected="selected") #{format.getDisplayName()}
+        .col-sm-3
+          span Status
+          select.form-control(style="width:120px;", name="postStatus")
+            for status in postStatus
+              if status != postForm.getPostStatus()
+                option(value="#{status.getId()}") #{status.getName()}
+              else 
+                option(value="#{status.getId()}", selected="selected") #{status.getName()}
     .item-row
+      hr
       button.btn.btn-primary.btn-block(type="submit") Save
 
     script

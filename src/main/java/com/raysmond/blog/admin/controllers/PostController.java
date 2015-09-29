@@ -4,6 +4,7 @@ import com.raysmond.blog.forms.PostForm;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.User;
 import com.raysmond.blog.models.support.PostFormat;
+import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.repositories.UserRepository;
 import com.raysmond.blog.services.PostService;
@@ -56,8 +57,11 @@ public class PostController {
 
     @RequestMapping(value = "new")
     public String newPost(Model model){
-        model.addAttribute("postForm", new PostForm());
+        PostForm postForm = DTOUtil.map(new Post(), PostForm.class);
+
+        model.addAttribute("postForm", postForm);
         model.addAttribute("postFormats", PostFormat.values());
+        model.addAttribute("postStatus", PostStatus.values());
 
         return "admin/posts_new";
     }
@@ -70,6 +74,7 @@ public class PostController {
         model.addAttribute("post", post);
         model.addAttribute("postForm", postForm);
         model.addAttribute("postFormats", PostFormat.values());
+        model.addAttribute("postStatus", PostStatus.values());
 
         return "admin/posts_edit";
     }

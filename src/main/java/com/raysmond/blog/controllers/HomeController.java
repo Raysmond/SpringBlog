@@ -27,7 +27,7 @@ public class HomeController {
 
     @RequestMapping("")
     public String index(@RequestParam(defaultValue = "1") int page, Model model) {
-        Page<Post> posts = postService.getAllPostsByPage(page < 0 ? 1 : page -1, appSetting.getPageSize());
+        Page<Post> posts = postService.getAllPublishedPostsByPage(page < 0 ? 1 : page - 1, appSetting.getPageSize());
 
         model.addAttribute("totalPages", posts.getTotalPages());
         model.addAttribute("posts", posts);
