@@ -38,7 +38,8 @@ public class UserController {
     @RequestMapping("profile")
     public String profile(Model model){
         model.addAttribute("user", userService.currentUser());
-        return "admin/users_profile";
+
+        return "admin/users/profile";
     }
 
     @RequestMapping(value = "{userId:[0-9]+}", method = POST)
