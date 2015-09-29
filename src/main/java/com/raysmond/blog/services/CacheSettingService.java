@@ -54,6 +54,7 @@ public class CacheSettingService implements SettingService {
     @CacheEvict(value = CACHE_NAME, key = "#key")
     public void put(String key, Serializable value) {
         logger.info("Update setting " + key + " to database. Value = " + value);
+
         Setting setting = settingRepository.findByKey(key);
         if (setting == null) {
             setting = new Setting();
@@ -63,7 +64,7 @@ public class CacheSettingService implements SettingService {
             setting.setValue(value);
             settingRepository.save(setting);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            
             logger.info("Cannot save setting value with type: " + value.getClass() + ". key = " + key);
         }
     }

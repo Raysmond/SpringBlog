@@ -14,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +28,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  *
  * TODO place all view templates into sub dirs under /admin/
  */
-@Controller(value = "adminPostController")
-@RequestMapping(value = "/admin/posts")
+@Controller("adminPostController")
+@RequestMapping("admin/posts")
 public class PostController {
 
     @Autowired
@@ -40,7 +39,7 @@ public class PostController {
     private PostService postService;
 
     @Autowired
-    private UserRepository users;
+    private UserRepository userRepository;
 
     private static final int PAGE_SIZE = 50;
 
@@ -87,9 +86,8 @@ public class PostController {
             model.addAttribute("postFormats", PostFormat.values());
             return "admin/posts_new";
         } else {
-            User user = users.findByEmail(principal.getName());
             Post post = DTOUtil.map(postForm, Post.class);
-            post.setUser(user);
+            post.setUser(userRepository.findByEmail(principal.getName()));
 
             postService.createPost(post);
 

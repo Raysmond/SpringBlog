@@ -1,5 +1,6 @@
 package com.raysmond.blog.models;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

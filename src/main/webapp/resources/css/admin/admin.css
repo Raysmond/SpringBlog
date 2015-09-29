@@ -37,3 +37,9 @@ td.operations a{
 	vertical-align: middle;
 	font-weight: bold;
 }
+
+.profile .row .col-sm-2{
+		font-weight: bold;
+		text-align: right;
+		padding-right: 30px;
+}

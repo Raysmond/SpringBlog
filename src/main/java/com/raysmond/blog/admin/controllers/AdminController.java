@@ -18,7 +18,7 @@ import javax.validation.Valid;
  * @author Raysmond<jiankunlei@gmail.com>
  */
 @Controller
-@RequestMapping(value = "/admin")
+@RequestMapping("admin")
 //@Secured("ROLE_ADMIN")
 public class AdminController {
 

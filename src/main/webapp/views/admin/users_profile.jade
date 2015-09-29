@@ -1,0 +1,43 @@
+extends ./layout/admin
+
+block content 
+  h1 Profile
+  hr
+  
+  .profile 
+    form.post-form(method="post", action="#{basePath}/admin/users/#{user.getId()}")
+      input(type="hidden", name='_csrf', value='#{_csrf.token}')
+      
+      .row 
+        .col-sm-2 ID 
+        .col-sm-3 #{user.getId()}
+
+      hr 
+      .row
+        .col-sm-2 Email 
+        .col-sm-3 #{user.getEmail()}
+      
+      hr
+      .row 
+        .col-sm-2 Created Time 
+        .col-sm-3 #{user.getCreatedAt()}
+      
+      hr
+      .row 
+        .col-sm-2 Password 
+        .col-sm-3 
+          input.form-control(type="password", name="password")
+      
+      hr
+      .row 
+        .col-sm-2 New Password 
+        .col-sm-3
+          input.form-control(type="password", name="newPassword")
+      
+      hr
+      .row
+        .col-sm-2 
+        .col-sm-3 
+          input.btn.btn-primary(type="submit", value="Save profile")
+      
+      hr

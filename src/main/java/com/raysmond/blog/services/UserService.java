@@ -8,7 +8,10 @@ import javax.inject.Inject;
 import com.raysmond.blog.Constants;
 import com.raysmond.blog.models.User;
 import com.raysmond.blog.repositories.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.*;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,6 +26,8 @@ public class UserService implements UserDetailsService {
 
     @Inject
     private PasswordEncoder passwordEncoder;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @PostConstruct
     protected void initialize() {
@@ -51,6 +56,33 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("user not found");
         }
         return createSpringUser(user);
+    }
+
+    public User currentUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth == null || auth instanceof AnonymousAuthenticationToken){
+            return null;
+        }
+
+        String email = ((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername();
+
+        return userRepository.findByEmail(email);
+    }
+
+    public boolean changePassword(User user, String password, String newPassword){
+        if (password == null || newPassword == null || password.isEmpty() || newPassword.isEmpty())
+            return false;
+
+        logger.info("" + passwordEncoder.matches(password, user.getPassword()));
+        if (!user.getPassword().equals(passwordEncoder.encode(password)))
+            return false;
+
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+
+        logger.info("User @"+user.getEmail() + " changed password.");
+
+        return true;
     }
 
     public void signin(User user) {
