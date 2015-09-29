@@ -39,8 +39,8 @@ if __name__=='__main__':
     now = time.strftime("%Y%m%d%H%M%S")
     cmd = [
         'echo Stop jetty server... && service jetty stop',
-        'echo Stop redis server... && service redis_6379 stop',
         'echo Flush all redis cache data... && redis-cli -r 1 flushall',
+        'echo Stop redis server... && service redis_6379 stop',
         'echo Copy ' + new_war + ' to ' + war + \
         ' && mv ' + war + ' ' + backup_dir + '/' + now + '-' + dist + \
         ' && cp ' + new_war + ' ' + war ,

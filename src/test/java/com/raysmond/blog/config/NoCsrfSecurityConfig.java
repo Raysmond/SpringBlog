@@ -1,5 +1,6 @@
 package com.raysmond.blog.config;
 
+import com.raysmond.blog.SecurityConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 

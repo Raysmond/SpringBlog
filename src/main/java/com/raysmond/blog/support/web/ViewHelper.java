@@ -1,17 +1,18 @@
 package com.raysmond.blog.support.web;
 
 
-import com.raysmond.blog.AppSetting;
+import com.raysmond.blog.services.AppSetting;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import com.domingosuarez.boot.autoconfigure.jade4j.JadeHelper;
 /**
  * @author Raysmond<jiankunlei@gmail.com>
  */
 @Service
+@JadeHelper("viewHelper")
 public class ViewHelper {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy");

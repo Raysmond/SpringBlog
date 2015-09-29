@@ -1,4 +1,4 @@
-package com.raysmond.blog.config;
+package com.raysmond.blog;
 
 import java.util.Properties;
 

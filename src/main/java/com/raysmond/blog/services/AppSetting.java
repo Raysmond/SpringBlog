@@ -1,15 +1,14 @@
-package com.raysmond.blog;
+package com.raysmond.blog.services;
 
 import com.raysmond.blog.services.SettingService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
-import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.stereotype.Service;
+import com.domingosuarez.boot.autoconfigure.jade4j.JadeHelper;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>
  */
+@JadeHelper("App")
 @Service
 public class AppSetting {
 

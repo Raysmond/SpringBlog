@@ -3,7 +3,7 @@ package com.raysmond.blog.controllers;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
-import com.raysmond.blog.AppSetting;
+import com.raysmond.blog.services.AppSetting;
 import com.raysmond.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

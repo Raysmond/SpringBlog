@@ -40,10 +40,10 @@ public class UserService implements UserDetailsService {
     }
 
     public User getSuperUser(){
-        User user = userRepository.findByEmail(Constants.SUPER_USER_EMAIL);
+        User user = userRepository.findByEmail(Constants.DEFAULT_ADMIN__EMAIL);
 
         if ( user == null) {
-            user = createUser(new User(Constants.SUPER_USER_EMAIL, Constants.SUPER_USER_PASS, User.ROLE_ADMIN));
+            user = createUser(new User(Constants.DEFAULT_ADMIN__EMAIL, Constants.DEFAULT_ADMIN_PASSWORD, User.ROLE_ADMIN));
         }
 
         return user;

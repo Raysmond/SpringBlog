@@ -1,5 +1,6 @@
 package com.raysmond.blog.config;
 
+import com.raysmond.blog.JpaConfig;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;

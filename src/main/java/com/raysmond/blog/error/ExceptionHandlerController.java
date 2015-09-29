@@ -1,6 +1,6 @@
 package com.raysmond.blog.error;
 
-import com.raysmond.blog.AppSetting;
+import com.raysmond.blog.services.AppSetting;
 import com.raysmond.blog.support.web.ViewHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,20 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 class ExceptionHandlerController {
 	private static final Logger logger = LoggerFactory.getLogger(ExceptionHandlerController.class);
 
-	private AppSetting appSetting;
-	private ViewHelper viewHelper;
-
-	@Autowired
-	public ExceptionHandlerController(AppSetting appSetting, ViewHelper viewHelper){
-		this.appSetting = appSetting;
-		this.viewHelper = viewHelper;
-	}
-
-	private void addModelHelpers(ModelAndView model){
-		model.addObject("App", appSetting);
-		model.addObject("viewHelper", viewHelper);
-	}
-
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(NotFoundException.class)
 	public ModelAndView notFound(HttpServletRequest request, NotFoundException exception){
@@ -43,31 +29,29 @@ class ExceptionHandlerController {
 		logger.error("Request page: " + uri + " raised NotFoundException : " + exception);
 
 		ModelAndView model = new ModelAndView("error/general");
-		model.addObject("statusCode", HttpStatus.NOT_FOUND.value());
-		model.addObject("exceptionMessage", HttpStatus.NOT_FOUND.getReasonPhrase());
-		model.addObject("requestUri", uri);
-		model.addObject("message", exception.getMessage());
+		model.addObject("status", HttpStatus.NOT_FOUND.value());
+		model.addObject("error", HttpStatus.NOT_FOUND.getReasonPhrase());
+		model.addObject("path", uri);
+		model.addObject("customMessage", exception.getMessage());
 
-		addModelHelpers(model);
 		return model;
 	}
 
 	/**
 	 * Handle all exceptions
 	 */
-	@ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+//	@ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
 	@ExceptionHandler(Exception.class)
 	public ModelAndView exception(HttpServletRequest request, Exception exception) {
 		String uri = request.getRequestURI();
 		logger.error("Request page: " + uri + " raised exception : " + exception);
 
 		ModelAndView model = new ModelAndView("error/general");
-		model.addObject("exceptionMessage", Throwables.getRootCause(exception).getMessage());
-		model.addObject("statusCode", Throwables.getRootCause(exception).getCause());
-		model.addObject("requestUri", uri);
-		model.addObject("message", exception.getMessage());
+		model.addObject("error", Throwables.getRootCause(exception).getMessage());
+		model.addObject("status", Throwables.getRootCause(exception).getCause());
+		model.addObject("path", uri);
+		model.addObject("customMessage", exception.getMessage());
 
-		addModelHelpers(model);
 		return model;
 	}
 }
