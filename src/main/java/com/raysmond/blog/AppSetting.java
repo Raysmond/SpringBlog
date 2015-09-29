@@ -1,6 +1,7 @@
 package com.raysmond.blog;
 
 import com.raysmond.blog.services.SettingService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.redis.cache.RedisCacheManager;

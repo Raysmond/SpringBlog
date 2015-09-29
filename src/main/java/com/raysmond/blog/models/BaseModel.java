@@ -1,8 +1,6 @@
 package com.raysmond.blog.models;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;

@@ -4,7 +4,6 @@ import com.raysmond.blog.forms.PostForm;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.User;
 import com.raysmond.blog.models.support.PostFormat;
-import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.repositories.UserRepository;
 import com.raysmond.blog.services.PostService;
