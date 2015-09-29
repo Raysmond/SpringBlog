@@ -5,7 +5,7 @@ block content
   hr
   
   .profile 
-    form.post-form(method="post", action="#{basePath}/admin/users/#{user.getId()}")
+    form.post-form(method="post", action="/admin/users/#{user.getId()}")
       input(type="hidden", name='_csrf', value='#{_csrf.token}')
       
       .row 

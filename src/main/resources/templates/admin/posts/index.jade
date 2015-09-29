@@ -4,7 +4,7 @@ block content
   h1 Posts
   hr
   
-  a.btn.btn-primary(href="#{basePath}/admin/posts/new") Create
+  a.btn.btn-primary(href="/admin/posts/new") Create
 
   .row(style="margin-top: 10px;")
     .col-sm-12
@@ -29,14 +29,14 @@ block content
               td #{post.getCreatedAt()}
               td #{post.getUpdatedAt()}
               td.operations 
-                a.btn.btn-xs.btn-info(href="#{basePath}/posts/#{post.getId()}", target:'_blank')
+                a.btn.btn-xs.btn-info(href="/posts/#{post.getId()}", target:'_blank')
                   i.fa.fa-eye
-                a.btn.btn-xs.btn-primary(href="#{basePath}/admin/posts/#{post.getId()}/edit") 
+                a.btn.btn-xs.btn-primary(href="/admin/posts/#{post.getId()}/edit")
                   i.fa.fa-edit
                 a.btn.btn-xs.btn-danger.btn-delete(href="javascript:deletePost(#{post.id})", postId="#{post.id}")
                   i.fa.fa-trash-o
                   
-                form(id="form-#{post.getId()}",style="visibility: hidden", method="post", action="#{basePath}/admin/posts/#{post.getId()}/delete")
+                form(id="form-#{post.getId()}",style="visibility: hidden", method="post", action="/admin/posts/#{post.getId()}/delete")
                   input(type="hidden", name='_csrf', value='#{_csrf.token}')
       .col-sm-12
         div#pagination

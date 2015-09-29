@@ -1,15 +1,15 @@
 extends ../layout/admin
 
 block head
-  script(src="#{basePath}/webjars/ace/1.2.0/src-min/ace.js")
-  script(src="#{basePath}/webjars/ace/1.2.0/src-min/theme-github.js")
-  script(src="#{basePath}/webjars/ace/1.2.0/src-min/mode-markdown.js")
+  script(src="/webjars/ace/1.2.0/src-min/ace.js")
+  script(src="/webjars/ace/1.2.0/src-min/theme-github.js")
+  script(src="/webjars/ace/1.2.0/src-min/mode-markdown.js")
 
 block content
   h1 New Post
   hr
 
-  form.post-form(method="post",action="#{basePath}/admin/posts")
+  form.post-form(method="post",action="/admin/posts")
     .item-row
       input(type="hidden", name='_csrf', value='#{_csrf.token}')
     .item-row

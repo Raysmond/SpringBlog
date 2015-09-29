@@ -6,19 +6,19 @@ nav.navbar.navbar-fixed-top.navbar-default
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href="#{basePath}/admin")
+      a.navbar-brand(href="/admin")
         span #{App.getSiteName()}
     .collapse.navbar-collapse#navbar
       ul.nav.navbar-nav
-        li: a(href="#{basePath}/admin/posts") Posts
-        li: a(href="#{basePath}/admin/settings") Settings
-        li: a(href="#{basePath}/admin/users/profile") Profile
-        li: a(href="#{basePath}/") Site Home
+        li: a(href="/admin/posts") Posts
+        li: a(href="/admin/settings") Settings
+        li: a(href="/admin/users/profile") Profile
+        li: a(href="/") Site Home
         
       ul.nav.navbar-nav.navbar-right.navbar-user
         li
           a(href="javascript:$('#form').submit();") Logout
         
-          form#form(style="visibility: hidden", method="post", action="#{basePath}/logout")
+          form#form(style="visibility: hidden", method="post", action="/logout")
             input(type="hidden", name='_csrf', value='#{_csrf.token}')
     

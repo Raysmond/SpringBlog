@@ -19,5 +19,5 @@ block content
                 span.month 
                   = viewHelper.getMonthAndDay(post.getCreatedAt())
                 span &nbsp;&nbsp;·&nbsp; 
-                a(href="#{basePath}/posts/#{post.getId()}") #{post.getTitle()}
+                a(href="/posts/#{post.getId()}") #{post.getTitle()}
         

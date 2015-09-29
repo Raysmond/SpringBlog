@@ -7,7 +7,7 @@ block content
   .row
     .col-md-4.col-md-offset-4.login-container
       .login-panel
-        form.signin-form(method="post",action="#{basePath}/authenticate")
+        form.signin-form(method="post",action="/authenticate")
           input(type="hidden", name='_csrf', value='#{_csrf.token}')
           input.form-control(type="text",name="username",placeholder="Email")
           input.form-control(type="password",name="password",placeholder="Password")

@@ -5,7 +5,7 @@
         .meta 
           .time #{viewHelper.getFormattedDate(post.getCreatedAt())}
         h2.title 
-          a(href="#{basePath}/posts/#{post.getId()}")
+          a(href="/posts/#{post.getId()}")
             = post.getTitle()
         
         .content 
