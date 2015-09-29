@@ -38,10 +38,28 @@ block content
                   
                 form(id="form-#{post.getId()}",style="visibility: hidden", method="post", action="#{basePath}/admin/posts/#{post.getId()}/delete")
                   input(type="hidden", name='_csrf', value='#{_csrf.token}')
-
+      .col-sm-12
+        div#pagination
   script 
     function deletePost(postId){
       if (confirm("Are you sure to delete post @"+postId)) {
         $('#form-'+postId).submit();
       }
     }
+    
+    $(function(){
+      var page = #{page};
+      
+      // Use bootstrap paginator
+      // Ref. http://lyonlai.github.io/bootstrap-paginator/
+      if(page>1){
+        var options = {
+            currentPage: #{page} + 1,
+            totalPages: #{totalPages},
+            pageUrl: function(type, page, current){
+                return document.location.pathname+'?page='+page;
+            }
+        }
+        $('#pagination').bootstrapPaginator(options);
+      }
+    });

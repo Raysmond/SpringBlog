@@ -42,7 +42,7 @@ public class PostController {
     @Autowired
     private UserRepository userRepository;
 
-    private static final int PAGE_SIZE = 50;
+    private static final int PAGE_SIZE = 20;
 
     @RequestMapping(value = "")
     public String index(@RequestParam(defaultValue = "0") int page, Model model){
