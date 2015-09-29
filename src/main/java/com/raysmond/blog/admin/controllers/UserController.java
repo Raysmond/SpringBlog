@@ -49,7 +49,7 @@ public class UserController {
         if (errors.hasErrors()){
             // do something
 
-            return "admin/users_profile";
+            return "admin/users/profile";
         }
 
         if (!userForm.getNewPassword().isEmpty()){

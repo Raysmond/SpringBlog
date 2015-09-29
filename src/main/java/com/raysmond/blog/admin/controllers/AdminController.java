@@ -31,7 +31,7 @@ public class AdminController {
 
     @RequestMapping("")
     public String index(){
-        return "admin/index";
+        return "admin/home/index";
     }
 
     @RequestMapping(value = "settings")
@@ -39,7 +39,7 @@ public class AdminController {
         SettingsForm settingsForm = DTOUtil.map(appSetting, SettingsForm.class);
 
         model.addAttribute("settings", settingsForm);
-        return "admin/settings";
+        return "admin/home/settings";
     }
 
     @RequestMapping(value = "settings", method = RequestMethod.POST)
@@ -53,7 +53,7 @@ public class AdminController {
 
             MessageHelper.addSuccessAttribute(ra, "Update settings successfully.");
 
-            return "redirect:/admin/settings";
+            return "redirect:settings";
         }
     }
 }

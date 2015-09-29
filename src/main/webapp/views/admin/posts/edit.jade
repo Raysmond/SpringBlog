@@ -1,15 +1,15 @@
-extends ./layout/admin
+extends ../layout/admin
 
 block head
   script(src="#{basePath}/webjars/ace/1.2.0/src-min/ace.js")
   script(src="#{basePath}/webjars/ace/1.2.0/src-min/theme-github.js")
   script(src="#{basePath}/webjars/ace/1.2.0/src-min/mode-markdown.js")
-
+  
 block content
-  h1 New Post
+  h1 Edit Post
   hr
 
-  form.post-form(method="post",action="#{basePath}/admin/posts")
+  form.post-form(method="post",action="#{basePath}/admin/posts/#{post.getId()}")
     .item-row
       input(type="hidden", name='_csrf', value='#{_csrf.token}')
     .item-row
@@ -40,18 +40,18 @@ block content
                 option(value="#{status.getId()}", selected="selected") #{status.getName()}
     .item-row
       hr
-      button.btn.btn-primary.btn-block(type="submit") Create new post
+      button.btn.btn-primary.btn-block(type="submit") Save
 
-  script
-    var editor = ace.edit("content-editor");
-    editor.setTheme("ace/theme/github");
-     
-    var MarkdownMode = ace.require("ace/mode/markdown").Mode;
-    editor.getSession().setMode(new MarkdownMode());
-    
-    editor.getSession().setUseWrapMode(true);
-    
-    $("form").submit(function(){
-        $("#content").val(editor.getValue());
-        return true;
-    });
+    script
+      var editor = ace.edit("content-editor");
+      editor.setTheme("ace/theme/github");
+       
+      var MarkdownMode = ace.require("ace/mode/markdown").Mode;
+      editor.getSession().setMode(new MarkdownMode());
+      
+      editor.getSession().setUseWrapMode(true);
+      
+      $("form").submit(function(){
+          $("#content").val(editor.getValue());
+          return true;
+      });

@@ -52,7 +52,7 @@ public class PostController {
         model.addAttribute("page", page);
         model.addAttribute("posts", posts);
 
-        return "admin/posts_index";
+        return "admin/posts/index";
     }
 
     @RequestMapping(value = "new")
@@ -63,7 +63,7 @@ public class PostController {
         model.addAttribute("postFormats", PostFormat.values());
         model.addAttribute("postStatus", PostStatus.values());
 
-        return "admin/posts_new";
+        return "admin/posts/new";
     }
 
     @RequestMapping(value = "{postId:[0-9]+}/edit")
@@ -76,7 +76,7 @@ public class PostController {
         model.addAttribute("postFormats", PostFormat.values());
         model.addAttribute("postStatus", PostStatus.values());
 
-        return "admin/posts_edit";
+        return "admin/posts/edit";
     }
 
     @RequestMapping(value = "{postId:[0-9]+}/delete", method = {DELETE, POST})
@@ -89,7 +89,7 @@ public class PostController {
     public String create(Principal principal, @Valid PostForm postForm, Errors errors, Model model){
         if (errors.hasErrors()) {
             model.addAttribute("postFormats", PostFormat.values());
-            return "admin/posts_new";
+            return "admin/posts/new";
         } else {
             Post post = DTOUtil.map(postForm, Post.class);
             post.setUser(userRepository.findByEmail(principal.getName()));
