@@ -1,9 +1,10 @@
 apply plugin: 'java'
-apply plugin: 'war'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-//apply plugin: 'org.akhikhl.gretty'
 apply plugin: 'spring-boot'
+//apply plugin: 'org.akhikhl.gretty'
+//apply plugin: 'war'
+
 //
 // JDK 8
 sourceCompatibility = 1.8
@@ -20,10 +21,14 @@ repositories {
     maven { url "http://repo.springsource.org/repo" } // for springloaded
 }
 
-task warProduction(type: War){
-    destinationDir = file("$buildDir/dist")
-    baseName = "$rootProject.name-production"
+configurations {
+    compile.exclude module: "spring-boot-starter-tomcat"
 }
+
+//task warProduction(type: War){
+//    destinationDir = file("$buildDir/dist")
+//    baseName = "$rootProject.name-production"
+//}
 
 dependencies {
     // spring boot

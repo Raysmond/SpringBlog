@@ -10,7 +10,7 @@ Spring Framework. A blog site is just a good place to get started.
 
 SpringBlog is powered by many powerful frameworks and third-party projects:
 
-- Spring MVC + Spring JPA + Hibernate - Powerful frameworks
+- Spring Boot + Spring MVC + Spring JPA + Hibernate - Powerful frameworks
 - [HikariCP](https://github.com/brettwooldridge/HikariCP) - A solid high-performance JDBC connection pool
 - [Bootstrap](https://getbootstrap.com) - A very popular and responsive front-end framework
 - [Pegdown](https://github.com/sirthias/pegdown) - A pure-java markdown processor
@@ -46,11 +46,8 @@ Try `gradle -v` command. Otherwise install in from [http://www.gradle.org/](http
 I recommend you import the source code into Intellij IDE to edit the code.
 
 ```
-# Install artifacts to your local repository
-./gradlew build
-
 # Start the web application
-./gradlew jettyRun
+./gradlew bootRun
 ```
 
 View `http://localhost:8080/` on your browser.
@@ -69,10 +66,7 @@ Use gradle to build a production war and deploy it on Jetty9 server in Linux. Be
 Java8, Jetty9 and the latest version of Redis server.
 
 ```
-./gradlew warProduction
+./gradlew build
 ```
 
-You'll find the production war in folder `build/dist`, for example `SpringBlog-production-0.1.war`.
-
-Alternatively, you can run the `deploy.sh` script to deploy the application to remote server automatically. Please do change
-the settings before running the script.
+TODO deployment with Spring Boot
