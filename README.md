@@ -5,6 +5,9 @@ SpringBlog is a very simple blog system implemented with Spring MVC.
 It's one of my learning projects which took me two days to develop the first minimal and runnable version. I've put it on production
 for my personal website [http://raysmond.com](http://raysmond.com).
 
+I think I need to emphasized that it's a learning project to learn and apply awesome and new features in Java web programming, especially with
+Spring Framework. A blog site is just a good place to get started.
+
 SpringBlog is powered by many powerful frameworks and third-party projects:
 
 - Spring MVC + Spring JPA + Hibernate - Powerful frameworks
@@ -51,6 +54,14 @@ I recommend you import the source code into Intellij IDE to edit the code.
 ```
 
 View `http://localhost:8080/` on your browser.
+
+## Todo
+
+- Convert to Spring Boot project. Try to keep the configuration simple using automated configurations. And try to separate
+  different application configuration environment (e.g. dev/production/staging)
+- Handling static web resources with `ResourceSolvers` and `ResourceTransformers` introduced in Spring Framework 4.1.
+- Post tagging implementation
+- Awesome features are always welcome.
 
 
 ## Deployment

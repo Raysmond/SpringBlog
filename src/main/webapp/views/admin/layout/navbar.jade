@@ -1,4 +1,4 @@
-nav.navbar.navbar-fixed-top.navbar-bright
+nav.navbar.navbar-fixed-top.navbar-default
   .container
     .navbar-header
       button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#navbar", aria-expanded="false", aria-controls="navbar")
@@ -10,9 +10,8 @@ nav.navbar.navbar-fixed-top.navbar-bright
         span #{App.getSiteName()}
     .collapse.navbar-collapse#navbar
       ul.nav.navbar-nav
-        li.active
-          a(href="#{basePath}/admin/posts") Posts
-        li: a(href="#{basePath}/admin/settings") Setting
+        li: a(href="#{basePath}/admin/posts") Posts
+        li: a(href="#{basePath}/admin/settings") Settings
         li: a(href="#{basePath}/admin/users/profile") Profile
         li: a(href="#{basePath}/") Site Home
         
