@@ -25,21 +25,18 @@ public class HomeController {
 
     private static Long ABOUT_PAGE_ID = null;
 
-    @RequestMapping(value = "/")
+    @RequestMapping("")
     public String index(@RequestParam(defaultValue = "1") int page, Model model) {
-        if (page <= 0) {
-            page = 1;
-        }
-
-        Page<Post> posts = postService.getAllPostsByPage(page - 1, appSetting.getPageSize());
+        Page<Post> posts = postService.getAllPostsByPage(page < 0 ? 1 : page -1, appSetting.getPageSize());
 
         model.addAttribute("totalPages", posts.getTotalPages());
         model.addAttribute("posts", posts);
         model.addAttribute("page", page);
+
         return "home/index";
     }
 
-    @RequestMapping(value = "/about")
+    @RequestMapping("about")
     public String about(Model model) {
         if (ABOUT_PAGE_ID == null || postService.getPost(ABOUT_PAGE_ID) == null) {
             Post post = postRepository.findByTitleAndPostType("About", PostType.PAGE);

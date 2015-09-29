@@ -19,11 +19,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.validation.Valid;
 import java.security.Principal;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>
@@ -76,13 +76,13 @@ public class PostController {
         return "admin/posts_edit";
     }
 
-    @RequestMapping(value = "{postId:[0-9]+}/delete", method = {RequestMethod.DELETE, RequestMethod.POST})
+    @RequestMapping(value = "{postId:[0-9]+}/delete", method = {DELETE, POST})
     public String deletePost(@PathVariable Long postId){
         postService.deletePost(postRepository.findOne(postId));
         return "redirect:/admin/posts";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = POST)
     public String create(Principal principal, @Valid PostForm postForm, Errors errors, Model model){
         if (errors.hasErrors()) {
             model.addAttribute("postFormats", PostFormat.values());
@@ -98,7 +98,7 @@ public class PostController {
         }
     }
 
-    @RequestMapping(value = "{postId:[0-9]+}", method = {RequestMethod.PUT, RequestMethod.POST})
+    @RequestMapping(value = "{postId:[0-9]+}", method = {PUT, POST})
     public String update(@PathVariable Long postId, @Valid PostForm postForm, Errors errors, Model model){
         if (errors.hasErrors()){
             model.addAttribute("postFormats", PostFormat.values());

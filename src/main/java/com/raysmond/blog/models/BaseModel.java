@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * A abstract base model class for entities
+ * An abstract base model class for entities
  *
  * @author Raysmond<jiankunlei@gmail.com>
  */
