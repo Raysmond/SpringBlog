@@ -52,22 +52,20 @@ I recommend you import the source code into Intellij IDE to edit the code.
 
 View `http://localhost:8080/` on your browser.
 
-## Todo
-
-- Convert to Spring Boot project. Try to keep the configuration simple using automated configurations. And try to separate
-  different application configuration environment (e.g. dev/production/staging)
-- Handling static web resources with `ResourceSolvers` and `ResourceTransformers` introduced in Spring Framework 4.1.
-- Post tagging implementation
-- Awesome features are always welcome.
-
-
 ## Deployment
 
 - Build application jar `./gradlew build`, then upload the distribution jar (e.g. `build/libs/SpringBlog-0.1.jar`) to your remote server.
 - Upload `application-production.yml` to your server and change the configuration according to your server settings.
-- Run it
-  First of all, make sure you have installed Java8 already.
+- Run it (make sure you have installed Java8 already)
+
   ```
   # assuming you have the jar and yml files under current dir
   java -jar SpringBlog-0.1.jar --spring.config.location="application-production.yml"
   ```
+  
+## Todo
+
+- Handling static web resources with `ResourceSolvers` and `ResourceTransformers` introduced in Spring Framework 4.1.
+- Post tagging implementation
+- Awesome features are always welcome.
+  
