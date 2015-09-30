@@ -21,6 +21,10 @@ repositories {
     maven { url "http://repo.springsource.org/repo" } // for springloaded
 }
 
+bootRun {
+    systemProperties = System.properties
+}
+
 configurations {
     compile.exclude module: "spring-boot-starter-tomcat"
 }

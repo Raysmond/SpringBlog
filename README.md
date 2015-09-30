@@ -62,11 +62,12 @@ View `http://localhost:8080/` on your browser.
 
 
 ## Deployment
-Use gradle to build a production war and deploy it on Jetty9 server in Linux. Before deployment, please install
-Java8, Jetty9 and the latest version of Redis server.
 
-```
-./gradlew build
-```
-
-TODO deployment with Spring Boot
+- Build application jar `./gradlew build`, then upload the distribution jar (e.g. `build/libs/SpringBlog-0.1.jar`) to your remote server.
+- Upload `application-production.yml` to your server and change the configuration according to your server settings.
+- Run it
+  First of all, make sure you have installed Java8 already.
+  ```
+  # assuming you have the jar and yml files under current dir
+  java -jar SpringBlog-0.1.jar --spring.config.location="application-production.yml"
+  ```

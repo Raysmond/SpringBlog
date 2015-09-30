@@ -23,19 +23,19 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @EnableJpaRepositories(basePackageClasses = Application.class)
 class JpaConfig implements TransactionManagementConfigurer {
 
-    @Value("${dataSource.driverClassName}")
+    @Value("${spring.dataSource.driverClassName}")
     private String driver;
-    @Value("${dataSource.url}")
+    @Value("${spring.dataSource.url}")
     private String url;
-    @Value("${dataSource.username}")
+    @Value("${spring.dataSource.username}")
     private String username;
-    @Value("${dataSource.password}")
+    @Value("${spring.dataSource.password}")
     private String password;
-    @Value("${hibernate.dialect}")
+    @Value("${spring.hibernate.dialect}")
     private String dialect;
-    @Value("${hibernate.hbm2ddl.auto}")
+    @Value("${spring.hibernate.hbm2ddl.auto}")
     private String hbm2ddlAuto;
-    @Value("${hibernate.show_sql}")
+    @Value("${spring.hibernate.show_sql}")
     private Boolean showSql;
 
     @Bean
