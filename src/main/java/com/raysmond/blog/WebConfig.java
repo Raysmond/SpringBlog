@@ -1,10 +1,6 @@
 package com.raysmond.blog;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
 import com.raysmond.blog.support.web.ViewHelper;
-import de.neuland.jade4j.spring.view.JadeViewResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

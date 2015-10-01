@@ -19,7 +19,6 @@ import javax.validation.Valid;
  */
 @Controller
 @RequestMapping("admin")
-//@Secured("ROLE_ADMIN")
 public class AdminController {
 
     private AppSetting appSetting;

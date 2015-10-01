@@ -110,16 +110,19 @@ public class PostService {
                 new PageRequest(0, Integer.MAX_VALUE, Sort.Direction.DESC, "createdAt"));
 
         List<Post> cachedPosts = new ArrayList<>();
-        for (Post post : archivePosts) {
-            Post cachedPost = new Post();
-            cachedPost.setId(post.getId());
-            cachedPost.setTitle(post.getTitle());
-            cachedPost.setPermalink(post.getPermalink());
-            cachedPost.setCreatedAt(post.getCreatedAt());
-            cachedPosts.add(cachedPost);
-        }
+        cachedPosts.forEach(post -> cachedPosts.add(extractPostMeta(post)));
 
         return cachedPosts;
+    }
+
+    private Post extractPostMeta(Post post){
+        Post archivePost = new Post();
+        archivePost.setId(post.getId());
+        archivePost.setTitle(post.getTitle());
+        archivePost.setPermalink(post.getPermalink());
+        archivePost.setCreatedAt(post.getCreatedAt());
+
+        return archivePost;
     }
 
     @Cacheable(value = CACHE_NAME_PAGE, key = "T(java.lang.String).valueOf(#page).concat('-').concat(#pageSize)")
