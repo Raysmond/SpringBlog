@@ -1,22 +1,20 @@
 SpringBlog
 =====
 
-SpringBlog is a very simple blog system implemented with Spring MVC.
-It's one of my learning projects which took me two days to develop the first minimal and runnable version. I've put it on production
-for my personal website [http://raysmond.com](http://raysmond.com).
-
-I think I need to emphasized that it's a learning project to learn and apply awesome and new features in Java web programming, especially with
-Spring Framework. A blog site is just a good place to get started.
+SpringBlog is a very simple and clean-design blog system implemented with Spring Boot.
+It's one of my learning projects to explore awesome features in Spring Boot web programming. I've put it on production
+for my personal blog site [https://raysmond.com](https://raysmond.com).
 
 SpringBlog is powered by many powerful frameworks and third-party projects:
 
-- Spring Boot + Spring MVC + Spring JPA + Hibernate - Powerful frameworks
+- Spring Boot and many of Spring familiy (e.g. Spring MVC, Spring JPA, Spring Secruity and etc)
+- Hibernate + MySQL 
 - [HikariCP](https://github.com/brettwooldridge/HikariCP) - A solid high-performance JDBC connection pool
 - [Bootstrap](https://getbootstrap.com) - A very popular and responsive front-end framework
 - [Pegdown](https://github.com/sirthias/pegdown) - A pure-java markdown processor
-- [ACE Editor](http://ace.c9.io/) - A high performance code editor
-- [Pygments](http://pygments.org/) - Python syntax highlighter
-- [Jade4j](https://github.com/neuland/jade4j) - [Jade](http://jade-lang.com/) is an elegant template language
+- [ACE Editor](http://ace.c9.io/) - A high performance code editor which I use to write posts and code.
+- [Pygments](http://pygments.org/) - A python library for highlighting code syntax
+- [Jade4j](https://github.com/neuland/jade4j) - [Jade](http://jade-lang.com/) is an elegant template language. 
 - [Webjars](http://www.webjars.org/) - A client-side web libraries packaged into JAR files. A easy way to manage JavaScript and CSS vendors in Gradle.
 - [Redis](http://redis.io/) - A very powerful in-memory data cache server.
 
@@ -24,15 +22,13 @@ SpringBlog is powered by many powerful frameworks and third-party projects:
 
 Before development, please install the following service software:
 
-- MySQL5
-- Redis
-    - [how-to-install-and-use-redis-on-ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis)
-- Pygments
-    - A python library for highlighting code syntax
+- [MySQL](https://www.mysql.com)
+- [Redis](http://redis.io)
+- [Pygments](http://pygments.org) 
 
-Edit application configuration file `src/main/resources/dev_app.properties` according to your settings.
+Edit the spring config profile `src/main/resources/application.yml` according to your settings.
 
-And start MySQL, Redis and Pygments first before running the application.
+And start MySQL and Redis first before running the application.
 
 ```
 # If you're using Ubuntu server
@@ -52,20 +48,23 @@ I recommend you import the source code into Intellij IDE to edit the code.
 
 View `http://localhost:8080/` on your browser.
 
-## Deployment
-
-- Build application jar `./gradlew build`, then upload the distribution jar (e.g. `build/libs/SpringBlog-0.1.jar`) to your remote server.
-- Upload `application-production.yml` to your server and change the configuration according to your server settings.
-- Run it (make sure you have installed Java8 already)
-
-  ```
-  # assuming you have the jar and yml files under current dir
-  java -jar SpringBlog-0.1.jar --spring.config.location="application-production.yml"
-  ```
-  
-## Todo
+### Todo
 
 - Handling static web resources with `ResourceSolvers` and `ResourceTransformers` introduced in Spring Framework 4.1.
 - Post tagging implementation
 - Awesome features are always welcome.
+
+Welcome to contribute.
+
+## Deployment
+
+- Build application jar `./gradlew build`, then upload the distribution jar (e.g. `build/libs/SpringBlog-0.1.jar`) to your remote server.
+- Upload `application-production.yml` to your server and change it according to your server settings.
+- Run it (Java8 is a must)
+
+  ```
+  # assuming you have the jar and yml files under current dir
+  java -jar SpringBlog-0.1.jar --spring.config.location=application-production.yml
+  ```
+
   
