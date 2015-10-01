@@ -104,13 +104,13 @@ public class PostService {
     public List<Post> getArchivePosts() {
         logger.debug("Get all archive posts from database.");
 
-        Iterable<Post> archivePosts = postRepository.findAllByPostTypeAndPostStatus(
+        Iterable<Post> posts = postRepository.findAllByPostTypeAndPostStatus(
                 PostType.POST,
                 PostStatus.PUBLISHED,
                 new PageRequest(0, Integer.MAX_VALUE, Sort.Direction.DESC, "createdAt"));
 
         List<Post> cachedPosts = new ArrayList<>();
-        cachedPosts.forEach(post -> cachedPosts.add(extractPostMeta(post)));
+        posts.forEach(post -> cachedPosts.add(extractPostMeta(post)));
 
         return cachedPosts;
     }
