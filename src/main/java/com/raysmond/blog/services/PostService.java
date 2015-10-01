@@ -114,6 +114,7 @@ public class PostService {
             Post cachedPost = new Post();
             cachedPost.setId(post.getId());
             cachedPost.setTitle(post.getTitle());
+            cachedPost.setPermalink(post.getPermalink());
             cachedPost.setCreatedAt(post.getCreatedAt());
             cachedPosts.add(cachedPost);
         }
