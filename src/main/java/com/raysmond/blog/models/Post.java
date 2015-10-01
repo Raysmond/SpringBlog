@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>
@@ -17,6 +18,8 @@ import javax.persistence.*;
 @Table(name = "posts")
 @Getter @Setter
 public class Post extends BaseModel{
+    private static final SimpleDateFormat SLUG_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
+
     @ManyToOne
     private User user;
 
@@ -40,6 +43,8 @@ public class Post extends BaseModel{
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PostType postType = PostType.POST;
+
+    private String permalink;
 
     public String getRenderedContent() {
         if (this.postFormat == PostFormat.MARKDOWN)

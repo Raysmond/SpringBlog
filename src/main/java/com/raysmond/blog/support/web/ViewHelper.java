@@ -20,6 +20,8 @@ public class ViewHelper {
 
     private AppSetting appSetting;
 
+    private String applicationEnv;
+
     @Autowired
     public ViewHelper(AppSetting appSetting){
         this.appSetting = appSetting;
@@ -49,5 +51,13 @@ public class ViewHelper {
 
     public String metaTitle(String title){
         return title + " · " + appSetting.getSiteName();
+    }
+
+    public String getApplicationEnv() {
+        return applicationEnv;
+    }
+
+    public void setApplicationEnv(String applicationEnv) {
+        this.applicationEnv = applicationEnv;
     }
 }

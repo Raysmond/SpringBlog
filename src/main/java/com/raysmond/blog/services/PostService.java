@@ -1,12 +1,12 @@
 package com.raysmond.blog.services;
 
 import com.raysmond.blog.Constants;
+import com.raysmond.blog.error.NotFoundException;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.support.PostFormat;
 import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
-import com.raysmond.blog.repositories.UserRepository;
 import com.raysmond.blog.utils.Markdown;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,9 +41,27 @@ public class PostService {
 
     @Cacheable(CACHE_NAME)
     public Post getPost(Long postId) {
-        logger.info("Get post " + postId + " from database");
+        logger.debug("Get post " + postId);
 
-        return postRepository.findOne(postId);
+        Post post = postRepository.findOne(postId);
+
+        if (post == null){
+            throw new NotFoundException("Post with id " + postId + " is not found.");
+        }
+
+        return post;
+    }
+
+    @Cacheable(CACHE_NAME)
+    public Post getPublishedPostByPermalink(String permalink){
+        logger.debug("Get post with permalink " + permalink);
+        Post post = postRepository.findByPermalinkAndPostStatus(permalink, PostStatus.PUBLISHED);
+
+        if (post == null){
+            throw new NotFoundException("Post with permalink '" + permalink + "' is not found.");
+        }
+
+        return post;
     }
 
     @Caching(evict = {
@@ -60,6 +78,7 @@ public class PostService {
 
     @Caching(evict = {
             @CacheEvict(value = CACHE_NAME, key = "#post.id"),
+            @CacheEvict(value = CACHE_NAME, key = "#post.permalink", condition = "#post.permalink != null"),
             @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
             @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true)
     })
@@ -73,6 +92,7 @@ public class PostService {
 
     @Caching(evict = {
             @CacheEvict(value = CACHE_NAME, key = "#post.id"),
+            @CacheEvict(value = CACHE_NAME, key = "#post.permalink", condition = "#post.permalink != null"),
             @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
             @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true)
     })
@@ -82,7 +102,7 @@ public class PostService {
 
     @Cacheable(value = CACHE_NAME_ARCHIVE, key = "#root.method.name")
     public List<Post> getArchivePosts() {
-        logger.info("Get all archive posts from database.");
+        logger.debug("Get all archive posts from database.");
 
         Iterable<Post> archivePosts = postRepository.findAllByPostTypeAndPostStatus(
                 PostType.POST,
@@ -103,7 +123,7 @@ public class PostService {
 
     @Cacheable(value = CACHE_NAME_PAGE, key = "T(java.lang.String).valueOf(#page).concat('-').concat(#pageSize)")
     public Page<Post> getAllPublishedPostsByPage(int page, int pageSize) {
-        logger.info("Get posts by page " + page + " from database");
+        logger.debug("Get posts by page " + page);
 
         return postRepository.findAllByPostTypeAndPostStatus(
                 PostType.POST,
@@ -112,11 +132,12 @@ public class PostService {
     }
 
     public Post createAboutPage() {
-        logger.info("Create default about page");
+        logger.debug("Create default about page");
 
         Post post = new Post();
-        post.setTitle(Constants.ABOUT_PAGE_TITLE);
-        post.setContent(Constants.ABOUT_PAGE_TITLE.toLowerCase());
+        post.setTitle(Constants.ABOUT_PAGE_PERMALINK);
+        post.setContent(Constants.ABOUT_PAGE_PERMALINK.toLowerCase());
+        post.setPermalink(Constants.ABOUT_PAGE_PERMALINK);
         post.setUser(userService.getSuperUser());
         post.setPostFormat(PostFormat.MARKDOWN);
 

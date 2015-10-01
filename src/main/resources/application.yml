@@ -3,10 +3,10 @@ spring:
         active: dev
 
     thymeleaf:
-        cache: true
+        cache: false
 
     jade4j:
-        caching: true
+        caching: false
 
     dataSource:
       driverClassName: com.mysql.jdbc.Driver
@@ -17,7 +17,7 @@ spring:
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect
       hbm2ddl.auto: update
-      show_sql: true
+      show_sql: false
 
     redis:
       host: localhost

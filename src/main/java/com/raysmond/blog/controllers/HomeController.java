@@ -1,5 +1,6 @@
 package com.raysmond.blog.controllers;
 
+import com.raysmond.blog.Constants;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
@@ -20,11 +21,6 @@ public class HomeController {
     @Autowired
     private AppSetting appSetting;
 
-    @Autowired
-    private PostRepository postRepository;
-
-    private static Long ABOUT_PAGE_ID = null;
-
     @RequestMapping("")
     public String index(@RequestParam(defaultValue = "1") int page, Model model) {
         Page<Post> posts = postService.getAllPublishedPostsByPage(page < 0 ? 1 : page - 1, appSetting.getPageSize());
@@ -38,16 +34,13 @@ public class HomeController {
 
     @RequestMapping("about")
     public String about(Model model) {
-        if (ABOUT_PAGE_ID == null || postService.getPost(ABOUT_PAGE_ID) == null) {
-            Post post = postRepository.findByTitleAndPostType("About", PostType.PAGE);
-            if (post == null) {
-                post = postService.createAboutPage();
-            }
+        Post post = postService.getPublishedPostByPermalink(Constants.ABOUT_PAGE_PERMALINK);
 
-            ABOUT_PAGE_ID = post.getId();
+        if (post == null) {
+            post = postService.createAboutPage();
         }
 
-        model.addAttribute("about", postService.getPost(ABOUT_PAGE_ID));
+        model.addAttribute("about", post);
         return "home/about";
     }
 

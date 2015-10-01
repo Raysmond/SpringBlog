@@ -18,8 +18,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface PostRepository extends JpaRepository<Post, Long> {
     Post findByTitle(String title);
+
     Post findByTitleAndPostType(String title, PostType postType);
+
+    Post findByPostStatus(PostStatus postStatus);
+
+    Post findByPermalinkAndPostStatus(String permalink, PostStatus postStatus);
+
     Page<Post> findAllByPostType(PostType postType, Pageable pageRequest);
+
     Page<Post> findAllByPostTypeAndPostStatus(PostType postType, PostStatus postStatus, Pageable pageRequest);
 }
 

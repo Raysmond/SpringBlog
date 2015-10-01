@@ -2,7 +2,10 @@
   .footer
     .footer-wrapper
       hr
-      p Copyright &copy; · 2015 #{App.getSiteName()} · All Right Reserved.
+      p 
+        | &copy; · Written by 
+        a(href="http://raysmond.com") Raysmond
+        |  · All Right Reserved.
       if viewHelper != null
         p Page: #{viewHelper.getResponseTime()}ms
        

@@ -2,12 +2,15 @@ package com.raysmond.blog.controllers;
 
 import com.raysmond.blog.error.NotFoundException;
 import com.raysmond.blog.models.Post;
+import com.raysmond.blog.models.User;
 import com.raysmond.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
 /**
@@ -19,22 +22,29 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping(value = "archive")
+    @RequestMapping(value = "archive", method = GET)
     public String archive(Model model){
         model.addAttribute("posts", postService.getArchivePosts());
 
         return "posts/archive";
     }
 
-    @RequestMapping(value = "{postId:[0-9]+}")
-    public String show(@PathVariable Long postId, Model model){
-        Post post = postService.getPost(postId);
+    @RequestMapping(value = "{permalink}", method = GET)
+    public String show(@PathVariable String permalink, Model model){
+        Post post = null;
 
-        if(post == null){
-            throw new NotFoundException("Post @" + postId + " is not found.");
+        try{
+            post = postService.getPublishedPostByPermalink(permalink);
+        } catch (NotFoundException ex){
+            if (permalink.matches("\\d+"))
+                post = postService.getPost(Long.valueOf(permalink));
         }
+
+        if (post == null)
+            throw new NotFoundException("Post with permalink " + permalink + " is not found");
 
         model.addAttribute("post", post);
         return "posts/show";
     }
+
 }

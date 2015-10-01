@@ -22,4 +22,7 @@ public class PostForm {
 
     @NotNull
     private PostStatus postStatus;
+
+    @NotNull
+    private String permalink;
 }

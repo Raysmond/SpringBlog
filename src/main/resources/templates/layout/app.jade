@@ -13,4 +13,6 @@ html(lang="en")
       block content
 
     include footer
-    include ../fragments/ga
+    
+    if viewHelper.getApplicationEnv() == "production"
+      include ../fragments/ga

@@ -24,7 +24,7 @@ block content
       .row
         .col-sm-3
           span Format
-          select.form-control(style="width:120px;", name="postFormat")
+          select.form-control(name="postFormat")
             for format in postFormats
               if format != postForm.getPostFormat()
                 option(value="#{format.getId()}") #{format.getDisplayName()}
@@ -32,12 +32,15 @@ block content
                 option(value="#{format.getId()}", selected="selected") #{format.getDisplayName()}
         .col-sm-3
           span Status
-          select.form-control(style="width:120px;", name="postStatus")
+          select.form-control(name="postStatus")
             for status in postStatus
               if status != postForm.getPostStatus()
                 option(value="#{status.getId()}") #{status.getName()}
               else 
                 option(value="#{status.getId()}", selected="selected") #{status.getName()}
+        .col-sm-3
+          span Permalink
+          input.form-control(name="permalink", value="#{postForm.getPermalink()}")
     .item-row
       hr
       button.btn.btn-primary.btn-block(type="submit") Save
