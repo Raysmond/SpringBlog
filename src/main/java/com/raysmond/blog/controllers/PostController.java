@@ -2,13 +2,16 @@ package com.raysmond.blog.controllers;
 
 import com.raysmond.blog.error.NotFoundException;
 import com.raysmond.blog.models.Post;
-import com.raysmond.blog.models.User;
 import com.raysmond.blog.services.PostService;
+import com.raysmond.blog.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+import java.util.Set;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -21,6 +24,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class PostController {
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private TagService tagService;
 
     @RequestMapping(value = "archive", method = GET)
     public String archive(Model model){
@@ -44,6 +50,7 @@ public class PostController {
             throw new NotFoundException("Post with permalink " + permalink + " is not found");
 
         model.addAttribute("post", post);
+
         return "posts/show";
     }
 

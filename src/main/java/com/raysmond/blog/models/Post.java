@@ -10,6 +10,10 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>
@@ -44,6 +48,13 @@ public class Post extends BaseModel{
     @Enumerated(EnumType.STRING)
     private PostType postType = PostType.POST;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "posts_tags",
+            joinColumns = {@JoinColumn(name = "post_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id", nullable = false, updatable = false)}
+    )
+    private Set<Tag> tags = new HashSet<>();
+
     private String permalink;
 
     public String getRenderedContent() {
@@ -52,4 +63,5 @@ public class Post extends BaseModel{
 
         return getContent();
     }
+
 }

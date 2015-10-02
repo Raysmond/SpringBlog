@@ -12,5 +12,15 @@ block content
     .content 
       !{post.getRenderedContent()}
     
+    .info 
+      .author 
+        #{post.getCreatedAt() == post.getUpdatedAt() ? "Created" : "Updated"} 
+        | at #{viewHelper.getFormattedDate(post.getCreatedAt())}
+      
+      //- ul.tags
+      //-   for tag in tags
+      //-     li: a(href="#") #{tag.getName()}
+        
+    
     .comments 
       include ../fragments/disqus

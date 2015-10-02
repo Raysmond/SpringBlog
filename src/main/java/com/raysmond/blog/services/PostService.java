@@ -3,6 +3,7 @@ package com.raysmond.blog.services;
 import com.raysmond.blog.Constants;
 import com.raysmond.blog.error.NotFoundException;
 import com.raysmond.blog.models.Post;
+import com.raysmond.blog.models.Tag;
 import com.raysmond.blog.models.support.PostFormat;
 import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
@@ -20,7 +21,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>.
@@ -29,6 +32,9 @@ import java.util.List;
 public class PostService {
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private TagService tagService;
 
     @Autowired
     private UserService userService;
@@ -146,5 +152,29 @@ public class PostService {
         post.setPostFormat(PostFormat.MARKDOWN);
 
         return createPost(post);
+    }
+
+    public Set<Tag> parseTagNames(String tagNames){
+        Set<Tag> tags = new HashSet<>();
+
+        if (tagNames != null && !tagNames.isEmpty()){
+            String[] names = tagNames.split("\\s*,\\s*");
+            for (String name : names){
+                tags.add(tagService.findOrCreateByName(name));
+            }
+        }
+
+        return tags;
+    }
+
+    public String getTagNames(Set<Tag> tags){
+        if (tags == null || tags.isEmpty())
+            return "";
+
+        StringBuilder names = new StringBuilder();
+        tags.forEach(tag -> names.append(tag.getName()).append(","));
+        names.deleteCharAt(names.length()-1);
+
+        return names.toString();
     }
 }

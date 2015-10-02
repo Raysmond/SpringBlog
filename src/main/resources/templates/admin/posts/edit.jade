@@ -41,6 +41,10 @@ block content
         .col-sm-3
           span Permalink
           input.form-control(name="permalink", value="#{postForm.getPermalink()}")
+      
+        .col-sm-3
+          span Tags
+          input.form-control(name="postTags", value="#{postForm.getPostTags()}")
     .item-row
       hr
       button.btn.btn-primary.btn-block(type="submit") Save
