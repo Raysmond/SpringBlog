@@ -8,13 +8,13 @@ for my personal blog site [https://raysmond.com](https://raysmond.com).
 SpringBlog is powered by many powerful frameworks and third-party projects:
 
 - Spring Boot and many of Spring familiy (e.g. Spring MVC, Spring JPA, Spring Secruity and etc)
-- Hibernate + MySQL 
+- Hibernate + MySQL
 - [HikariCP](https://github.com/brettwooldridge/HikariCP) - A solid high-performance JDBC connection pool
 - [Bootstrap](https://getbootstrap.com) - A very popular and responsive front-end framework
 - [Pegdown](https://github.com/sirthias/pegdown) - A pure-java markdown processor
 - [ACE Editor](http://ace.c9.io/) - A high performance code editor which I use to write posts and code.
 - [Pygments](http://pygments.org/) - A python library for highlighting code syntax
-- [Jade4j](https://github.com/neuland/jade4j) - [Jade](http://jade-lang.com/) is an elegant template language. 
+- [Jade4j](https://github.com/neuland/jade4j) - [Jade](http://jade-lang.com/) is an elegant template language.
 - [Webjars](http://www.webjars.org/) - A client-side web libraries packaged into JAR files. A easy way to manage JavaScript and CSS vendors in Gradle.
 - [Redis](http://redis.io/) - A very powerful in-memory data cache server.
 
@@ -24,7 +24,7 @@ Before development, please install the following service software:
 
 - [MySQL](https://www.mysql.com)
 - [Redis](http://redis.io)
-- [Pygments](http://pygments.org) 
+- [Pygments](http://pygments.org)
 
 Edit the spring config profile `src/main/resources/application.yml` according to your settings.
 
@@ -51,7 +51,6 @@ View `http://localhost:8080/` on your browser.
 ### Todo
 
 - Handling static web resources with `ResourceSolvers` and `ResourceTransformers` introduced in Spring Framework 4.1.
-- Post tagging implementation
 - Awesome features are always welcome.
 
 Welcome to contribute.
@@ -67,4 +66,5 @@ Welcome to contribute.
   java -jar SpringBlog-0.1.jar --spring.config.location=application-production.yml
   ```
 
-  
+## License
+Modified BSD license. Copyright (c) 2015, Jiankun LEI (Raysmond).
