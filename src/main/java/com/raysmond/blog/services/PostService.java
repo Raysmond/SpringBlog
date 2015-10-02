@@ -42,6 +42,7 @@ public class PostService {
     public static final String CACHE_NAME = "cache.post";
     public static final String CACHE_NAME_ARCHIVE = CACHE_NAME + ".archive";
     public static final String CACHE_NAME_PAGE = CACHE_NAME + ".page";
+    public static final String CACHE_NAME_TAGS = CACHE_NAME + ".tag";
 
     private static final Logger logger = LoggerFactory.getLogger(PostService.class);
 
@@ -61,6 +62,7 @@ public class PostService {
     @Cacheable(CACHE_NAME)
     public Post getPublishedPostByPermalink(String permalink){
         logger.debug("Get post with permalink " + permalink);
+
         Post post = postRepository.findByPermalinkAndPostStatus(permalink, PostStatus.PUBLISHED);
 
         if (post == null){
@@ -85,6 +87,7 @@ public class PostService {
     @Caching(evict = {
             @CacheEvict(value = CACHE_NAME, key = "#post.id"),
             @CacheEvict(value = CACHE_NAME, key = "#post.permalink", condition = "#post.permalink != null"),
+            @CacheEvict(value = CACHE_NAME_TAGS,  key = "#post.id"),
             @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
             @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true)
     })
@@ -99,6 +102,7 @@ public class PostService {
     @Caching(evict = {
             @CacheEvict(value = CACHE_NAME, key = "#post.id"),
             @CacheEvict(value = CACHE_NAME, key = "#post.permalink", condition = "#post.permalink != null"),
+            @CacheEvict(value = CACHE_NAME_TAGS,  key = "#post.id"),
             @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
             @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true)
     })
@@ -120,6 +124,20 @@ public class PostService {
 
         return cachedPosts;
     }
+
+    @Cacheable(value = CACHE_NAME_TAGS, key = "#post.id")
+    public List<Tag> getPostTags(Post post){
+        logger.debug("Get tags of post " + post.getId());
+
+        List<Tag> tags = new ArrayList<>();
+
+        // Load the post first. If not, when the post is cached before while the tags not,
+        // then the LAZY loading of post tags will cause an initialization error because
+        // of not hibernate connection session
+        postRepository.findOne(post.getId()).getTags().forEach(tags::add);
+        return tags;
+    }
+
 
     private Post extractPostMeta(Post post){
         Post archivePost = new Post();

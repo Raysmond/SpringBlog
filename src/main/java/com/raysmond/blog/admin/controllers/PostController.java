@@ -121,7 +121,7 @@ public class PostController {
 
             return "admin/posts_edit";
         } else {
-            Post post = postService.getPost(postId);
+            Post post = postRepository.findOne(postId);
             DTOUtil.mapTo(postForm, post);
             post.setTags(postService.parseTagNames(postForm.getPostTags()));
 

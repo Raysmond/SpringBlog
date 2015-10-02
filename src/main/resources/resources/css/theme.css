@@ -124,6 +124,17 @@ form input, form button{
 	border-top: 1px #eee solid;
 }
 
+.post ul.tags{
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.post ul.tags li{
+	display: inline-block;
+	list-style: none;
+	margin-left: 10px;
+}
+
 .footer{
 	text-align: center;
 	margin-bottom: 50px;

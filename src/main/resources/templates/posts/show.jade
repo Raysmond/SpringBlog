@@ -13,13 +13,18 @@ block content
       !{post.getRenderedContent()}
     
     .info 
+      if !tags.isEmpty()
+        ul.tags
+          li Tags:
+          for tag in tags
+            //- li: a(href="#") #{tag.getName()}
+            li #{tag.getName()}
+        
       .author 
         #{post.getCreatedAt() == post.getUpdatedAt() ? "Created" : "Updated"} 
         | at #{viewHelper.getFormattedDate(post.getCreatedAt())}
       
-      //- ul.tags
-      //-   for tag in tags
-      //-     li: a(href="#") #{tag.getName()}
+      
         
     
     .comments 

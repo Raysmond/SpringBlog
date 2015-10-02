@@ -25,9 +25,6 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @Autowired
-    private TagService tagService;
-
     @RequestMapping(value = "archive", method = GET)
     public String archive(Model model){
         model.addAttribute("posts", postService.getArchivePosts());
@@ -50,6 +47,7 @@ public class PostController {
             throw new NotFoundException("Post with permalink " + permalink + " is not found");
 
         model.addAttribute("post", post);
+        model.addAttribute("tags", postService.getPostTags(post));
 
         return "posts/show";
     }
