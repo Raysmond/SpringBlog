@@ -87,7 +87,7 @@ public class PostService {
     @Caching(evict = {
             @CacheEvict(value = CACHE_NAME, key = "#post.id"),
             @CacheEvict(value = CACHE_NAME, key = "#post.permalink", condition = "#post.permalink != null"),
-            @CacheEvict(value = CACHE_NAME_TAGS,  key = "#post.id"),
+            @CacheEvict(value = CACHE_NAME_TAGS,  key = "#post.id.toString().concat('-tags')"),
             @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
             @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true)
     })
@@ -102,7 +102,7 @@ public class PostService {
     @Caching(evict = {
             @CacheEvict(value = CACHE_NAME, key = "#post.id"),
             @CacheEvict(value = CACHE_NAME, key = "#post.permalink", condition = "#post.permalink != null"),
-            @CacheEvict(value = CACHE_NAME_TAGS,  key = "#post.id"),
+            @CacheEvict(value = CACHE_NAME_TAGS, key = "#post.id.toString().concat('-tags')"),
             @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
             @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true)
     })
@@ -125,7 +125,7 @@ public class PostService {
         return cachedPosts;
     }
 
-    @Cacheable(value = CACHE_NAME_TAGS, key = "#post.id")
+    @Cacheable(value = CACHE_NAME_TAGS, key = "#post.id.toString().concat('-tags')")
     public List<Tag> getPostTags(Post post){
         logger.debug("Get tags of post " + post.getId());
 
