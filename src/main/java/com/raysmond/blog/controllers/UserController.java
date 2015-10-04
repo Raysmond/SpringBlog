@@ -8,7 +8,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.security.Principal;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>
+ * @author Raysmond<i@raysmond.com>
  */
 @Controller
 public class UserController {

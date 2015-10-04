@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * An abstract base model class for entities
  *
- * @author Raysmond<jiankunlei@gmail.com>
+ * @author Raysmond<i@raysmond.com>
  */
 @MappedSuperclass
 public abstract class BaseModel implements Comparable<BaseModel>, Serializable {

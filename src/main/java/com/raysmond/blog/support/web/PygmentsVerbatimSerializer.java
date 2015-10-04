@@ -6,7 +6,7 @@ import org.pegdown.ast.VerbatimNode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>
+ * @author Raysmond<i@raysmond.com>
  */
 public class PygmentsVerbatimSerializer implements VerbatimSerializer {
     public static final PygmentsVerbatimSerializer INSTANCE = new PygmentsVerbatimSerializer();

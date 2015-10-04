@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import static com.raysmond.blog.Constants.*;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {

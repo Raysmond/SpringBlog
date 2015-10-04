@@ -32,7 +32,7 @@ import java.util.Set;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>
+ * @author Raysmond<i@raysmond.com>
  *
  * TODO place all view templates into sub dirs under /admin/
  */

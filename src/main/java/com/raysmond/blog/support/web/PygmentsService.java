@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.python.util.PythonInterpreter;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>
+ * @author Raysmond<i@raysmond.com>
  */
 @Service
 public class PygmentsService implements SyntaxHighlightService {

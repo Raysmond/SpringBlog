@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * A generic setting model
  *
- * @author Raysmond<jiankunlei@gmail.com>
+ * @author Raysmond<i@raysmond.com>
  */
 @Entity
 @Table(name = "settings")

@@ -1,7 +1,7 @@
 package com.raysmond.blog.models.support;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>
+ * @author Raysmond<i@raysmond.com>
  */
 public enum PostStatus {
     DRAFT("Draft"),

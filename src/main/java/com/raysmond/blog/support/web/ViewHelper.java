@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.domingosuarez.boot.autoconfigure.jade4j.JadeHelper;
 /**
- * @author Raysmond<jiankunlei@gmail.com>
+ * @author Raysmond<i@raysmond.com>
  */
 @Service
 @JadeHelper("viewHelper")

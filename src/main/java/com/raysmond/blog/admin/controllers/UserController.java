@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 @Controller("adminUserController")
 @RequestMapping("admin/users")

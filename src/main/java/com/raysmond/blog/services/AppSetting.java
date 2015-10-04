@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.domingosuarez.boot.autoconfigure.jade4j.JadeHelper;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>
+ * @author Raysmond<i@raysmond.com>
  */
 @JadeHelper("App")
 @Service

@@ -6,7 +6,7 @@ import com.raysmond.blog.support.web.PegDownMarkdownService;
 /**
  * A Markdown processing util class
  *
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 public class Markdown {
 

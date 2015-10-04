@@ -1,7 +1,7 @@
 package com.raysmond.blog.support.web;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>
+ * @author Raysmond<i@raysmond.com>
  */
 public interface SyntaxHighlightService {
     public String highlight(String content);

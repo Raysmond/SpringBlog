@@ -3,12 +3,11 @@ html{
 }
 
 body {
-	-webkit-font-smoothing: antialiased;
 	background: #efefef;
+	/*-webkit-font-smoothing: antialiased;*/
 	/*font-size: 1em;
 	line-height: 1.8;
 	font-weight: 300;*/
-
 }
 
 /* override typo css */
@@ -138,9 +137,10 @@ form input, form button{
 }
 
 .post .info{
-	margin-top: 20px;
+	margin-top: 30px;
 	text-align: center;
 	color: #888;
+	font-size: 0.9em;
 }
 
 .post .comments{
