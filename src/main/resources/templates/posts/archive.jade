@@ -12,7 +12,7 @@ block content
     .content
       .year
         h2 2015
-        ul
+        ul.archive-list
           for post in posts 
             if post.getCreatedAt().getYear() == (2015 - 1900)
               li

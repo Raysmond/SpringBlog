@@ -22,7 +22,7 @@ block content
         
       .author 
         #{post.getCreatedAt() == post.getUpdatedAt() ? "Created" : "Updated"} 
-        | at #{viewHelper.getFormattedDate(post.getCreatedAt())}
+        | on #{viewHelper.getFormattedDate(post.getCreatedAt())}
       
       
         

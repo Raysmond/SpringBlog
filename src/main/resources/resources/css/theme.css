@@ -1,15 +1,33 @@
+html{
+	font-size: 100%;
+}
+
 body {
 	-webkit-font-smoothing: antialiased;
-	color: #434343;
 	background: #efefef;
-	line-height: 1.6;
+	/*font-size: 1em;
+	line-height: 1.8;
+	font-weight: 300;*/
+
 }
+
+/* override typo css */
+.typo a{
+	border-bottom: none;
+	color: #337ab7;
+}
+
+hr{
+ border-color: #eee;
+}
+
+/* end */
 
 pre{
 	background: #F9F9F9;
-	border-radius: 1px;
-	border: none;
-	font-size: 12px;
+	border-radius: 3px;
+	border-color: #eee;
+	font-size: 0.8em;
 	line-height: 1.55;
 	overflow: auto;
 	word-break: keep-all;
@@ -22,6 +40,7 @@ pre{
 
 .navbar li a{
 	color: #eee;
+	font-size: 0.8em;
 }
 
 .nav>li>a:focus, .nav>li>a:hover{
@@ -58,7 +77,15 @@ form input, form button{
 	display: table;
 	background-color: #159957;
   background-image: linear-gradient(120deg, #155799, #159957);
+}
 
+.header-title h1 {
+	color: #fff;
+}
+
+.header-title p{
+	font-size: 0.9em;
+	color: #eee;
 }
 
 .header-title-wrapper{
@@ -90,8 +117,9 @@ form input, form button{
 }
 
 
-.post .meta{
+.post .meta, .typo .post .meta{
 	color: rgba(187,187,187,0.8);
+	font-size: 0.9em;
 }
 
 .post h1 > a, .post h2 > a, .post h3 > a, .post h4 > a{
@@ -101,15 +129,12 @@ form input, form button{
 
 .post h2.title{
 	margin-bottom: 20px;
+	margin-top: 15px;
 }
 
-.post h2.title a{
-	color: #555;
-	text-decoration: none;
-}
 
 .post h2.title a:hover, .post h2.title a:focus{
-	color: #333;
+	color: #555;
 }
 
 .post .info{
@@ -135,9 +160,19 @@ form input, form button{
 	margin-left: 10px;
 }
 
+ul.archive-list li span.month{
+	width: 60px;
+	display: inline-block;
+}
+
 .footer{
 	text-align: center;
 	margin-bottom: 50px;
+	font-size: 0.9em;
+}
+
+.footer p, .typo .footer p {
+	margin-bottom: 0.4em;
 }
 
 .footer-wrapper{
