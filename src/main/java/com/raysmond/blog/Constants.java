@@ -13,6 +13,6 @@ public final class Constants {
 
     public static final String DEFAULT_ADMIN_PASSWORD = "admin";
 
-    public static final String ABOUT_PAGE_PERMALINK = "About";
+    public static final String ABOUT_PAGE_PERMALINK = "about";
 
 }
