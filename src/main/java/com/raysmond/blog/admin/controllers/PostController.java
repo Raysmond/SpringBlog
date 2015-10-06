@@ -33,8 +33,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
  * @author Raysmond<i@raysmond.com>
- *
- * TODO place all view templates into sub dirs under /admin/
  */
 @Controller("adminPostController")
 @RequestMapping("admin/posts")
