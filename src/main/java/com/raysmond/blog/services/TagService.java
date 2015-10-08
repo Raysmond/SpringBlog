@@ -25,9 +25,9 @@ public class TagService {
     public static final String CACHE_NAME = "cache.tag";
     public static final String CACHE_NAME_TAGS = "cache.tag.all";
 
-    public static final String CACHE_TYPE = "''_Tag_''";
-    public static final String CACHE_KEY = CACHE_TYPE + ".concat(#tagName)";
-    public static final String CACHE_TAG_KEY = CACHE_TYPE + ".concat(#tag.name)";
+    public static final String CACHE_TYPE = "'_Tag_'";
+    public static final String CACHE_KEY = CACHE_TYPE + " + #tagName";
+    public static final String CACHE_TAG_KEY = CACHE_TYPE + " + #tag.name";
 
     @Autowired
     public TagService(TagRepository tagRepository){
@@ -61,4 +61,5 @@ public class TagService {
 
         return tags;
     }
+
 }
