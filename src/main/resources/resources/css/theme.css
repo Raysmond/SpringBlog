@@ -13,7 +13,6 @@ body {
 
 /* override typo css */
 .typo a{
-	border-bottom: none;
 	color: #337ab7;
 }
 
@@ -164,6 +163,10 @@ form input, form button{
 ul.archive-list li span.month{
 	width: 60px;
 	display: inline-block;
+}
+
+ul.tags li{
+	margin: 5px 10px;
 }
 
 .footer{
