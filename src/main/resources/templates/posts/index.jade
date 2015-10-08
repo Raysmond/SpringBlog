@@ -12,3 +12,18 @@
           !{post.getRenderedContent()}
         
         hr
+
+.load-more
+    nav
+      ul.pager
+        if totalPages > page
+          li.previous
+            a.btn(href="?page=#{page+1}")
+              span(aria-hidden="true) &larr;
+              |  Older posts
+
+        if page > 1
+          li.next
+            a.btn(href="?page=#{page-1}")
+              |Newer posts
+              span(aria-hidden="true) &rarr;

@@ -1,0 +1,10 @@
+extends ../layout/app
+
+block title
+  = viewHelper.metaTitle(tag.getName())
+
+block page_title
+  h1 Tag #{tag.getName()}
+
+block content
+  include ../posts/index

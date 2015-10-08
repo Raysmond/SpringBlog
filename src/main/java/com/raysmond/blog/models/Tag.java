@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Raysmond<i@raysmond.com>.
@@ -19,7 +20,7 @@ public class Tag extends BaseModel {
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
-    private Collection<Post> posts = new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
 
     public Tag(){
 

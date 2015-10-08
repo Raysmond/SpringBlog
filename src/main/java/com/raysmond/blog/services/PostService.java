@@ -20,10 +20,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Raysmond<i@raysmond.com>.
@@ -194,5 +191,9 @@ public class PostService {
         names.deleteCharAt(names.length()-1);
 
         return names.toString();
+    }
+
+    public Page<Post> findPostsByTag(String tagName, int page, int pageSize){
+        return postRepository.findByTag(tagName, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
     }
 }
