@@ -17,15 +17,11 @@ block content
         ul.tags
           li Tags:
           for tag in tags
-            //- li: a(href="#") #{tag.getName()}
-            li #{tag.getName()}
+            li: a(href="/tags/#{tag.getName()}") #{tag.getName()}
         
       .author 
         #{post.getCreatedAt() == post.getUpdatedAt() ? "Created" : "Updated"} 
         | on #{viewHelper.getFormattedDate(post.getCreatedAt())}
-      
-      
-        
-    
+
     .comments 
       include ../fragments/disqus
