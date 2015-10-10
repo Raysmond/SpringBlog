@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
@@ -62,6 +63,11 @@ public class Post extends BaseModel{
             return renderedContent;
 
         return getContent();
+    }
+
+    public void setPermalink(String permalink){
+        String token = permalink.toLowerCase().replace("\n", " ").replaceAll("[^a-z\\d\\s]", " ");
+        this.permalink = StringUtils.arrayToDelimitedString(StringUtils.tokenizeToStringArray(token, " "), "-");
     }
 
 }
