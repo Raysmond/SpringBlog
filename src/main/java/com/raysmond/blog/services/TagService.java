@@ -57,9 +57,7 @@ public class TagService {
 
     @Cacheable(value = CACHE_NAME_TAGS, key = "#root.method.name")
     public List<Tag> getAllTags(){
-        List<Tag> tags = tagRepository.findAll();
-
-        return tags;
+        return tagRepository.findAll();
     }
 
 }

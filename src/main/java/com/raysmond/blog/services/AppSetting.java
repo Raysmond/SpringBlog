@@ -17,12 +17,10 @@ public class AppSetting {
     private String siteName = "SpringBlog";
     private String siteSlogan = "An interesting place to discover";
     private Integer pageSize = 5;
-    // other settings
 
     public static final String SITE_NAME = "site_name";
     public static final String SITE_SLOGAN = "site_slogan";
     public static final String PAGE_SIZE = "page_size";
-    // other setting keys
 
     @Autowired
     public AppSetting(SettingService settingService){

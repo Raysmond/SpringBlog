@@ -207,6 +207,6 @@ public class PostService {
     public List<Map<String, Long>> countPostsByTags(){
         logger.debug("Count posts group by tags.");
 
-        return postRepository.countPostsByTags();
+        return postRepository.countPostsByTags(PostStatus.PUBLISHED);
     }
 }

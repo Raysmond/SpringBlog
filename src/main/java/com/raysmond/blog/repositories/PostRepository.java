@@ -29,7 +29,11 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("SELECT p FROM Post p INNER JOIN p.tags t WHERE t.name = :tag")
     Page<Post> findByTag(@Param("tag") String tag, Pageable pageable);
 
-    @Query("SELECT t.name, count(p) as count from Post p INNER JOIN p.tags t GROUP BY t.id")
-    List<Map<String, Long>> countPostsByTags();
+    @Query("SELECT t.name, count(p) as tag_count from Post p " +
+            "INNER JOIN p.tags t " +
+            "WHERE p.postStatus = :status " +
+            "GROUP BY t.id " +
+            "ORDER BY tag_count DESC")
+    List<Map<String, Long>> countPostsByTags(@Param("status") PostStatus status);
 }
 
