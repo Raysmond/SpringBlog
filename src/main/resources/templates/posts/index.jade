@@ -1,17 +1,10 @@
 .posts
   for post in posts
-    .row.post 
-      .col-sm-12
-        .meta 
-          .time #{viewHelper.getFormattedDate(post.getCreatedAt())}
-        h2.title 
-          a(href="/posts/#{post.getPermalink() == null ? post.getId() : post.getPermalink()}")
-            = post.getTitle()
-        
-        .content 
-          !{post.getRenderedContent()}
-        
-        hr
+    .post-item
+      a(href="/posts/#{post.getPermalink()}")
+        h2 #{post.getTitle()}
+        .meta
+          span #{viewHelper.getFormattedDate(post.getCreatedAt())}
 
 .load-more
     nav

@@ -1,11 +1,28 @@
 extends ../layout/app
 
 block page_title
+  .avatar
+    img(src="/images/user.jpg")
   h1 #{App.getSiteName()}
-  p #{App.getSiteSlogan()}
+  p.meta #{App.getSiteSlogan()}
+
+  p Hi, there. I'm Raysmond, a postgraduate of Computer Science in Fudan University from Shanghai, China. I love developing software and web applications and I blog about them.
 
 block title 
   = App.getSiteName()
 
 block content
-  include ../posts/index
+  // include ../posts/index
+
+  .latest-posts
+    hr
+    h2.text-center Latest Posts
+  for post in posts
+    .post-item
+      a(href="/posts/#{post.getPermalink()}")
+        h2 #{post.getTitle()}
+        .meta
+          span #{viewHelper.getFormattedDate(post.getCreatedAt())}
+
+  .loadmore
+    a.btn.btn-default(href="/posts/archive") More

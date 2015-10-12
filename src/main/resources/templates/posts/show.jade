@@ -17,7 +17,7 @@ block content
         ul.tags
           li Tags:
           for tag in tags
-            li: a(href="/tags/#{tag.getName()}") #{tag.getName()}
+            li: a.btn.btn-xs.btn-default(href="/tags/#{tag.getName()}") #{tag.getName()}
         
       .author 
         #{post.getCreatedAt() == post.getUpdatedAt() ? "Created" : "Updated"} 

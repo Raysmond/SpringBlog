@@ -3,9 +3,10 @@
     .footer-wrapper
       hr
       p 
-        | &copy; · Written by 
+        | &copy; · 2011-2015 &nbsp;
         a(href="http://raysmond.com") Raysmond
-        |  · All Right Reserved.
-      if viewHelper != null
-        p Page: #{viewHelper.getResponseTime()}ms
+        |  ·
+
+        if viewHelper != null
+          span  #{viewHelper.getResponseTime()}ms
        
