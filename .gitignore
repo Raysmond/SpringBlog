@@ -5,3 +5,4 @@ bin
 scripts
 production_app.properties
 *.iml
+src/main/resources/resources/bower_components

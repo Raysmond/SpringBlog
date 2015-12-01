@@ -34,6 +34,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "WHERE p.postStatus = :status " +
             "GROUP BY t.id " +
             "ORDER BY tag_count DESC")
-    List<Map<String, Long>> countPostsByTags(@Param("status") PostStatus status);
+    List<Object[]> countPostsByTags(@Param("status") PostStatus status);
 }
 

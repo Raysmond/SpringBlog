@@ -37,12 +37,7 @@ public class TagController {
 
     @RequestMapping(value = "", method = GET)
     public String index(Model model){
-        // TODO show all tags
-
-        List<Map<String, Long>> counts = postService.countPostsByTags();
-
-        model.addAttribute("tags", counts);
-
+        model.addAttribute("tags", postService.countPostsByTags());
         return "tags/index";
     }
 

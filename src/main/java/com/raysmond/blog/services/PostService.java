@@ -50,7 +50,7 @@ public class PostService {
 
         Post post = postRepository.findOne(postId);
 
-        if (post == null){
+        if (post == null) {
             throw new NotFoundException("Post with id " + postId + " is not found.");
         }
 
@@ -58,12 +58,12 @@ public class PostService {
     }
 
     @Cacheable(CACHE_NAME)
-    public Post getPublishedPostByPermalink(String permalink){
+    public Post getPublishedPostByPermalink(String permalink) {
         logger.debug("Get post with permalink " + permalink);
 
         Post post = postRepository.findByPermalinkAndPostStatus(permalink, PostStatus.PUBLISHED);
 
-        if (post == null){
+        if (post == null) {
             throw new NotFoundException("Post with permalink '" + permalink + "' is not found.");
         }
 
@@ -73,7 +73,7 @@ public class PostService {
     @Caching(evict = {
             @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
             @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true),
-            @CacheEvict(value = CACHE_NAME_COUNTS,  allEntries = true)
+            @CacheEvict(value = CACHE_NAME_COUNTS, allEntries = true)
     })
     public Post createPost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
@@ -86,10 +86,10 @@ public class PostService {
     @Caching(evict = {
             @CacheEvict(value = CACHE_NAME, key = "#post.id"),
             @CacheEvict(value = CACHE_NAME, key = "#post.permalink", condition = "#post.permalink != null"),
-            @CacheEvict(value = CACHE_NAME_TAGS,  key = "#post.id.toString().concat('-tags')"),
+            @CacheEvict(value = CACHE_NAME_TAGS, key = "#post.id.toString().concat('-tags')"),
             @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
             @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true),
-            @CacheEvict(value = CACHE_NAME_COUNTS,  allEntries = true)
+            @CacheEvict(value = CACHE_NAME_COUNTS, allEntries = true)
     })
     public Post updatePost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
@@ -105,7 +105,7 @@ public class PostService {
             @CacheEvict(value = CACHE_NAME_TAGS, key = "#post.id.toString().concat('-tags')"),
             @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
             @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true),
-            @CacheEvict(value = CACHE_NAME_COUNTS,  allEntries = true)
+            @CacheEvict(value = CACHE_NAME_COUNTS, allEntries = true)
     })
     public void deletePost(Post post) {
         postRepository.delete(post);
@@ -127,7 +127,7 @@ public class PostService {
     }
 
     @Cacheable(value = CACHE_NAME_TAGS, key = "#post.id.toString().concat('-tags')")
-    public List<Tag> getPostTags(Post post){
+    public List<Tag> getPostTags(Post post) {
         logger.debug("Get tags of post " + post.getId());
 
         List<Tag> tags = new ArrayList<>();
@@ -140,7 +140,7 @@ public class PostService {
     }
 
 
-    private Post extractPostMeta(Post post){
+    private Post extractPostMeta(Post post) {
         Post archivePost = new Post();
         archivePost.setId(post.getId());
         archivePost.setTitle(post.getTitle());
@@ -173,13 +173,13 @@ public class PostService {
         return createPost(post);
     }
 
-    public Set<Tag> parseTagNames(String tagNames){
+    public Set<Tag> parseTagNames(String tagNames) {
         Set<Tag> tags = new HashSet<>();
 
-        if (tagNames != null && !tagNames.isEmpty()){
+        if (tagNames != null && !tagNames.isEmpty()) {
             tagNames = tagNames.toLowerCase();
             String[] names = tagNames.split("\\s*,\\s*");
-            for (String name : names){
+            for (String name : names) {
                 tags.add(tagService.findOrCreateByName(name));
             }
         }
@@ -187,24 +187,24 @@ public class PostService {
         return tags;
     }
 
-    public String getTagNames(Set<Tag> tags){
+    public String getTagNames(Set<Tag> tags) {
         if (tags == null || tags.isEmpty())
             return "";
 
         StringBuilder names = new StringBuilder();
         tags.forEach(tag -> names.append(tag.getName()).append(","));
-        names.deleteCharAt(names.length()-1);
+        names.deleteCharAt(names.length() - 1);
 
         return names.toString();
     }
 
     // cache or not?
-    public Page<Post> findPostsByTag(String tagName, int page, int pageSize){
+    public Page<Post> findPostsByTag(String tagName, int page, int pageSize) {
         return postRepository.findByTag(tagName, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
     }
 
     @Cacheable(value = CACHE_NAME_COUNTS, key = "#root.method.name")
-    public List<Map<String, Long>> countPostsByTags(){
+    public List<Object[]> countPostsByTags() {
         logger.debug("Count posts group by tags.");
 
         return postRepository.countPostsByTags(PostStatus.PUBLISHED);

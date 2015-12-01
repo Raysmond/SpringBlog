@@ -22,7 +22,8 @@ a{
 
 /* override typo css */
 h1, h2, h3, h4, h5, h6{
-    color: #75889E;
+    color: #47596D;
+    -webkit-font-smoothing: normal;
 }
 .typo a{
     color: #337ab7;
@@ -227,9 +228,10 @@ form input, form button{
 }
 
 .post-item a > h2{
-    font-size: 1.4em;
+    font-size: 1.1em;
     margin-top: 0;
     color: #515862;
+    font-weight: 400;
 }
 
 .post-item .meta{

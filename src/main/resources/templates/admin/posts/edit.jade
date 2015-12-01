@@ -52,13 +52,22 @@ block content
     script
       var editor = ace.edit("content-editor");
       editor.setTheme("ace/theme/github");
-       
+
       var MarkdownMode = ace.require("ace/mode/markdown").Mode;
       editor.getSession().setMode(new MarkdownMode());
-      
+
       editor.getSession().setUseWrapMode(true);
-      
+
       $("form").submit(function(){
           $("#content").val(editor.getValue());
           return true;
       });
+
+      //$(function() {
+      //  var editor = new Simditor({
+      //    textarea: $('#content'),
+      //    markdown: true,
+      //    toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment', '|', 'markdown']
+      //    });
+      //});
+
