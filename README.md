@@ -32,9 +32,24 @@ And start MySQL and Redis first before running the application.
 
 ```
 # If you're using Ubuntu server
-sudo service mysql start
-sudo service redis_6379 start
-sudo pip install pygments
+
+# Install MySQL
+apt-get install mysql-server
+service mysql start
+mysql -u root -p
+>> create database spring_blog;
+
+
+# Install Python pygments
+apt-get install python-pip
+apt-get install pygments
+```
+
+```
+# If you want to enable redis cache
+# Install redis server first, you can find instructions
+# from https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis
+service redis_6379 start
 ```
 
 This is a Gradle project. Make sure Gradle is installed in your machine.

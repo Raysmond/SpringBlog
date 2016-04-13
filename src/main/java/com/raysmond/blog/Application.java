@@ -8,7 +8,8 @@ import org.springframework.cache.annotation.EnableCaching;
  * @author Raysmond<i@raysmond.com>
  */
 @SpringBootApplication
-@EnableCaching
+// 开启缓存请把下行取消注释
+//@EnableCaching
 public class Application {
 
     public static void main(String[] args) {
