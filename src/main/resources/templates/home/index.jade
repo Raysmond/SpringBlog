@@ -19,7 +19,7 @@ block content
     h2.text-center Latest Posts
   for post in posts
     .post-item
-      a(href="/posts/#{post.getPermalink()}")
+      a(href="/posts/#{post.getPermalink().length() > 0 ? post.getPermalink() : post.getId()}")
         h2 #{post.getTitle()}
         .meta
           span #{viewHelper.getFormattedDate(post.getCreatedAt())}
