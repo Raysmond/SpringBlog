@@ -1,3 +1,7 @@
+server:
+    port: 9000
+    contextPath:
+
 spring:
     profiles:
         active: dev
@@ -9,8 +13,8 @@ spring:
         caching: false
 
     dataSource:
-      driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1/spring_blog
+      driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1/spring_blog?serverTimezone=UTC
       username: root
       password:
 
