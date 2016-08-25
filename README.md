@@ -42,7 +42,7 @@ mysql -u root -p
 
 # Install Python pygments
 apt-get install python-pip
-apt-get install pygments
+pip install pygments
 ```
 
 ```
@@ -61,14 +61,25 @@ I recommend you import the source code into Intellij IDE to edit the code.
 ./gradlew bootRun
 ```
 
-View `http://localhost:8080/` on your browser.
+## Development
 
-### Todo
+**How to import the project into Intellij IDEA and run from the IDE?**
 
-- Handling static web resources with `ResourceSolvers` and `ResourceTransformers` introduced in Spring Framework 4.1.
-- Awesome features are always welcome.
 
-Welcome to contribute.
+1. Clone the project
+`git clone https://github.com/Raysmond/SpringBlog.git `
+2. Download all dependencies
+`cd SpringBlog `
+`./gradlew idea `
+3. Open the project in Intellij IDEA.
+4. Run `Application.java` as Java application.
+5. Preview: http://localhost:9000
+    Admin: http://localhost:900/admin , the default admin account is: admin@admin.com, password: admin
+
+
+> Lombok is required to run the project. You can install the plugin in Intellij IDEA.
+> Reference: https://github.com/mplushnikov/lombok-intellij-plugin
+
 
 ## Deployment
 

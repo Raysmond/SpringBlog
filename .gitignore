@@ -3,6 +3,10 @@
 build
 bin
 scripts
+classes
+out
 production_app.properties
 *.iml
+*.ipr
+*.iws
 src/main/resources/resources/bower_components
