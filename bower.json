@@ -10,7 +10,8 @@
     "simple-hotkeys": "1.0.3",
     "simditor": "2.3.5",
     "simditor-markdown": "1.1.2",
-    "to-markdown": "1.3.0"
+    "to-markdown": "1.3.0",
+    "adminlte": "2.3.6"
   },
   "devDependencies": {}
 }

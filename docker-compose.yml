@@ -1,0 +1,22 @@
+version: '2'
+services:
+    mysql:
+      image: mysql
+      hostname: mysql
+      environment:
+        - MYSQL_USER=root
+        - MYSQL_DATABASE=spring_blog
+        - MYSQL_ROOT_PASSWORD=123456
+    webapp:
+      image: java:8
+      links:
+        - mysql:mysql
+        # - redis:redis
+      volumes:
+        - ./build/libs/SpringBlog-0.1.jar:/app/app.jar
+      ports:
+        - "9000:9000"
+      command: "java -jar /app/app.jar --spring.profiles.active=dev"
+
+#    redis:
+#      image: redis
