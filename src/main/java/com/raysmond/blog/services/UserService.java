@@ -74,7 +74,8 @@ public class UserService implements UserDetailsService {
             return false;
 
         logger.info("" + passwordEncoder.matches(password, user.getPassword()));
-        if (!user.getPassword().equals(passwordEncoder.encode(password)))
+        boolean match = passwordEncoder.matches(password, user.getPassword());
+        if (!match)
             return false;
 
         user.setPassword(passwordEncoder.encode(newPassword));
