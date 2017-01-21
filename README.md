@@ -77,7 +77,7 @@ I recommend you import the source code into Intellij IDE to edit the code.
 3. Open the project in Intellij IDEA.
 4. Run `Application.java` as Java application.
 5. Preview: http://localhost:9000
-    Admin: http://localhost:900/admin , the default admin account is: admin@admin.com, password: admin
+    Admin: http://localhost:9000/admin , the default admin account is: admin@admin.com, password: admin
 
 
 > Lombok is required to run the project. You can install the plugin in Intellij IDEA.
