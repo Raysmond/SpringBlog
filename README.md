@@ -6,7 +6,7 @@ It's one of my learning projects to explore awesome features in Spring Boot web 
 for my personal blog site [https://raysmond.com](https://raysmond.com) for about one year. Now, I turn to Hexo for my blog site.
 
 There's no demo online. Here's the screenshot of my previous blog homepage.
-![](http://7b1fa0.com1.z0.glb.clouddn.com/screencapture-blog-raysmond-9000-1480663084590.png)
+![](http://7b1fa0.com1.z0.glb.clouddn.com/screencapture-blog-raysmond-8080-1480663084590.png)
 
 SpringBlog is powered by many powerful frameworks and third-party projects:
 
@@ -75,8 +75,8 @@ I recommend you import the source code into Intellij IDE to edit the code.
 `cd SpringBlog `
 `./gradlew idea `
 3. Open the project in Intellij IDEA.
-4. Run `Application.java` as Java application.
-5. Preview: http://localhost:9000
+4. Run `SpringBlogApplication.java` as Java application.
+5. Preview: http://localhost:8080
     Admin: http://localhost:900/admin , the default admin account is: admin@admin.com, password: admin
 
 
