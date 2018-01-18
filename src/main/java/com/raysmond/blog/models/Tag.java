@@ -5,15 +5,15 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Raysmond<i@raysmond.com>.
+ * @author Raysmond
  */
 @Entity
 @Table(name = "tags")
-@Getter @Setter
+@Getter
+@Setter
 public class Tag extends BaseModel {
 
     @Column(nullable = false, unique = true)
@@ -22,11 +22,11 @@ public class Tag extends BaseModel {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
     private List<Post> posts = new ArrayList<>();
 
-    public Tag(){
+    public Tag() {
 
     }
 
-    public Tag(String name){
+    public Tag(String name) {
         this.setName(name);
     }
 }

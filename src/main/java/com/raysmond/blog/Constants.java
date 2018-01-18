@@ -1,7 +1,7 @@
 package com.raysmond.blog;
 
 /**
- * @author: Raysmond<i@raysmond.com>
+ * @author: Raysmond
  */
 public final class Constants {
 

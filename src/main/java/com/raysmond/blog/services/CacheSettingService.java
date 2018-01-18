@@ -12,21 +12,20 @@ import org.springframework.stereotype.Service;
 import java.io.Serializable;
 
 /**
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 @Service
 public class CacheSettingService implements SettingService {
 
-    private SettingRepository settingRepository;
-
     private static final String CACHE_NAME = "cache.settings";
+    private static final Logger logger = LoggerFactory.getLogger(SettingService.class);
+
+    private SettingRepository settingRepository;
 
     @Autowired
     public CacheSettingService(SettingRepository settingRepository) {
         this.settingRepository = settingRepository;
     }
-
-    private static final Logger logger = LoggerFactory.getLogger(SettingService.class);
 
     @Override
     public Serializable get(String key) {
@@ -64,7 +63,7 @@ public class CacheSettingService implements SettingService {
             setting.setValue(value);
             settingRepository.save(setting);
         } catch (Exception ex) {
-            
+
             logger.info("Cannot save setting value with type: " + value.getClass() + ". key = " + key);
         }
     }

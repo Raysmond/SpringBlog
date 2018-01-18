@@ -1,7 +1,9 @@
 package com.raysmond.blog;
 
 import com.raysmond.blog.services.UserService;
-import org.springframework.context.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -11,49 +13,46 @@ import org.springframework.security.web.authentication.rememberme.TokenBasedReme
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Bean
-    public UserService userService() {
-        return new UserService();
-    }
+    @Autowired
+    private UserService userService;
 
     @Bean
     public TokenBasedRememberMeServices rememberMeServices() {
-        return new TokenBasedRememberMeServices("remember-me-key", userService());
+        return new TokenBasedRememberMeServices("remember-me-key", userService);
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new StandardPasswordEncoder();
-	}
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .eraseCredentials(true)
-            .userDetailsService(userService())
-            .passwordEncoder(passwordEncoder());
+                .eraseCredentials(true)
+                .userDetailsService(userService)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/admin/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
-            .formLogin()
-                .loginPage("/signin")
+                .formLogin()
+                .loginPage("/login")
                 .permitAll()
-                .failureUrl("/signin?error=1")
+                .failureUrl("/login?error=1")
                 .loginProcessingUrl("/authenticate")
                 .and()
-            .logout()
+                .logout()
                 .logoutUrl("/logout")
                 .permitAll()
-                .logoutSuccessUrl("/signin?logout")
+                .logoutSuccessUrl("/login?logout")
                 .and()
-            .rememberMe()
+                .rememberMe()
                 .rememberMeServices(rememberMeServices())
                 .key("remember-me-key");
     }

@@ -1,23 +1,23 @@
 package com.raysmond.blog.models;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 @Entity
 @Table(name = "users")
-@Getter @Setter
-public class User extends BaseModel{
+@Getter
+@Setter
+public class User extends BaseModel {
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
-    public static final String ROLE_USER  = "ROLE_USER";
+    public static final String ROLE_USER = "ROLE_USER";
 
     @Column(unique = true)
     private String email;

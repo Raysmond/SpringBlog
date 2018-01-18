@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 
 /**
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 @Service
 @Qualifier("pegdown")

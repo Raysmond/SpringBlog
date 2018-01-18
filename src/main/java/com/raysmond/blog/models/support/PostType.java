@@ -1,7 +1,7 @@
 package com.raysmond.blog.models.support;
 
 /**
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 public enum PostType {
     PAGE("Page"),
@@ -9,7 +9,7 @@ public enum PostType {
 
     private String name;
 
-    PostType(String name){
+    PostType(String name) {
         this.name = name;
     }
 
@@ -21,7 +21,7 @@ public enum PostType {
         this.name = name;
     }
 
-    public String getId(){
+    public String getId() {
         return name();
     }
 

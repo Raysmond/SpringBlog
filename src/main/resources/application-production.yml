@@ -1,6 +1,5 @@
 server:
-    port: 9000
-    contextPath:
+    port: 8080
 
 spring:
     profiles:
@@ -12,16 +11,20 @@ spring:
     jade4j:
         caching: true
 
-    dataSource:
-      driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1/spring_blog?serverTimezone=UTC
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
+        show-sql: true
+        generate-ddl: true
+        hibernate:
+          ddl-auto: update
+          dialect: org.hibernate.dialect.MySQL5Dialect
+
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1/spring_blog_dev
       username: root
       password:
-
-    hibernate:
-      dialect: org.hibernate.dialect.MySQLDialect
-      hbm2ddl.auto: update
-      show_sql: false
 
     redis:
       host: localhost

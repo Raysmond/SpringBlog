@@ -20,22 +20,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
- * @author Raysmond<i@raysmond.com>.
+ * @author Raysmond
  */
 @Service
 public class PostService {
-    @Autowired
-    private PostRepository postRepository;
-
-    @Autowired
-    private TagService tagService;
-
-    @Autowired
-    private UserService userService;
-
     public static final String CACHE_NAME = "cache.post";
     public static final String CACHE_NAME_ARCHIVE = CACHE_NAME + ".archive";
     public static final String CACHE_NAME_PAGE = CACHE_NAME + ".page";
@@ -43,6 +37,13 @@ public class PostService {
     public static final String CACHE_NAME_COUNTS = CACHE_NAME + ".counts_tags";
 
     private static final Logger logger = LoggerFactory.getLogger(PostService.class);
+
+    @Autowired
+    private PostRepository postRepository;
+    @Autowired
+    private TagService tagService;
+    @Autowired
+    private UserService userService;
 
     @Cacheable(CACHE_NAME)
     public Post getPost(Long postId) {
@@ -62,6 +63,14 @@ public class PostService {
         logger.debug("Get post with permalink " + permalink);
 
         Post post = postRepository.findByPermalinkAndPostStatus(permalink, PostStatus.PUBLISHED);
+
+        if (post == null) {
+            try {
+                post = postRepository.findOne(Long.valueOf(permalink));
+            } catch (NumberFormatException e) {
+                post = null;
+            }
+        }
 
         if (post == null) {
             throw new NotFoundException("Post with permalink '" + permalink + "' is not found.");

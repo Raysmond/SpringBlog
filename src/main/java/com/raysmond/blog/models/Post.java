@@ -3,7 +3,6 @@ package com.raysmond.blog.models;
 import com.raysmond.blog.models.support.PostFormat;
 import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
@@ -11,18 +10,17 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 @Entity
 @Table(name = "posts")
-@Getter @Setter
-public class Post extends BaseModel{
+@Getter
+@Setter
+public class Post extends BaseModel {
     private static final SimpleDateFormat SLUG_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
 
     @ManyToOne
@@ -31,7 +29,7 @@ public class Post extends BaseModel{
     @Column(nullable = false)
     private String title;
 
-    @Type(type="text")
+    @Type(type = "text")
     private String content;
 
     @Type(type = "text")
@@ -65,7 +63,7 @@ public class Post extends BaseModel{
         return getContent();
     }
 
-    public void setPermalink(String permalink){
+    public void setPermalink(String permalink) {
         String token = permalink.toLowerCase().replace("\n", " ").replaceAll("[^a-z\\d\\s]", " ");
         this.permalink = StringUtils.arrayToDelimitedString(StringUtils.tokenizeToStringArray(token, " "), "-");
     }

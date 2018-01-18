@@ -1,6 +1,7 @@
 package com.raysmond.blog.models;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.Date;
 /**
  * An abstract base model class for entities
  *
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 @MappedSuperclass
 public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
@@ -25,12 +26,12 @@ public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
     private Date updatedAt;
 
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
         createdAt = updatedAt = new Date();
     }
 
     @PreUpdate
-    public void preUpdate(){
+    public void preUpdate() {
         updatedAt = new Date();
     }
 

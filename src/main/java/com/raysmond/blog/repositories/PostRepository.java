@@ -10,12 +10,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.Map;
 
 import java.util.List;
 
 /**
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 @Repository
 @Transactional

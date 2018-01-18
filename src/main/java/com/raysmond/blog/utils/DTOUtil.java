@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 public class DTOUtil {
 
     private static ModelMapper MAPPER = null;
 
-    private static ModelMapper getMapper(){
-        if(MAPPER == null){
+    private static ModelMapper getMapper() {
+        if (MAPPER == null) {
             MAPPER = new ModelMapper();
             MAPPER.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         }

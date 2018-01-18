@@ -1,10 +1,5 @@
 package com.raysmond.blog.services;
 
-import java.util.Collections;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
 import com.raysmond.blog.Constants;
 import com.raysmond.blog.models.User;
 import com.raysmond.blog.repositories.UserRepository;
@@ -13,36 +8,45 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.*;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import java.util.Collections;
+
+@Transactional
+@Service
 public class UserService implements UserDetailsService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userRepository;
-
-    @Inject
+    @Autowired
     private PasswordEncoder passwordEncoder;
-
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @PostConstruct
     protected void initialize() {
         getSuperUser();
     }
 
-    public User createUser(User user){
+    public User createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
-    public User getSuperUser(){
+    public User getSuperUser() {
         User user = userRepository.findByEmail(Constants.DEFAULT_ADMIN_EMAIL);
 
-        if ( user == null) {
+        if (user == null) {
             user = createUser(new User(Constants.DEFAULT_ADMIN_EMAIL, Constants.DEFAULT_ADMIN_PASSWORD, User.ROLE_ADMIN));
         }
 
@@ -58,9 +62,9 @@ public class UserService implements UserDetailsService {
         return createSpringUser(user);
     }
 
-    public User currentUser(){
+    public User currentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth == null || auth instanceof AnonymousAuthenticationToken){
+        if (auth == null || auth instanceof AnonymousAuthenticationToken) {
             return null;
         }
 
@@ -69,7 +73,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
-    public boolean changePassword(User user, String password, String newPassword){
+    public boolean changePassword(User user, String password, String newPassword) {
         if (password == null || newPassword == null || password.isEmpty() || newPassword.isEmpty())
             return false;
 
@@ -81,7 +85,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
 
-        logger.info("User @"+user.getEmail() + " changed password.");
+        logger.info("User @" + user.getEmail() + " changed password.");
 
         return true;
     }

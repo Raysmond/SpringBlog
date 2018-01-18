@@ -1,10 +1,10 @@
 package com.raysmond.blog.support.web;
 
-import org.springframework.stereotype.Service;
 import org.python.util.PythonInterpreter;
+import org.springframework.stereotype.Service;
 
 /**
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 @Service
 public class PygmentsService implements SyntaxHighlightService {
@@ -18,9 +18,9 @@ public class PygmentsService implements SyntaxHighlightService {
 
         // Simple use Pygments as you would in Python
         interpreter.exec("from pygments import highlight\n"
-            + "from pygments.lexers import PythonLexer\n"
-            + "from pygments.formatters import HtmlFormatter\n"
-            + "\nresult = highlight(code, PythonLexer(), HtmlFormatter())");
+                + "from pygments.lexers import PythonLexer\n"
+                + "from pygments.formatters import HtmlFormatter\n"
+                + "\nresult = highlight(code, PythonLexer(), HtmlFormatter())");
 
         return interpreter.get("result", String.class);
     }

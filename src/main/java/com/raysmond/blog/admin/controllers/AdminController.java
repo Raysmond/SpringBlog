@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 /**
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 @Controller
 @RequestMapping("admin")
@@ -24,17 +24,17 @@ public class AdminController {
     private AppSetting appSetting;
 
     @Autowired
-    public AdminController( AppSetting appSetting){
+    public AdminController(AppSetting appSetting) {
         this.appSetting = appSetting;
     }
 
     @RequestMapping("")
-    public String index(){
+    public String index() {
         return "admin/home/index";
     }
 
     @RequestMapping(value = "settings")
-    public String settings(Model model){
+    public String settings(Model model) {
         SettingsForm settingsForm = DTOUtil.map(appSetting, SettingsForm.class);
 
         model.addAttribute("settings", settingsForm);
@@ -42,8 +42,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "settings", method = RequestMethod.POST)
-    public String updateSettings(@Valid SettingsForm settingsForm, Errors errors, Model model, RedirectAttributes ra){
-        if (errors.hasErrors()){
+    public String updateSettings(@Valid SettingsForm settingsForm, Errors errors, Model model, RedirectAttributes ra) {
+        if (errors.hasErrors()) {
             return "admin/settings";
         } else {
             appSetting.setSiteName(settingsForm.getSiteName());

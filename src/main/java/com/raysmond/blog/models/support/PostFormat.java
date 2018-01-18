@@ -1,7 +1,7 @@
 package com.raysmond.blog.models.support;
 
 /**
- * @author Raysmond<i@raysmond.com>
+ * @author Raysmond
  */
 public enum PostFormat {
     HTML("Html"),
@@ -9,11 +9,11 @@ public enum PostFormat {
 
     private String displayName;
 
-    PostFormat(String displayName){
+    PostFormat(String displayName) {
         this.displayName = displayName;
     }
 
-    public String getDisplayName(){
+    public String getDisplayName() {
         return displayName;
     }
 

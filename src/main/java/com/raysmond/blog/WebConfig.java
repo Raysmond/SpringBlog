@@ -16,10 +16,11 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.raysmond.blog.Constants.*;
+import static com.raysmond.blog.Constants.ENV_DEVELOPMENT;
+import static com.raysmond.blog.Constants.ENV_PRODUCTION;
 
 /**
- * @author Raysmond<i@raysmond.com>.
+ * @author Raysmond .
  */
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
@@ -36,7 +37,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @PostConstruct
-    public void registerJadeViewHelpers(){
+    public void registerJadeViewHelpers() {
         viewHelper.setApplicationEnv(this.getApplicationEnv());
     }
 
@@ -60,7 +61,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         };
     }
 
-    public String getApplicationEnv(){
+    public String getApplicationEnv() {
         return this.env.acceptsProfiles(ENV_PRODUCTION) ? ENV_PRODUCTION : ENV_DEVELOPMENT;
     }
 }
