@@ -1,9 +1,12 @@
 package com.raysmond.blog.support.web;
 
-
 import com.domingosuarez.boot.autoconfigure.jade4j.JadeHelper;
 import com.raysmond.blog.services.AppSetting;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -23,6 +26,18 @@ public class ViewHelper {
 
     private String applicationEnv;
     private long startTime;
+
+    /**
+     * Check if current user is authenticated
+     *
+     * @return true/false
+     */
+    public boolean isLogin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return null != authentication
+                && authentication.isAuthenticated()
+                && !(authentication instanceof AnonymousAuthenticationToken);
+    }
 
     @Autowired
     public ViewHelper(AppSetting appSetting) {

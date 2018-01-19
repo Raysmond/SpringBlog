@@ -77,7 +77,7 @@ I recommend you import the source code into Intellij IDE to edit the code.
 3. Open the project in Intellij IDEA.
 4. Run `SpringBlogApplication.java` as Java application.
 5. Preview: http://localhost:8080
-    Admin: http://localhost:900/admin , the default admin account is: admin@admin.com, password: admin
+    Admin: http://localhost:8080/admin , the default admin account is: `admin`, password: `admin`
 
 
 > Lombok is required to run the project. You can install the plugin in Intellij IDEA.
@@ -91,9 +91,10 @@ I recommend you import the source code into Intellij IDE to edit the code.
 - Run it (Java8 is a must)
 
   ```
-  # assuming you have the jar and yml files under current dir
+  java -jar SpringBlog-0.1.jar --spring.profiles.active=prod
+  # OR with external spring profile file
   java -jar SpringBlog-0.1.jar --spring.config.location=application-production.yml
   ```
 
 ## License
-Modified BSD license. Copyright (c) 2015, Jiankun LEI (Raysmond).
+Modified BSD license. Copyright (c) 2015 - 2018, Jiankun LEI (Raysmond).

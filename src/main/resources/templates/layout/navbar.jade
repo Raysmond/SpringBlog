@@ -8,4 +8,6 @@ nav.navbar.navbar-bright
         li: a(href="/tags") Tags
         li: a(href="/posts/projects") Projects
         li: a(href="/about") About
+        if viewHelper.isLogin()
+            li: a(href="/admin") Administration
     
