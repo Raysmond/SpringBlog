@@ -1,0 +1,32 @@
+spring:
+    profiles:
+        active: dev
+
+    thymeleaf:
+        cache: false
+
+    devtools:
+        restart:
+            enabled: true
+
+    jade4j:
+        caching: false
+
+    jpa:
+        show-sql: true
+
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1/spring_blog_dev?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password:
+
+    redis:
+      host: localhost
+      port: 6379
+      default_expire_time: 86400
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    com.raysmond.blog: DEBUG

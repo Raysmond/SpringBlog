@@ -1,0 +1,23 @@
+spring:
+    profiles:
+        active: prod
+
+    thymeleaf:
+        cache: true
+
+    jade4j:
+        caching: true
+
+    jpa:
+        show-sql: false
+
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1/spring_blog_prod?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password:
+
+    redis:
+      host: localhost
+      port: 6379
+      default_expire_time: 86400
