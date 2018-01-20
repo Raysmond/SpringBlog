@@ -42,6 +42,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-redis:1.4.7.RELEASE"
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-logging'
 
     // view
     compile 'de.neuland-bfi:spring-jade4j:0.4.2'
@@ -67,12 +68,6 @@ dependencies {
     compile 'org.projectlombok:lombok:+'
     compile 'org.apache.commons:commons-lang3:+'
     //compile 'com.qiniu:qiniu-java-sdk:7.0.+'
-
-    // static resources, ref. http://www.webjars.org/
-    compile 'org.webjars:jquery:2.1.4'
-    compile 'org.webjars:bootstrap:3.3.5'
-    compile 'org.webjars:font-awesome:4.3.0-3'
-    compile 'org.webjars:ace:1.2.0'
 
     // test
     testCompile 'junit:junit:+'

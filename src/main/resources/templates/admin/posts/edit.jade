@@ -1,10 +1,10 @@
 extends ../layout/admin
 
 block head
-  script(src="/webjars/ace/1.2.0/src-min/ace.js")
-  script(src="/webjars/ace/1.2.0/src-min/theme-github.js")
-  script(src="/webjars/ace/1.2.0/src-min/mode-markdown.js")
-  
+  script(src="/bower_components/ace-builds/src-min/ace.js")
+  script(src="/bower_components/ace-builds/src-min/theme-github.js")
+  script(src="/bower_components/ace-builds/src-min/mode-markdown.js")
+
 block content
   h1 Edit Post
   hr
@@ -28,7 +28,7 @@ block content
             for format in postFormats
               if format != postForm.getPostFormat()
                 option(value="#{format.getId()}") #{format.getDisplayName()}
-              else 
+              else
                 option(value="#{format.getId()}", selected="selected") #{format.getDisplayName()}
         .col-sm-3
           span Status
@@ -36,12 +36,12 @@ block content
             for status in postStatus
               if status != postForm.getPostStatus()
                 option(value="#{status.getId()}") #{status.getName()}
-              else 
+              else
                 option(value="#{status.getId()}", selected="selected") #{status.getName()}
         .col-sm-3
           span Permalink
           input.form-control(name="permalink", value="#{postForm.getPermalink()}")
-      
+
         .col-sm-3
           span Tags
           input.form-control(name="postTags", value="#{postForm.getPostTags()}")
@@ -51,7 +51,7 @@ block content
 
     script
       var editor = ace.edit("content-editor");
-      editor.setTheme("ace/theme/github");
+      editor.setTheme("ace/theme/github")
 
       var MarkdownMode = ace.require("ace/mode/markdown").Mode;
       editor.getSession().setMode(new MarkdownMode());

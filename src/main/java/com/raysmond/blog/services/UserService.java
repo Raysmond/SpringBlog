@@ -3,6 +3,7 @@ package com.raysmond.blog.services;
 import com.raysmond.blog.Constants;
 import com.raysmond.blog.models.User;
 import com.raysmond.blog.repositories.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,8 @@ import java.util.Collections;
 
 @Transactional
 @Service
+@Slf4j
 public class UserService implements UserDetailsService {
-
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -77,7 +76,6 @@ public class UserService implements UserDetailsService {
         if (password == null || newPassword == null || password.isEmpty() || newPassword.isEmpty())
             return false;
 
-        logger.info("" + passwordEncoder.matches(password, user.getPassword()));
         boolean match = passwordEncoder.matches(password, user.getPassword());
         if (!match)
             return false;
@@ -85,7 +83,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
 
-        logger.info("User @" + user.getEmail() + " changed password.");
+        log.info("User @{} changed password.", user.getEmail());
 
         return true;
     }

@@ -9,8 +9,7 @@ import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.utils.Markdown;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -29,14 +28,13 @@ import java.util.Set;
  * @author Raysmond
  */
 @Service
+@Slf4j
 public class PostService {
     public static final String CACHE_NAME = "cache.post";
     public static final String CACHE_NAME_ARCHIVE = CACHE_NAME + ".archive";
     public static final String CACHE_NAME_PAGE = CACHE_NAME + ".page";
     public static final String CACHE_NAME_TAGS = CACHE_NAME + ".tag";
     public static final String CACHE_NAME_COUNTS = CACHE_NAME + ".counts_tags";
-
-    private static final Logger logger = LoggerFactory.getLogger(PostService.class);
 
     @Autowired
     private PostRepository postRepository;
@@ -47,7 +45,7 @@ public class PostService {
 
     @Cacheable(CACHE_NAME)
     public Post getPost(Long postId) {
-        logger.debug("Get post " + postId);
+        log.debug("Get post " + postId);
 
         Post post = postRepository.findOne(postId);
 
@@ -60,7 +58,7 @@ public class PostService {
 
     @Cacheable(CACHE_NAME)
     public Post getPublishedPostByPermalink(String permalink) {
-        logger.debug("Get post with permalink " + permalink);
+        log.debug("Get post with permalink " + permalink);
 
         Post post = postRepository.findByPermalinkAndPostStatus(permalink, PostStatus.PUBLISHED);
 
@@ -122,7 +120,7 @@ public class PostService {
 
     @Cacheable(value = CACHE_NAME_ARCHIVE, key = "#root.method.name")
     public List<Post> getArchivePosts() {
-        logger.debug("Get all archive posts from database.");
+        log.debug("Get all archive posts from database.");
 
         Iterable<Post> posts = postRepository.findAllByPostTypeAndPostStatus(
                 PostType.POST,
@@ -137,7 +135,7 @@ public class PostService {
 
     @Cacheable(value = CACHE_NAME_TAGS, key = "#post.id.toString().concat('-tags')")
     public List<Tag> getPostTags(Post post) {
-        logger.debug("Get tags of post " + post.getId());
+        log.debug("Get tags of post {}", post.getId());
 
         List<Tag> tags = new ArrayList<>();
 
@@ -161,7 +159,7 @@ public class PostService {
 
     @Cacheable(value = CACHE_NAME_PAGE, key = "T(java.lang.String).valueOf(#page).concat('-').concat(#pageSize)")
     public Page<Post> getAllPublishedPostsByPage(int page, int pageSize) {
-        logger.debug("Get posts by page " + page);
+        log.debug("Get posts by page " + page);
 
         return postRepository.findAllByPostTypeAndPostStatus(
                 PostType.POST,
@@ -170,7 +168,7 @@ public class PostService {
     }
 
     public Post createAboutPage() {
-        logger.debug("Create default about page");
+        log.debug("Create default about page");
 
         Post post = new Post();
         post.setTitle(Constants.ABOUT_PAGE_PERMALINK);
@@ -214,7 +212,7 @@ public class PostService {
 
     @Cacheable(value = CACHE_NAME_COUNTS, key = "#root.method.name")
     public List<Object[]> countPostsByTags() {
-        logger.debug("Count posts group by tags.");
+        log.debug("Count posts group by tags.");
 
         return postRepository.countPostsByTags(PostStatus.PUBLISHED);
     }

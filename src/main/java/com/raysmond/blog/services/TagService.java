@@ -2,8 +2,6 @@ package com.raysmond.blog.services;
 
 import com.raysmond.blog.models.Tag;
 import com.raysmond.blog.repositories.TagRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -14,7 +12,7 @@ import java.util.List;
 
 
 /**
- * @author Raysmond .
+ * @author Raysmond
  */
 @Service
 public class TagService {
@@ -23,8 +21,6 @@ public class TagService {
     public static final String CACHE_TYPE = "'_Tag_'";
     public static final String CACHE_KEY = CACHE_TYPE + " + #tagName";
     public static final String CACHE_TAG_KEY = CACHE_TYPE + " + #tag.name";
-
-    private static final Logger logger = LoggerFactory.getLogger(PostService.class);
 
     private TagRepository tagRepository;
 

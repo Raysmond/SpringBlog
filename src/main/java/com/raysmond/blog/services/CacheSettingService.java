@@ -2,8 +2,7 @@ package com.raysmond.blog.services;
 
 import com.raysmond.blog.models.Setting;
 import com.raysmond.blog.repositories.SettingRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,11 +14,9 @@ import java.io.Serializable;
  * @author Raysmond
  */
 @Service
+@Slf4j
 public class CacheSettingService implements SettingService {
-
     private static final String CACHE_NAME = "cache.settings";
-    private static final Logger logger = LoggerFactory.getLogger(SettingService.class);
-
     private SettingRepository settingRepository;
 
     @Autowired
@@ -34,10 +31,10 @@ public class CacheSettingService implements SettingService {
         try {
             value = setting == null ? null : setting.getValue();
         } catch (Exception ex) {
-            logger.info("Cannot deserialize setting value with key = " + key);
+            log.info("Cannot deserialize setting value with key = " + key);
         }
 
-        logger.info("Get setting " + key + " from database. Value = " + value);
+        log.info("Get setting " + key + " from database. Value = " + value);
 
         return value;
     }
@@ -52,7 +49,7 @@ public class CacheSettingService implements SettingService {
     @Override
     @CacheEvict(value = CACHE_NAME, key = "#key")
     public void put(String key, Serializable value) {
-        logger.info("Update setting " + key + " to database. Value = " + value);
+        log.info("Update setting " + key + " to database. Value = " + value);
 
         Setting setting = settingRepository.findByKey(key);
         if (setting == null) {
@@ -64,7 +61,7 @@ public class CacheSettingService implements SettingService {
             settingRepository.save(setting);
         } catch (Exception ex) {
 
-            logger.info("Cannot save setting value with type: " + value.getClass() + ". key = " + key);
+            log.info("Cannot save setting value with type: " + value.getClass() + ". key = " + key);
         }
     }
 }
