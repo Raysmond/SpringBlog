@@ -1,7 +1,7 @@
 {
   "name": "springblog",
   "version": "0.0.0",
-  "appPath": "src/main/webapp",
+  "appPath": "src/main/resources/static",
   "testPath": "src/test/javascript/spec",
   "dependencies": {
     "jquery": "2.1.4",
