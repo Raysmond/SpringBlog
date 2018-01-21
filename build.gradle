@@ -57,6 +57,8 @@ dependencies {
     compile "org.hibernate:hibernate-core:5.2.12.Final"
     compile "org.hibernate:hibernate-entitymanager:5.2.12.Final"
     compile "org.hibernate:hibernate-validator"
+    compile "com.zaxxer:HikariCP:2.7.6"
+
 
     // JSON
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1.3'

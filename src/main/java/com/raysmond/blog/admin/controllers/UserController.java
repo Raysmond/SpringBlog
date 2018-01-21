@@ -1,5 +1,6 @@
 package com.raysmond.blog.admin.controllers;
 
+import com.raysmond.blog.error.NotFoundException;
 import com.raysmond.blog.forms.UserForm;
 import com.raysmond.blog.models.User;
 import com.raysmond.blog.repositories.UserRepository;
@@ -44,7 +45,10 @@ public class UserController {
     @RequestMapping(value = "{userId:[0-9]+}", method = POST)
     public String update(@PathVariable Long userId, @Valid UserForm userForm, Errors errors, RedirectAttributes ra) {
         User user = userRepository.findOne(userId);
-        Assert.notNull(user);
+
+        if (null == user) {
+            throw new NotFoundException("User " + userId + " is not found.");
+        }
 
         if (errors.hasErrors()) {
             // do something
