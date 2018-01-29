@@ -1,0 +1,39 @@
+{
+  "name": "simple-hotkeys",
+  "version": "1.0.3",
+  "homepage": "https://github.com/ichord/simple-hotkeys",
+  "authors": [
+    "ichord <chord.luo@gmail.com>"
+  ],
+  "description": "Simple hotkeys",
+  "main": "lib/hotkeys.js",
+  "keywords": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "spec",
+    "node_modules",
+    "vendor",
+    "Gemfile",
+    "Gemfile.lock",
+    "Gruntfile.coffee",
+    "package.json",
+    "README.md",
+    "circle.yml",
+    "demo.html",
+    "umd.hbs"
+  ],
+  "dependencies": {
+    "jquery": "2.x",
+    "simple-module": "2.x"
+  },
+  "_release": "1.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.3",
+    "commit": "73d0753644be132f54d3b6200552e3e725308dfd"
+  },
+  "_source": "https://github.com/mycolorway/simple-hotkeys.git",
+  "_target": "1.0.3",
+  "_originalSource": "simple-hotkeys"
+}

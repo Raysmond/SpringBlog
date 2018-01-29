@@ -8,4 +8,4 @@ out
 *.iml
 *.ipr
 *.iws
-src/main/webapp/bower_components/
+src/main/resources/static/bower_components

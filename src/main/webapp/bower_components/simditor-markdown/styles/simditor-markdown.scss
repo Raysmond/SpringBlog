@@ -1,0 +1,38 @@
+
+.simditor {
+  .markdown-editor {
+    display: none;
+
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 200px;
+      box-sizing: border-box;
+      padding: 22px 15px 40px;
+      border: none;
+      border-bottom: 1px solid #dfdfdf;
+      resize: none;
+      outline: none;
+      font-size: 16px;
+    }
+  }
+
+  &.simditor-markdown {
+    .markdown-editor {
+      display: block;
+    }
+
+    .simditor-body {
+      min-height: 100px;
+      background: #f3f3f3;
+    }
+
+    .simditor-placeholder {
+      display: none !important;
+    }
+  }
+
+  .simditor-toolbar .toolbar-item.toolbar-item-markdown .simditor-icon {
+    font-size: 18px;
+  }
+}
