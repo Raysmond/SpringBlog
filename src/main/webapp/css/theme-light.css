@@ -1,15 +1,16 @@
-html{
+html {
     font-size: 100%;
 }
 
 body {
     background: #fff;
-    font: 300 1em/1.8 "Helvetica Neue",Helvetica, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
+    /*font: 300 1em/1.8 "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;*/
+    font: 300 1em/1.8 -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;;
     -webkit-font-smoothing: antialiased;
     color: #515862;
 }
 
-a{
+a {
     -webkit-transition-property: opacity;
     -moz-transition-property: opacity;
     -o-transition-property: opacity;
@@ -21,24 +22,26 @@ a{
 }
 
 /* override typo css */
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5, h6 {
     color: #47596D;
     -webkit-font-smoothing: normal;
 }
-.typo a{
+
+.typo a {
     color: #337ab7;
 }
-.typo a:hover{
+
+.typo a:hover {
     color: #666;
 }
 
-hr{
+hr {
     border-color: #eee;
 }
 
 /* end */
 
-pre{
+pre {
     background: #F9F9F9;
     border-radius: 3px;
     border-color: #eee;
@@ -49,66 +52,66 @@ pre{
     word-wrap: normal;
 }
 
-a.btn-default{
+a.btn-default {
     color: #888;
 }
 
-a.btn-default:hover{
+a.btn-default:hover {
     background: #fff;
     color: #333;
     border-color: #333;
 }
 
-.navbar{
+.navbar {
     z-index: 100;
 }
 
-.navbar a.navbar-brand{
+.navbar a.navbar-brand {
     color: #9caab0;
     font-weight: bold;
 }
 
-.navbar .container{
+.navbar .container {
     border-bottom: 1px #eee solid;
     padding-top: 10px;
 }
 
-.navbar li a{
+.navbar li a {
     color: #9caab0;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.9em;
 }
 
-.nav>li>a:focus, .nav>li>a:hover{
+.nav > li > a:focus, .nav > li > a:hover {
     background: none;
     color: #888;
 }
 
 @media screen and (max-width: 480px) {
-    #navbar{
+    #navbar {
         text-align: center;
     }
-    .nav>li{
+
+    .nav > li {
         display: inline-block;
     }
 }
 
-.container{
+.container {
     padding-top: 20px;
     max-width: 840px;
 }
 
-.main-container{
+.main-container {
     padding-top: 0;
 }
 
-form input, form button{
+form input, form button {
     margin-top: 10px;
 }
 
-
-.header-title{
+.header-title {
     padding: 0 100px;
     width: 100%;
     position: relative;
@@ -118,16 +121,17 @@ form input, form button{
     margin-top: 20px;
 }
 
-.header-title p{
+.header-title p {
     font-size: 0.9em;
 
 }
-.header-title p.meta{
+
+.header-title p.meta {
     color: #999;
     font-size: 0.9em;
 }
 
-.header-title .avatar img{
+.header-title .avatar img {
     margin-top: 20px;
     border-radius: 50%;
     box-shadow: 0 0 0 3px #fff, 0 0 0 4px #ccc;
@@ -135,7 +139,7 @@ form input, form button{
     height: 80px;
 }
 
-.header-title-wrapper{
+.header-title-wrapper {
     display: table-cell;
     vertical-align: middle;
     margin: 0 auto;
@@ -144,119 +148,117 @@ form input, form button{
     display: block;
 }
 
-
-.post{
+.post {
     padding: 50px 80px;
     margin-bottom: 30px;
 }
 
 @media screen and (max-width: 480px) {
-    .post{
+    .post {
         padding: 30px 10px;
     }
-    .post h2.title, .post .meta{
+
+    .post h2.title, .post .meta {
         text-align: center;
     }
 }
 
-
-.post .meta, .typo .post .meta{
-    color: rgba(187,187,187,0.8);
+.post .meta, .typo .post .meta {
+    color: rgba(187, 187, 187, 0.8);
     font-size: 0.9em;
 }
 
-.post h1 > a, .post h2 > a, .post h3 > a, .post h4 > a{
+.post h1 > a, .post h2 > a, .post h3 > a, .post h4 > a {
     color: #75889E;
     text-decoration: none;
 }
 
-.post h2.title{
+.post h2.title {
     margin-bottom: 20px;
     margin-top: 15px;
 }
 
-
-.post h2.title a:hover, .post h2.title a:focus{
+.post h2.title a:hover, .post h2.title a:focus {
     color: #888;
 }
 
-.post .info{
+.post .info {
     margin-top: 30px;
     text-align: center;
     color: #888;
     font-size: 0.9em;
 }
 
-.post .comments{
+.post .comments {
     margin-top: 30px;
     padding-top: 30px;
     border-top: 1px #eee solid;
 }
 
-.post ul.tags{
+.post ul.tags {
     margin-left: 0;
     padding-left: 0;
 }
 
-.post ul.tags li{
+.post ul.tags li {
     display: inline-block;
     list-style: none;
     margin-left: 10px;
 }
 
-.latest-posts{
+.latest-posts {
     width: 80%;
     margin: 0 auto;
     margin-top: 30px;
     margin-bottom: 50px;
 }
 
-.loadmore{
+.loadmore {
     text-align: center;
     margin-top: 40px;
 }
 
-.post-item{
+.post-item {
     text-align: center;
     width: 80%;
     margin: 10px auto;
     padding: 10px 20px;
 }
 
-.post-item:hover{
+.post-item:hover {
     background: #F2F8FB;
 }
 
-.post-item a > h2{
+.post-item a > h2 {
     font-size: 1.1em;
     margin-top: 0;
     color: #515862;
     font-weight: 400;
 }
 
-.post-item .meta{
+.post-item .meta {
     text-align: center;
     color: #888;
     font-size: 0.9em;
 }
 
-ul.archive-list li span.month{
+ul.archive-list li span.month {
     width: 60px;
     display: inline-block;
 }
 
-ul.tags li{
+ul.tags li {
     margin: 5px 10px;
 }
 
-.footer{
+.footer {
     text-align: center;
     margin-bottom: 50px;
     font-size: 0.9em;
     color: #888;
 }
 
-.footer a{
+.footer a {
     color: #888;
 }
 
@@ -264,12 +266,12 @@ ul.tags li{
     margin-bottom: 0.4em;
 }
 
-.footer-wrapper{
+.footer-wrapper {
     display: block;
     max-width: 500px;
     margin: 0 auto;
 }
 
-.footer-wrapper hr{
+.footer-wrapper hr {
     border-color: #ddd;
 }

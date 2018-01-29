@@ -9,20 +9,20 @@ spring:
         caching: true
 
     jpa:
-        show-sql: false
+        show-sql: true
 
     datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1/spring_blog_prod?useUnicode=true&characterEncoding=utf8&useSSL=false
+      url: jdbc:mysql://mysql/spring_blog_prod?useUnicode=true&characterEncoding=utf8&useSSL=false
       username: root
-      password:
+      password: 123456
 
     redis:
-      host: localhost
+      host: redis
       port: 6379
       default_expire_time: 86400
 
 logging:
   level:
     org.springframework.web: ERROR
-    com.raysmond.blog: INFO
+    com.raysmond.blog: DEBUG
