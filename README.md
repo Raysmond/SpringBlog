@@ -2,8 +2,8 @@ SpringBlog
 =====
 
 SpringBlog is a very simple and clean-design blog system implemented with Spring Boot.
-It's one of my learning projects to explore awesome features in Spring Boot web programming. I had put it on production
-for my personal blog site [https://raysmond.com](https://raysmond.com) for about one year. Now, I turn to Hexo for my blog site.
+It's one of my learning projects to explore awesome features in Spring Boot web programming. You can check my blog 
+site for demo [https://raysmond.com](http://raysmond.com).
 
 There's no demo online. Here's the screenshot of my previous blog homepage.
 ![](http://7b1fa0.com1.z0.glb.clouddn.com/screencapture-blog-raysmond-8080-1480663084590.png)
@@ -18,7 +18,6 @@ SpringBlog is powered by many powerful frameworks and third-party projects:
 - [ACE Editor](http://ace.c9.io/) - A high performance code editor which I use to write posts and code.
 - [Pygments](http://pygments.org/) - A python library for highlighting code syntax
 - [Jade4j](https://github.com/neuland/jade4j) - [Jade](http://jade-lang.com/) is an elegant template language.
-- [Webjars](http://www.webjars.org/) - A client-side web libraries packaged into JAR files. A easy way to manage JavaScript and CSS vendors in Gradle.
 - [Redis](http://redis.io/) - A very powerful in-memory data cache server.
 
 ## Development
@@ -84,8 +83,6 @@ I recommend you import the source code into Intellij IDE to edit the code.
 > Reference: https://github.com/mplushnikov/lombok-intellij-plugin
 
 
-## Deployment
-
 - Build application jar `./gradlew build`, then upload the distribution jar (e.g. `build/libs/SpringBlog-0.1.jar`) to your remote server.
 - Upload `application-production.yml` to your server and change it according to your server settings.
 - Run it (Java8 is a must)
@@ -95,6 +92,15 @@ I recommend you import the source code into Intellij IDE to edit the code.
   # OR with external spring profile file
   java -jar SpringBlog-0.1.jar --spring.config.location=application-production.yml
   ```
+
+## TODO
+
+- [] Upgrade frontend framework to Bootstrap4
+- [] Replace Jade with Thymeleaf(HTML)
+- [] Frontend building tools, e.g. webpack
+- [] Use hibernate 2nd level cache (EHCache?)
+- [] Markdown preview while editing
+- [] Html editor
 
 ## License
 Modified BSD license. Copyright (c) 2015 - 2018, Jiankun LEI (Raysmond).

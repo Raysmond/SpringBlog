@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/bootstrap4">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div layout:fragment="content">
+    <h1 class="page-title text-center py-3">Tags</h1>
+
+    <div class="tags">
+        <button type="button" class="btn btn-outline-secondary"
+                th:each="tag : ${tags}"
+                th:text="${tag[0]+'('+tag[1]+')'}">
+        </button>
+    </div>
+</div>
+</body>
+</html>

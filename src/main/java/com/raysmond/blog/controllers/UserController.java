@@ -16,6 +16,6 @@ public class UserController {
 
     @RequestMapping("login")
     public String signin(Principal principal, RedirectAttributes ra) {
-        return principal == null ? "users/signin" : "redirect:/";
+        return principal == null ? "users/login" : "redirect:/";
     }
 }

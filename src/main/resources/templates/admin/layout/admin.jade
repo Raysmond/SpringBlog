@@ -1,11 +1,23 @@
 !!! 5
 html(lang="en")
-  head
-    include head 
-    block head 
-    
-  body
-    include navbar 
-    .container.main-container
-      include message
-      block content 
+    head
+        include head
+        block head
+
+    body
+        include navbar
+        .container-fluid
+            .row
+                nav.col-md-2.d-none.d-md-block.bg-light.sidebar
+                    .sidebar-sticky
+                        ul.nav.flex-column
+                            li.nav-item
+                                a.nav-link.active(href="/admin/posts") Posts
+                            li.nav-item
+                                a.nav-link(href="/admin/settings") Settings
+                            li.nav-item
+                                a.nav-link(href="/admin/users/profile") Profile
+                main.col-md-9.ml-sm-auto.col-lg-10.pt-3.px-4(role="main")
+                    include message
+                    block content
+

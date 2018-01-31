@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/bootstrap4">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div layout:fragment="content">
+    <h1 class="page-title text-center py-3">Login</h1>
+
+    <div class="mt-3">
+        <form th:action="@{/authenticate}" method="post" class="mx-auto w-50">
+            <input class="form-control" placeholder="Username" name="username"/>
+            <input class="form-control" placeholder="password" name="password" type="password"/>
+            <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

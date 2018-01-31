@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/bootstrap4">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="post-page">
+        <div class="blog-post">
+            <div class="post-title text-center mt-5">
+                <h1 class="blog-post-title" th:text="${post.title}"></h1>
+                <p class="blog-post-meta" th:text="${@viewHelper.getFormattedDate(post.getCreatedAt())}"></p>
+            </div>
+            <div class="post-content pt-5">
+                <div th:utext="${post.renderedContent}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

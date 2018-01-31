@@ -10,6 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -58,6 +60,10 @@ public class ViewHelper {
 
     public String getFormattedDate(Date date) {
         return date == null ? "" : DATE_FORMAT.format(date);
+    }
+
+    public String getFormattedDate(ZonedDateTime date) {
+        return date == null ? "" : date.format(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     public String getMonthAndDay(Date date) {

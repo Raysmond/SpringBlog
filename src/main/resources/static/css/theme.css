@@ -5,10 +5,7 @@ html{
 body {
 	background: #efefef;
 	font: 300 1em/1.8 "Helvetica Neue",Helvetica, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
-	/*-webkit-font-smoothing: antialiased;
-	/*font-size: 1em;
-	line-height: 1.8;
-	font-weight: 300;*/
+	/*-webkit-font-smoothing: antialiased; */
 }
 
 /* override typo css */

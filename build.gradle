@@ -11,40 +11,43 @@ repositories {
     mavenLocal()
     jcenter()
     mavenCentral()
-
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
     maven { url 'http://repo.spring.io/libs-release' }
-    maven { url "http://repo.springsource.org/repo" }
+    maven { url 'http://repo.springsource.org/repo' }
 }
 
 bootRun {
     systemProperties = System.properties
 }
-
 buildscript {
     ext {
-        springBootVersion = '1.5.9.RELEASE'
+        springBootVersion = '1.5.10.RELEASE'
     }
     repositories {
         mavenLocal()
         jcenter()
         mavenCentral()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE')
     }
 }
 
 dependencies {
     // spring boot
-    compile "org.springframework.boot:spring-boot-starter-web"
-    compile "org.springframework.boot:spring-boot-starter-thymeleaf"
-    compile "com.domingosuarez.boot:spring-boot-starter-jade4j:0.3.1"
-    compile "org.springframework.boot:spring-boot-starter-redis:1.4.7.RELEASE"
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'com.domingosuarez.boot:spring-boot-starter-jade4j:0.3.1'
+    compile 'org.springframework.boot:spring-boot-starter-redis:1.4.7.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework.boot:spring-boot-starter-logging'
+    compile 'org.springframework.boot:spring-boot-devtools'
 
     // view
+    compile 'net.sourceforge.nekohtml:nekohtml:1.9.22'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE'
     compile 'de.neuland-bfi:spring-jade4j:0.4.2'
     compile 'org.pegdown:pegdown:1.6.0'
 
@@ -54,11 +57,10 @@ dependencies {
 
     // mysql/hibernate
     compile 'mysql:mysql-connector-java:+'
-    compile "org.hibernate:hibernate-core:5.2.12.Final"
-    compile "org.hibernate:hibernate-entitymanager:5.2.12.Final"
-    compile "org.hibernate:hibernate-validator"
-    compile "com.zaxxer:HikariCP:2.7.6"
-
+    compile 'org.hibernate:hibernate-core:5.2.12.Final'
+    compile 'org.hibernate:hibernate-entitymanager:5.2.12.Final'
+    compile 'org.hibernate:hibernate-validator'
+    compile 'com.zaxxer:HikariCP:2.7.6'
 
     // JSON
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1.3'
@@ -69,7 +71,6 @@ dependencies {
     compile 'org.modelmapper:modelmapper:+'
     compile 'org.projectlombok:lombok:+'
     compile 'org.apache.commons:commons-lang3:+'
-    //compile 'com.qiniu:qiniu-java-sdk:7.0.+'
 
     // test
     testCompile 'junit:junit:+'

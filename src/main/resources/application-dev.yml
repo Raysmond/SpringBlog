@@ -8,6 +8,7 @@ spring:
     devtools:
         restart:
             enabled: true
+            exclude: static/**,templates/**
 
     jade4j:
         caching: false

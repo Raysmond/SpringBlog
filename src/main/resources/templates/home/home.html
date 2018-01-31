@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/bootstrap4">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div class="py-3 pt-md-5 pb-md-4 px-5 w-75 mx-auto text-center">
+        <img class="rounded-circle border"
+             style="width: 90px;border: 1px solid #dcdee0!important;padding:3px;background: #fefefe;"
+             src="/images/user.jpg"/>
+        <p class="text-muted mt-3">
+            Welcome to this site. My name is Raysmond and I'm a backend development engineer in
+            Shanghai, China. Here, I want to share some topics around development, architecture, DevOps and more.</p>
+    </div>
+
+    <div class="blog-main text-center">
+        <div class="blog-post" th:each="post : ${posts}">
+            <a th:href="@{/posts/{id}(id=${post.getPermalink()})}">
+                <h5 class="blog-post-title" th:text="${post.title}"></h5>
+            </a>
+            <p class="blog-post-meta text-muted" th:text="${@viewHelper.getFormattedDate(post.getCreatedAt())}"></p>
+        </div>
+
+        <nav class="blog-pagination">
+            <a class="btn btn-outline-primary" href="/posts/archive">More</a>
+        </nav>
+    </div>
+
+</div>
+</body>
+</html>

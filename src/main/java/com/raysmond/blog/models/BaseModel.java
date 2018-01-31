@@ -3,7 +3,9 @@ package com.raysmond.blog.models;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 /**
@@ -20,19 +22,19 @@ public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
     private Long id;
 
     @Column(nullable = false)
-    private Date createdAt;
+    private ZonedDateTime createdAt;
 
     @Column(nullable = false)
-    private Date updatedAt;
+    private ZonedDateTime updatedAt;
 
     @PrePersist
     public void prePersist() {
-        createdAt = updatedAt = new Date();
+        createdAt = updatedAt = ZonedDateTime.now();
     }
 
     @PreUpdate
     public void preUpdate() {
-        updatedAt = new Date();
+        updatedAt = ZonedDateTime.now();
     }
 
     @Override
@@ -41,17 +43,16 @@ public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
     }
 
     public boolean equals(Object other) {
-        if (other == null || other.getClass() != this.getClass())
+        if (other == null || other.getClass() != this.getClass()) {
             return false;
+        }
 
         return this.getId().equals(((BaseModel) other).getId());
     }
 
-
     public int hashCode() {
         return new HashCodeBuilder().append(getId()).toHashCode();
     }
-
 
     public Long getId() {
         return id;
@@ -61,20 +62,19 @@ public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
         id = _id;
     }
 
-    public Date getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public ZonedDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(ZonedDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
-
 }

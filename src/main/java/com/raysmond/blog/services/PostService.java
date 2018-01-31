@@ -9,13 +9,16 @@ import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.utils.Markdown;
+
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Raysmond
@@ -122,15 +126,12 @@ public class PostService {
     public List<Post> getArchivePosts() {
         log.debug("Get all archive posts from database.");
 
-        Iterable<Post> posts = postRepository.findAllByPostTypeAndPostStatus(
-                PostType.POST,
-                PostStatus.PUBLISHED,
-                new PageRequest(0, Integer.MAX_VALUE, Sort.Direction.DESC, "createdAt"));
-
-        List<Post> cachedPosts = new ArrayList<>();
-        posts.forEach(post -> cachedPosts.add(extractPostMeta(post)));
-
-        return cachedPosts;
+        Pageable page = new PageRequest(0, Integer.MAX_VALUE, Sort.Direction.DESC, "createdAt");
+        return postRepository.findAllByPostTypeAndPostStatus(PostType.POST, PostStatus.PUBLISHED, page)
+                .getContent()
+                .stream()
+                .map(this::extractPostMeta)
+                .collect(Collectors.toList());
     }
 
     @Cacheable(value = CACHE_NAME_TAGS, key = "#post.id.toString().concat('-tags')")
@@ -145,7 +146,6 @@ public class PostService {
         postRepository.findOne(post.getId()).getTags().forEach(tags::add);
         return tags;
     }
-
 
     private Post extractPostMeta(Post post) {
         Post archivePost = new Post();
@@ -195,8 +195,9 @@ public class PostService {
     }
 
     public String getTagNames(Set<Tag> tags) {
-        if (tags == null || tags.isEmpty())
+        if (tags == null || tags.isEmpty()) {
             return "";
+        }
 
         StringBuilder names = new StringBuilder();
         tags.forEach(tag -> names.append(tag.getName()).append(","));

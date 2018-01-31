@@ -25,8 +25,8 @@ public class PegDownMarkdownService implements MarkdownService {
         // synchronizing on pegdown instance since neither the processor nor the underlying parser is thread-safe.
         synchronized (pegdown) {
             RootNode astRoot = pegdown.parseMarkdown(markdownSource.toCharArray());
-            ToHtmlSerializer serializer = new ToHtmlSerializer(new LinkRenderer(),
-                    Collections.singletonMap(VerbatimSerializer.DEFAULT, PygmentsVerbatimSerializer.INSTANCE));
+            ToHtmlSerializer serializer = new ToHtmlSerializer(new LinkRenderer());
+//                    Collections.singletonMap(VerbatimSerializer.DEFAULT, PygmentsVerbatimSerializer.INSTANCE));
             return serializer.toHtml(astRoot);
         }
     }

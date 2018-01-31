@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      class="no-js" lang="zh-cn" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/highlightjs/styles/atom-one-dark.css">
+    <link rel="stylesheet" href="/css/bootstrap4-theme.css">
+    <title>SpringBlog</title>
+</head>
+<body>
+
+<div th:replace="layout/header :: navbar"></div>
+
+<div class="container">
+    <div layout:fragment="content"></div>
+</div>
+
+<footer class="text-muted">
+    <div class="container border-top pt-3 mt-3">
+        <p class="float-right">
+            <a href="#">Back to top</a>
+        </p>
+        <p>All rights reserved &copy; Raysmond, 2015-2018.</p>
+        <p>Lovingly made by <a href="https://github.com/Raysmond/SpringBlog">SpringBlog</a>, powered by Spring Boot.
+        </p>
+    </div>
+</footer>
+
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/bower_components/highlightjs/highlight.pack.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-34658010-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

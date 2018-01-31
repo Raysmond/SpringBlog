@@ -11,6 +11,9 @@ spring:
           ddl-auto: update
           dialect: org.hibernate.dialect.MySQL5Dialect
 
+    thymeleaf:
+        mode: LEGACYHTML5
+
 logging:
   level:
     org.springframework.web: ERROR

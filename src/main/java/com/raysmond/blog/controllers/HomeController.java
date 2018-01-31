@@ -31,7 +31,7 @@ public class HomeController {
         model.addAttribute("posts", posts);
         model.addAttribute("page", page + 1);
 
-        return "home/index";
+        return "home/home";
     }
 
     @RequestMapping(value = "about", method = GET)

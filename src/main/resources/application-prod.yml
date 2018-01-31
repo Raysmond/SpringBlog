@@ -1,6 +1,9 @@
 spring:
     profiles:
         active: prod
+    devtools:
+        restart:
+            enabled: false
 
     thymeleaf:
         cache: true
