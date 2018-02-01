@@ -10,10 +10,25 @@
         <div class="blog-post">
             <div class="post-title text-center mt-5">
                 <h1 class="blog-post-title" th:text="${post.title}"></h1>
-                <p class="blog-post-meta" th:text="${@viewHelper.getFormattedDate(post.getCreatedAt())}"></p>
+                <p class="blog-post-meta text-muted">
+                    <span>发布于</span>
+                    <span th:text="${@viewHelper.getFormattedDate(post.getCreatedAt())}"></span>
+                    <span>/</span>
+                    <span>阅读</span>
+                    <span th:text="${post.views}"></span>
+                </p>
             </div>
-            <div class="post-content pt-5">
-                <div th:utext="${post.renderedContent}"></div>
+            <div class="row" id="post-content-wrapper">
+                <div class="col-9">
+                    <div class="post-content pt-5">
+                        <div th:utext="${post.renderedContent}"></div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div id="post-contents" class="pt-5">
+                        <label class="text-muted">目录</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

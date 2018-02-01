@@ -12,13 +12,24 @@ block content
   form.post-form(method="post",action="/admin/posts/#{post.getId()}")
     .item-row
       input(type="hidden", name='_csrf', value='#{_csrf.token}')
-    .item-row
+    .form-group
+      label 标题
       input.form-control(type="text", name="title", value='#{postForm.getTitle()}')
-    .item-row
+
+    .form-group
+      label 正文
       textarea.form-control#content(name="content", style="display:none;")
         = postForm.getContent()
       div#content-editor
         #{postForm.getContent()}
+
+    .form-group
+      label 摘要
+      textarea.form-control#summary(name="summary", style="display:none;")
+        = postForm.getSummary()
+      div#summary-editor
+        #{postForm.getSummary()}
+
     .item-row
       hr
       .row
@@ -47,18 +58,25 @@ block content
           input.form-control(name="postTags", value="#{postForm.getPostTags()}")
     .item-row
       hr
-      button.btn.btn-primary.btn-block(type="submit") Save
+      button.btn.btn-primary.btn-lg(type="submit") Save
+      hr
 
     script
       var editor = ace.edit("content-editor");
-      editor.setTheme("ace/theme/github")
+      var summaryEditor = ace.edit("summary-editor");
+
+      editor.setTheme("ace/theme/github");
+      summaryEditor.setTheme("ace/theme/github");
 
       var MarkdownMode = ace.require("ace/mode/markdown").Mode;
       editor.getSession().setMode(new MarkdownMode());
-
       editor.getSession().setUseWrapMode(true);
+
+      summaryEditor.getSession().setMode(new MarkdownMode());
+      summaryEditor.getSession().setUseWrapMode(true);
 
       $("form").submit(function(){
           $("#content").val(editor.getValue());
+          $("#summary").val(summaryEditor.getValue());
           return true;
       });

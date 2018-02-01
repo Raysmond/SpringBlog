@@ -1,6 +1,6 @@
 body {
-    -webkit-font-smoothing: antialiased;
     color: #434343;
+    font-size: 14px;
 }
 
 .main-container {
@@ -26,6 +26,10 @@ td.operations a {
 
 .post-form #content-editor {
     height: 430px;
+    width: 100%;
+}
+.post-form #summary-editor {
+    height: 230px;
     width: 100%;
 }
 

@@ -58,6 +58,8 @@ public class PostController {
         model.addAttribute("post", post);
         model.addAttribute("tags", postService.getPostTags(post));
 
+        postService.incrementViews(post.getId());
+
         return "posts/post";
     }
 

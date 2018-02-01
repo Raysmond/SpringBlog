@@ -17,7 +17,6 @@ import java.util.List;
  * @author Raysmond
  */
 @Repository
-@Transactional
 public interface PostRepository extends JpaRepository<Post, Long> {
     Post findByPermalinkAndPostStatus(String permalink, PostStatus postStatus);
 

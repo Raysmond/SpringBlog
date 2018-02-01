@@ -15,12 +15,14 @@
 
 <div th:replace="layout/header :: navbar"></div>
 
-<div class="container">
-    <div layout:fragment="content"></div>
+<div class="py-5 main">
+    <div class="container">
+        <div layout:fragment="content"></div>
+    </div>
 </div>
 
-<footer class="text-muted">
-    <div class="container border-top pt-3 mt-3">
+<footer class="text-muted border-top">
+    <div class="container pt-3">
         <p class="float-right">
             <a href="#">Back to top</a>
         </p>
@@ -33,18 +35,36 @@
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/bower_components/highlightjs/highlight.pack.min.js"></script>
+<script src="/bower_components/contents/dist/browser/contents.js"></script>
+<script src="/bower_components/sticky-kit/jquery.sticky-kit.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('pre code').each(function(i, block) {
+    $(document).ready(function () {
+        $('pre code').each(function (i, block) {
             hljs.highlightBlock(block);
         });
+
+        if($('.post-page').length > 0) {
+            $('#post-contents').append(gajus.Contents({
+                articles: $('.post-content').find('h1, h2, h3, h4').get()
+            }).list());
+            $("#post-contents").stick_in_parent({
+                parent: '#post-content-wrapper'
+            });
+        }
     });
 </script>
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-34658010-1', 'auto');
     ga('send', 'pageview');

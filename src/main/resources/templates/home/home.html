@@ -14,18 +14,35 @@
         <p class="text-muted mt-3">
             Welcome to this site. My name is Raysmond and I'm a backend development engineer in
             Shanghai, China. Here, I want to share some topics around development, architecture, DevOps and more.</p>
+        <div class="mt-5 pt-5 pb-5 border-top">
+            <h4 class="text-muted">最新文章</h4>
+        </div>
     </div>
 
-    <div class="blog-main text-center">
+    <div class="blog-main">
         <div class="blog-post" th:each="post : ${posts}">
-            <a th:href="@{/posts/{id}(id=${post.getPermalink()})}">
-                <h5 class="blog-post-title" th:text="${post.title}"></h5>
+            <a class="post-title" th:href="@{/posts/{id}(id=${post.getPermalink()})}">
+                <h2 th:text="${post.title}"></h2>
             </a>
-            <p class="blog-post-meta text-muted" th:text="${@viewHelper.getFormattedDate(post.getCreatedAt())}"></p>
+            <p class="blog-post-meta text-muted">
+                <span>发布于</span>
+                <span th:text="${@viewHelper.getFormattedDate(post.getCreatedAt())}"></span>
+                <span>/</span>
+                <span>阅读</span>
+                <span th:text="${post.views}"></span>
+            </p>
+            <div class="post-content post-summary" th:if="${post.renderedSummary!=null}"
+                 th:utext="${post.renderedSummary}"></div>
+            <div class="post-content post-summary" th:if="${post.renderedSummary==null}"
+                 th:utext="${post.renderedContent}"></div>
+            <div>
+                <a th:href="@{/posts/{id}(id=${post.getPermalink()})}" class="btn btn-secondary btn-sm">阅读全文</a>
+            </div>
+            <hr/>
         </div>
 
-        <nav class="blog-pagination">
-            <a class="btn btn-outline-primary" href="/posts/archive">More</a>
+        <nav class="blog-pagination text-center">
+            <a class="btn btn-outline-primary" href="/posts/archive">查看更多</a>
         </nav>
     </div>
 

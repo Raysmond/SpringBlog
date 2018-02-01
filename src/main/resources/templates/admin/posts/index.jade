@@ -8,17 +8,17 @@ block content
 
   .row(style="margin-top: 10px;")
     .col-sm-12
-      table.table.table-bordered.table-hover.table-stripped
+      table.table.table-striped
         thead
           tr
-            th ID
+            th #
             th Title 
             th Format 
             th Status
             th Permalink
             th Created At 
             th Updated At 
-            th.operations Operations
+            th Operations
           
         tbody
           for post in posts 
@@ -28,14 +28,14 @@ block content
               td #{post.getPostFormat()}
               td #{post.getPostStatus()}
               td #{post.getPermalink()}
-              td #{post.getCreatedAt()}
-              td #{post.getUpdatedAt()}
-              td.operations 
-                a.btn.btn-xs.btn-info(href="/posts/#{post.getId()}", target:'_blank')
+              td #{viewHelper.getFormattedDate(post.getCreatedAt())}
+              td #{viewHelper.getFormattedDate(post.getUpdatedAt())}
+              td
+                a.btn.btn-sm.btn-info.mr-1(href="/posts/#{post.getId()}", target:'_blank')
                   i.fa.fa-eye
-                a.btn.btn-xs.btn-primary(href="/admin/posts/#{post.getId()}/edit")
+                a.btn.btn-sm.btn-primary.mr-1(href="/admin/posts/#{post.getId()}/edit")
                   i.fa.fa-edit
-                a.btn.btn-xs.btn-danger.btn-delete(href="javascript:deletePost(#{post.id})", postId="#{post.id}")
+                a.btn.btn-sm.btn-danger.btn-delete(href="javascript:deletePost(#{post.id})", postId="#{post.id}")
                   i.fa.fa-trash-o
                   
                 form(id="form-#{post.getId()}",style="visibility: hidden", method="post", action="/admin/posts/#{post.getId()}/delete")

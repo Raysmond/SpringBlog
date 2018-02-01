@@ -20,7 +20,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -33,6 +35,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @Slf4j
+@Transactional
 public class PostService {
     public static final String CACHE_NAME = "cache.post";
     public static final String CACHE_NAME_ARCHIVE = CACHE_NAME + ".archive";
@@ -89,6 +92,7 @@ public class PostService {
     public Post createPost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
+            post.setRenderedSummary(Markdown.markdownToHtml(post.getSummary()));
         }
 
         return postRepository.save(post);
@@ -105,6 +109,7 @@ public class PostService {
     public Post updatePost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
+            post.setRenderedSummary(Markdown.markdownToHtml(post.getSummary()));
         }
 
         return postRepository.save(post);
@@ -216,5 +221,14 @@ public class PostService {
         log.debug("Count posts group by tags.");
 
         return postRepository.countPostsByTags(PostStatus.PUBLISHED);
+    }
+
+    @Async
+    public void incrementViews(Long postId) {
+        synchronized(this) {
+            Post post = postRepository.findOne(postId);
+            post.setViews(post.getViews() + 1);
+            postRepository.save(post);
+        }
     }
 }

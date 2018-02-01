@@ -3,12 +3,15 @@ package com.raysmond.blog.models;
 import com.raysmond.blog.models.support.PostFormat;
 import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
+
 import lombok.Getter;
 import lombok.Setter;
+
 import org.hibernate.annotations.Type;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
+
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,6 +38,12 @@ public class Post extends BaseModel {
     @Type(type = "text")
     private String renderedContent;
 
+    @Type(type = "text")
+    private String summary;
+
+    @Type(type = "text")
+    private String renderedSummary;
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PostStatus postStatus = PostStatus.PUBLISHED;
@@ -56,9 +65,16 @@ public class Post extends BaseModel {
 
     private String permalink;
 
+    private Integer views = 0;
+
+    public Integer getViews() {
+        return views == null ? 0 : views;
+    }
+
     public String getRenderedContent() {
-        if (this.postFormat == PostFormat.MARKDOWN)
+        if (this.postFormat == PostFormat.MARKDOWN) {
             return renderedContent;
+        }
 
         return getContent();
     }
@@ -67,5 +83,4 @@ public class Post extends BaseModel {
         String token = permalink.toLowerCase().replace("\n", " ").replaceAll("[^a-z\\d\\s]", " ");
         this.permalink = StringUtils.arrayToDelimitedString(StringUtils.tokenizeToStringArray(token, " "), "-");
     }
-
 }

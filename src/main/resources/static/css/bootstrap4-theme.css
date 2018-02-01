@@ -1,14 +1,28 @@
 html {
     font-size: 14px;
+    color: #444;
 }
+
+body {
+    color: #444;
+}
+
 @media (min-width: 768px) {
     html {
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 
 .container {
-    max-width: 960px;
+    max-width: 900px;
+}
+
+.main {
+    background: #FBFBFB;
+}
+
+.logo a {
+    color: #444;
 }
 
 .pricing-header {
@@ -19,7 +33,58 @@ html {
     min-width: 220px;
 }
 
-.border-top { border-top: 1px solid #e5e5e5; }
-.border-bottom { border-bottom: 1px solid #e5e5e5; }
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
 
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+a {
+    color: #409eff;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* topbar */
+nav.topbar > a {
+    color: #444;
+}
+
+nav.topbar > a:focus, nav.topbar > a:hover, nav.topbar > a:active {
+    color: #409eff;
+}
+
+/* post */
+.blog-post a.post-title > h2 {
+    color: #444;
+}
+
+.post-content h1 > a,
+.post-content h2 > a,
+.post-content h3 > a,
+.post-content h4 > a,
+.post-content h5 > a,
+.post-content h6 > a {
+    color: #444;
+}
+
+.post-content img {
+    max-width: 100%;
+}
+
+#post-contents ol {
+    padding-left: 20px;
+}
+
+#post-contents ol li a {
+    color: #444;
+    font-size: 13px;
+}
