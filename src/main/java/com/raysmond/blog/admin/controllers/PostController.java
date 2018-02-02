@@ -4,6 +4,7 @@ import com.raysmond.blog.forms.PostForm;
 import com.raysmond.blog.models.Post;
 import com.raysmond.blog.models.support.PostFormat;
 import com.raysmond.blog.models.support.PostStatus;
+import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.repositories.UserRepository;
 import com.raysmond.blog.services.PostService;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,7 +41,7 @@ public class PostController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(value = "")
+    @GetMapping("")
     public String index(@RequestParam(defaultValue = "0") int page, Model model) {
         Page<Post> posts = postRepository.findAll(new PageRequest(page, PAGE_SIZE, Sort.Direction.DESC, "id"));
 
@@ -50,13 +52,14 @@ public class PostController {
         return "admin/posts/index";
     }
 
-    @RequestMapping(value = "new")
+    @GetMapping("new")
     public String newPost(Model model) {
         PostForm postForm = DTOUtil.map(new Post(), PostForm.class);
         postForm.setPostTags("");
 
         model.addAttribute("postForm", postForm);
         model.addAttribute("postFormats", PostFormat.values());
+        model.addAttribute("postTypes", PostType.values());
         model.addAttribute("postStatus", PostStatus.values());
 
         return "admin/posts/new";
@@ -72,6 +75,7 @@ public class PostController {
         model.addAttribute("post", post);
         model.addAttribute("postForm", postForm);
         model.addAttribute("postFormats", PostFormat.values());
+        model.addAttribute("postTypes", PostType.values());
         model.addAttribute("postStatus", PostStatus.values());
 
         return "admin/posts/edit";

@@ -21,7 +21,17 @@ block content
           td.setting-label Page Size 
           td.input 
             input.form-control(type="text", name="pageSize", value="#{settings.getPageSize()}")
-      
+
+        tr
+          td.setting-label Intro
+          td.input
+            input.form-control(type="text", name="intro", value="#{settings.getIntro()}")
+
+        tr
+          td.setting-label Picture Url
+          td.input
+            input.form-control(type="text", name="pictureUrl", value="#{settings.getPictureUrl()}")
+
         tr
           td.setting-label 
           td.input 

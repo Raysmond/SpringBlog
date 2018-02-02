@@ -32,30 +32,43 @@ block content
         .item-row
             hr
             .row
-                .col-sm-3
-                    span Format
-                    select.form-control(name="postFormat")
-                        for format in postFormats
-                            if format != postForm.getPostFormat()
-                                option(value="#{format.getId()}") #{format.getDisplayName()}
-                            else
-                                option(value="#{format.getId()}", selected="selected") #{format.getDisplayName()}
-                .col-sm-3
-                    span Status
-                    select.form-control(name="postStatus")
-                        for status in postStatus
-                            if status != postForm.getPostStatus()
-                                option(value="#{status.getId()}") #{status.getName()}
-                            else
-                                option(value="#{status.getId()}", selected="selected") #{status.getName()}
+                .col-sm-2
+                    .form-group
+                        label Type
+                        select.form-control(name="postType")
+                            for item in postTypes
+                                if item != postForm.getPostType()
+                                    option(value="#{item.getId()}") #{item.getName()}
+                                else
+                                    option(value="#{item.getId()}", selected="selected") #{item.getName()}
+                .col-sm-2
+                    .form-group
+                        label Format
+                        select.form-control(name="postFormat")
+                            for format in postFormats
+                                if format != postForm.getPostFormat()
+                                    option(value="#{format.getId()}") #{format.getDisplayName()}
+                                else
+                                    option(value="#{format.getId()}", selected="selected") #{format.getDisplayName()}
+                .col-sm-2
+                    .form-group
+                        label Status
+                        select.form-control(name="postStatus")
+                            for status in postStatus
+                                if status != postForm.getPostStatus()
+                                    option(value="#{status.getId()}") #{status.getName()}
+                                else
+                                    option(value="#{status.getId()}", selected="selected") #{status.getName()}
+
+                .col-sm-2
+                    .form-group
+                        label Permalink
+                        input.form-control(name="permalink", value="#{postForm.getPermalink()}")
 
                 .col-sm-3
-                    span Permalink
-                    input.form-control(name="permalink", value="#{postForm.getPermalink()}")
-
-                .col-sm-3
-                    span Tags
-                    input.form-control(name="postTags", value="#{postForm.getPostTags()}")
+                    .form-group
+                        label Tags
+                        input.form-control(name="postTags", value="#{postForm.getPostTags()}")
         .item-row
             hr
             button.btn.btn-primary.btn-block(type="submit") Create new post

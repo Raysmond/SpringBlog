@@ -47,7 +47,7 @@ dependencies {
 
     // view
     compile 'net.sourceforge.nekohtml:nekohtml:1.9.22'
-    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2+'
     compile 'de.neuland-bfi:spring-jade4j:0.4.2'
     compile 'org.pegdown:pegdown:1.6.0'
 

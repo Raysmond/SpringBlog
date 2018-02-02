@@ -2,6 +2,7 @@ package com.raysmond.blog.forms;
 
 import com.raysmond.blog.models.support.PostFormat;
 import com.raysmond.blog.models.support.PostStatus;
+import com.raysmond.blog.models.support.PostType;
 
 import lombok.Data;
 
@@ -34,5 +35,8 @@ public class PostForm {
 
     @NotNull
     private String postTags;
+
+    @NotNull
+    private PostType postType;
 
 }

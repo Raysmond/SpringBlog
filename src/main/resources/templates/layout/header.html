@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -16,9 +16,9 @@
                     <a class="p-2 " href="/">首页</a>
                     <a class="p-2 " href="/posts/archive">归档</a>
                     <a class="p-2 " href="/tags">标签</a>
-                    <a class="p-2 " href="#">关于</a>
+                    <a class="p-2 " href="/about">关于</a>
                 </nav>
-                <!--<a sec:authorize="isAuthenticated()" class="btn btn-outline-primary" href="/admin/posts">后台管理</a>-->
+                <a sec:authorize="isAuthenticated()" class="btn btn-outline-primary" href="/admin/posts">后台管理</a>
             </div>
         </div>
     </div>

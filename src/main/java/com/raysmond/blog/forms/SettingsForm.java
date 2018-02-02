@@ -1,6 +1,7 @@
 package com.raysmond.blog.forms;
 
 import lombok.Data;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
@@ -19,5 +20,9 @@ public class SettingsForm {
 
     @NotNull
     private Integer pageSize;
+
+    private String intro;
+
+    private String pictureUrl;
 
 }

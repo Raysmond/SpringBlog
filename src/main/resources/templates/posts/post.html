@@ -18,7 +18,7 @@
                     <span th:text="${post.views}"></span>
                 </p>
             </div>
-            <div class="row" id="post-content-wrapper">
+            <div class="row" id="post-content-wrapper" th:if="${postType}=='POST'">
                 <div class="col-9">
                     <div class="post-content pt-5">
                         <div th:utext="${post.renderedContent}"></div>
@@ -28,6 +28,20 @@
                     <div id="post-contents" class="pt-5">
                         <label class="text-muted">目录</label>
                     </div>
+                </div>
+            </div>
+            <div class="row" id="post-content-wrapper" th:if="${postType}=='PAGE'">
+                <div class="col-12">
+                    <div class="post-content pt-5">
+                        <div th:utext="${post.renderedContent}"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-3">
+                <hr/>
+                <div class="pt-2">
+                    <div th:replace="fragments/disqus :: disqus"></div>
                 </div>
             </div>
         </div>
