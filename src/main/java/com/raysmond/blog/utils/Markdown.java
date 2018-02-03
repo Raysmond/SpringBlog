@@ -1,7 +1,7 @@
 package com.raysmond.blog.utils;
 
 import com.raysmond.blog.support.web.MarkdownService;
-import com.raysmond.blog.support.web.PegDownMarkdownService;
+import com.raysmond.blog.support.web.impl.PegDownMarkdownService;
 
 /**
  * A Markdown processing util class

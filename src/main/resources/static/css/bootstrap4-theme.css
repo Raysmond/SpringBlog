@@ -67,6 +67,18 @@ nav.topbar > a:focus, nav.topbar > a:hover, nav.topbar > a:active {
     color: #444;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+blockquote {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #afafaf;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+
 .post-content h1 > a,
 .post-content h2 > a,
 .post-content h3 > a,
@@ -76,8 +88,26 @@ nav.topbar > a:focus, nav.topbar > a:hover, nav.topbar > a:active {
     color: #444;
 }
 
+.post-content h2 {
+    border-bottom: 1px #e5e5e5 solid;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.post-content {
+    line-height: 1.7;
+}
+
 .post-content img {
     max-width: 100%;
+}
+
+code {
+    color: #292e31;
+    border-radius: 3px;
+    border: 1px solid #e5e5e5;
+    background: #fafafa;
+    padding: 2px 3px;
 }
 
 #post-contents ol {

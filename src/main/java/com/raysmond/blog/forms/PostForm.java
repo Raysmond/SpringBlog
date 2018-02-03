@@ -21,7 +21,6 @@ public class PostForm {
     @NotEmpty
     private String content;
 
-    @NotEmpty
     private String summary;
 
     @NotNull

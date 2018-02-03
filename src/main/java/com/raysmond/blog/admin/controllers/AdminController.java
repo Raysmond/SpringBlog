@@ -4,12 +4,14 @@ import com.raysmond.blog.forms.SettingsForm;
 import com.raysmond.blog.services.AppSetting;
 import com.raysmond.blog.support.web.MessageHelper;
 import com.raysmond.blog.utils.DTOUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -28,12 +30,12 @@ public class AdminController {
         this.appSetting = appSetting;
     }
 
-    @RequestMapping("")
+    @GetMapping("")
     public String index() {
         return "admin/home/index";
     }
 
-    @RequestMapping(value = "settings")
+    @GetMapping(value = "settings")
     public String settings(Model model) {
         SettingsForm settingsForm = DTOUtil.map(appSetting, SettingsForm.class);
 
@@ -41,8 +43,8 @@ public class AdminController {
         return "admin/home/settings";
     }
 
-    @RequestMapping(value = "settings", method = RequestMethod.POST)
-    public String updateSettings(@Valid SettingsForm settingsForm, Errors errors, Model model, RedirectAttributes ra) {
+    @PostMapping(value = "settings")
+    public String updateSettings(@Valid SettingsForm settingsForm, Errors errors, RedirectAttributes ra) {
         if (errors.hasErrors()) {
             return "admin/settings";
         } else {

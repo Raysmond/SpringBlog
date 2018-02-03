@@ -50,6 +50,7 @@ dependencies {
     compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2+'
     compile 'de.neuland-bfi:spring-jade4j:0.4.2'
     compile 'org.pegdown:pegdown:1.6.0'
+    compile 'com.vladsch.flexmark:flexmark-all:0.28.38'
 
     // python
     compile 'org.python:jython-standalone:2.7.0'
