@@ -44,6 +44,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework.boot:spring-boot-starter-logging'
     compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-cache'
 
     // view
     compile 'net.sourceforge.nekohtml:nekohtml:1.9.22'
@@ -61,7 +63,9 @@ dependencies {
     compile 'org.hibernate:hibernate-core:5.2.12.Final'
     compile 'org.hibernate:hibernate-entitymanager:5.2.12.Final'
     compile 'org.hibernate:hibernate-validator'
+    compile 'org.hibernate:hibernate-ehcache:5.2.12.Final'
     compile 'com.zaxxer:HikariCP:2.7.6'
+    compile 'net.sf.ehcache:ehcache'
 
     // JSON
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1.3'

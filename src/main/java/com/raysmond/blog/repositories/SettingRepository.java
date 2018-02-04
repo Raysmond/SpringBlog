@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Raysmond
  */
 @Repository
-@Transactional
 public interface SettingRepository extends JpaRepository<Setting, Long> {
     Setting findByKey(String key);
 }

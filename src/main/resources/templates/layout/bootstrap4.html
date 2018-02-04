@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/bower_components/highlightjs/styles/atom-one-dark.css">
     <link rel="stylesheet" href="/css/bootstrap4-theme.css">
-    <title>SpringBlog</title>
+    <title th:text="${@App.getSiteName()+' | ' + @App.getSiteSlogan()}"></title>
 </head>
 <body>
 

@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/bootstrap4">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div layout:fragment="content">
+    <h1 class="page-title text-center py-3">
+        <span th:text="${status}"></span>
+        <span th:text="${error}"></span>
+    </h1>
+
+    <div>
+        Path: <span th:text="${path}"></span>
+    </div>
+
+    <div class="pt-3" th:text="${customMessage}">
+    </div>
+
+</div>
+</body>
+</html>

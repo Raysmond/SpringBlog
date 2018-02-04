@@ -2,11 +2,14 @@ package com.raysmond.blog.services;
 
 import com.raysmond.blog.models.Setting;
 import com.raysmond.blog.repositories.SettingRepository;
+
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 
@@ -15,8 +18,8 @@ import java.io.Serializable;
  */
 @Service
 @Slf4j
+@Transactional
 public class CacheSettingService implements SettingService {
-    private static final String CACHE_NAME = "cache.settings";
     private SettingRepository settingRepository;
 
     @Autowired
@@ -25,6 +28,7 @@ public class CacheSettingService implements SettingService {
     }
 
     @Override
+    @Cacheable(value = "settingCache", key = "#key")
     public Serializable get(String key) {
         Setting setting = settingRepository.findByKey(key);
         Serializable value = null;
@@ -40,14 +44,14 @@ public class CacheSettingService implements SettingService {
     }
 
     @Override
-    @Cacheable(value = CACHE_NAME, key = "#key")
+    @Cacheable(value = "settingCache", key = "#key")
     public Serializable get(String key, Serializable defaultValue) {
         Serializable value = get(key);
         return value == null ? defaultValue : value;
     }
 
     @Override
-    @CacheEvict(value = CACHE_NAME, key = "#key")
+    @CacheEvict(value = "settingCache", key = "#key")
     public void put(String key, Serializable value) {
         log.info("Update setting " + key + " to database. Value = " + value);
 

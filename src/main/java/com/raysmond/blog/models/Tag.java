@@ -7,6 +7,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 /**
  * @author Raysmond
  */
@@ -14,6 +16,7 @@ import java.util.List;
 @Table(name = "tags")
 @Getter
 @Setter
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "tagCache")
 public class Tag extends BaseModel {
 
     @Column(nullable = false, unique = true)

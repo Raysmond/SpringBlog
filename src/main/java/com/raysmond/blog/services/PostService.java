@@ -9,15 +9,11 @@ import com.raysmond.blog.models.support.PostStatus;
 import com.raysmond.blog.models.support.PostType;
 import com.raysmond.blog.repositories.PostRepository;
 import com.raysmond.blog.support.web.MarkdownService;
-import com.raysmond.blog.utils.Markdown;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -39,11 +35,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @Transactional
 public class PostService {
-    public static final String CACHE_NAME = "cache.post";
-    public static final String CACHE_NAME_ARCHIVE = CACHE_NAME + ".archive";
-    public static final String CACHE_NAME_PAGE = CACHE_NAME + ".page";
-    public static final String CACHE_NAME_TAGS = CACHE_NAME + ".tag";
-    public static final String CACHE_NAME_COUNTS = CACHE_NAME + ".counts_tags";
 
     @Autowired
     private PostRepository postRepository;
@@ -58,7 +49,6 @@ public class PostService {
     @Qualifier("flexmark")
     private MarkdownService markdownService;
 
-    @Cacheable(CACHE_NAME)
     public Post getPost(Long postId) {
         log.debug("Get post " + postId);
 
@@ -71,7 +61,6 @@ public class PostService {
         return post;
     }
 
-    @Cacheable(CACHE_NAME)
     public Post getPublishedPostByPermalink(String permalink) {
         log.debug("Get post with permalink " + permalink);
 
@@ -92,11 +81,6 @@ public class PostService {
         return post;
     }
 
-    @Caching(evict = {
-            @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
-            @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true),
-            @CacheEvict(value = CACHE_NAME_COUNTS, allEntries = true)
-    })
     public Post createPost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(markdownService.renderToHtml(post.getContent()));
@@ -106,14 +90,6 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    @Caching(evict = {
-            @CacheEvict(value = CACHE_NAME, key = "#post.id"),
-            @CacheEvict(value = CACHE_NAME, key = "#post.permalink", condition = "#post.permalink != null"),
-            @CacheEvict(value = CACHE_NAME_TAGS, key = "#post.id.toString().concat('-tags')"),
-            @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
-            @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true),
-            @CacheEvict(value = CACHE_NAME_COUNTS, allEntries = true)
-    })
     public Post updatePost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(markdownService.renderToHtml(post.getContent()));
@@ -123,19 +99,10 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    @Caching(evict = {
-            @CacheEvict(value = CACHE_NAME, key = "#post.id"),
-            @CacheEvict(value = CACHE_NAME, key = "#post.permalink", condition = "#post.permalink != null"),
-            @CacheEvict(value = CACHE_NAME_TAGS, key = "#post.id.toString().concat('-tags')"),
-            @CacheEvict(value = CACHE_NAME_ARCHIVE, allEntries = true),
-            @CacheEvict(value = CACHE_NAME_PAGE, allEntries = true),
-            @CacheEvict(value = CACHE_NAME_COUNTS, allEntries = true)
-    })
     public void deletePost(Post post) {
         postRepository.delete(post);
     }
 
-    @Cacheable(value = CACHE_NAME_ARCHIVE, key = "#root.method.name")
     public List<Post> getArchivePosts() {
         log.debug("Get all archive posts from database.");
 
@@ -147,7 +114,6 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
-    @Cacheable(value = CACHE_NAME_TAGS, key = "#post.id.toString().concat('-tags')")
     public List<Tag> getPostTags(Post post) {
         log.debug("Get tags of post {}", post.getId());
 
@@ -170,7 +136,6 @@ public class PostService {
         return archivePost;
     }
 
-    @Cacheable(value = CACHE_NAME_PAGE, key = "T(java.lang.String).valueOf(#page).concat('-').concat(#pageSize)")
     public Page<Post> getAllPublishedPostsByPage(int page, int pageSize) {
         log.debug("Get posts by page " + page);
 
@@ -224,7 +189,6 @@ public class PostService {
         return postRepository.findByTag(tagName, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
     }
 
-    @Cacheable(value = CACHE_NAME_COUNTS, key = "#root.method.name")
     public List<Object[]> countPostsByTags() {
         log.debug("Count posts group by tags.");
 

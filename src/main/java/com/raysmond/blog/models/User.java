@@ -1,12 +1,16 @@
 package com.raysmond.blog.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * @author Raysmond
@@ -15,6 +19,7 @@ import java.util.Collection;
 @Table(name = "users")
 @Getter
 @Setter
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "userCache")
 public class User extends BaseModel {
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
     public static final String ROLE_USER = "ROLE_USER";

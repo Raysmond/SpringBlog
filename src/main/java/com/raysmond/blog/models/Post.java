@@ -7,6 +7,7 @@ import com.raysmond.blog.models.support.PostType;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.springframework.util.StringUtils;
 
@@ -23,6 +24,7 @@ import java.util.Set;
 @Table(name = "posts")
 @Getter
 @Setter
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "postCache")
 public class Post extends BaseModel {
     private static final SimpleDateFormat SLUG_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
 
@@ -61,6 +63,7 @@ public class Post extends BaseModel {
             joinColumns = {@JoinColumn(name = "post_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "tag_id", nullable = false, updatable = false)}
     )
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "tagCache")
     private Set<Tag> tags = new HashSet<>();
 
     private String permalink;
