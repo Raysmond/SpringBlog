@@ -79,6 +79,10 @@ blockquote {
     border-radius: 3px;
 }
 
+h1.blog-post-title {
+    font-weight: 500;
+}
+
 .post-content h1 > a,
 .post-content h2 > a,
 .post-content h3 > a,
