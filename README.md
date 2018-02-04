@@ -1,6 +1,8 @@
 SpringBlog
 =====
 
+中文开发和部署文档请查看：http://raysmond.com/posts/springblog-guide
+
 SpringBlog is a very simple and clean-design blog system implemented with Spring Boot.
 It's one of my learning projects to explore awesome features in Spring Boot web programming. You can check my blog 
 site for demo [https://raysmond.com](http://raysmond.com).
@@ -16,17 +18,15 @@ SpringBlog is powered by many powerful frameworks and third-party projects:
 - [Bootstrap](https://getbootstrap.com) - A very popular and responsive front-end framework
 - [Pegdown](https://github.com/sirthias/pegdown) - A pure-java markdown processor
 - [ACE Editor](http://ace.c9.io/) - A high performance code editor which I use to write posts and code.
-- [Pygments](http://pygments.org/) - A python library for highlighting code syntax
-- [Jade4j](https://github.com/neuland/jade4j) - [Jade](http://jade-lang.com/) is an elegant template language.
 - [Redis](http://redis.io/) - A very powerful in-memory data cache server.
+- EhCache
+- Thymeleaf (Spring MVC)
 
 ## Development
 
 Before development, please install the following service software:
 
 - [MySQL](https://www.mysql.com)
-- [Redis](http://redis.io)
-- [Pygments](http://pygments.org)
 
 Edit the spring config profile `src/main/resources/application.yml` according to your settings.
 
@@ -40,18 +40,6 @@ apt-get install mysql-server
 service mysql start
 mysql -u root -p
 >> create database spring_blog;
-
-
-# Install Python pygments
-apt-get install python-pip
-pip install pygments
-```
-
-```
-# If you want to enable redis cache
-# Install redis server first, you can find instructions
-# from https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis
-service redis_6379 start
 ```
 
 This is a Gradle project. Make sure Gradle is installed in your machine.
@@ -67,12 +55,15 @@ I recommend you import the source code into Intellij IDE to edit the code.
 
 **How to import the project into Intellij IDEA and run from the IDE?**
 
+```
+git clone https://github.com/Raysmond/SpringBlog.git 
+cd SpringBlog
+
+bower install 
+```
 
 1. Clone the project
-`git clone https://github.com/Raysmond/SpringBlog.git `
 2. Download all dependencies
-`cd SpringBlog `
-`./gradlew idea `
 3. Open the project in Intellij IDEA.
 4. Run `SpringBlogApplication.java` as Java application.
 5. Preview: http://localhost:8080
@@ -95,12 +86,12 @@ I recommend you import the source code into Intellij IDE to edit the code.
 
 ## TODO
 
-- [] Upgrade frontend framework to Bootstrap4
-- [] Replace Jade with Thymeleaf(HTML)
-- [] Frontend building tools, e.g. webpack
-- [] Use hibernate 2nd level cache (EHCache?)
-- [] Markdown preview while editing
-- [] Html editor
+- [x] Upgrade frontend framework to Bootstrap4
+- [ ] Replace Jade with Thymeleaf(HTML)
+- [ ] Frontend building tools, e.g. webpack
+- [x] Use hibernate 2nd level cache (EHCache?)
+- [ ] Markdown preview while editing
+- [ ] Html editor
 
 ## License
 Modified BSD license. Copyright (c) 2015 - 2018, Jiankun LEI (Raysmond).
