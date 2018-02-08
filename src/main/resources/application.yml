@@ -26,6 +26,9 @@ spring:
         ehcache:
           config: classpath:ehcache.xml
 
+    #messages
+    spring.messages.basename: i18n/messages
+
 logging:
   level:
     org.springframework.web: ERROR
