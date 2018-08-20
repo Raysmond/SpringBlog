@@ -39,7 +39,7 @@ And start MySQL and Redis first before running the application.
 apt-get install mysql-server
 service mysql start
 mysql -u root -p
->> create database spring_blog;
+>> create database spring_blog_dev;
 ```
 
 This is a Gradle project. Make sure Gradle is installed in your machine.
