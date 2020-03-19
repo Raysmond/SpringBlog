@@ -23,7 +23,7 @@ import java.util.Set;
 @Entity
 @Table(name = "posts",
     indexes = {@Index(name = "posts_post_type", columnList = "post_type"),
-        @Index(name = "post_permalink", columnList = "permalink")})
+        @Index(name = "posts_permalink", columnList = "permalink")})
 @Getter
 @Setter
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "postCache")
