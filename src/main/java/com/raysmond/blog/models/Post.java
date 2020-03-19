@@ -21,7 +21,9 @@ import java.util.Set;
  * @author Raysmond
  */
 @Entity
-@Table(name = "posts")
+@Table(name = "posts",
+    indexes = {@Index(name = "posts_post_type", columnList = "post_type"),
+        @Index(name = "post_permalink", columnList = "permalink")})
 @Getter
 @Setter
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "postCache")
